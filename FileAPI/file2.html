@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <input type="file" id="file"/>
+    <p id="output"></p>
+    <script type="text/javascript">
+        function blobSlice(blob,start,length){
+            if(blob.slice){
+                return blob.slice(start, length);
+            }else{
+                return null;
+            }
+        }
+        window.onload = function(){
+            var file = document.getElementById('file'),
+            output =document.getElementById('output');
+            file.onchange = function(){
+                var f = this.files;
+                var reader = new FileReader(),
+                    blob = blobSlice(f[0],0,32);
+                if(blob){
+                    reader.readAsText(blob);
+                    reader.onload = function(){
+                        output.innerHTML = reader.result;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

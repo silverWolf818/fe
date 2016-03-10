@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <input type="file" id="file"/>
+    <p id="output"></p>
+    <script type="text/javascript">
+        function createObjectURL(blob){
+            if(window.URL){
+                return window.URL.createObjectURL(blob);
+            }
+        }
+        window.onload = function(){
+            var file = document.getElementById('file'),
+            output =document.getElementById('output');
+            file.onchange = function(){
+                var f = this.files;
+                var reader = new FileReader(),
+                    url = createObjectURL(f[0]);
+                if(url){
+                    output.innerHTML = "<img src=\""+url+"\">";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

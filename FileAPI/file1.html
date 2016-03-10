@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>file</title>
+</head>
+<body>
+    <input type="file" multiple id="files" />
+    <p id="show"></p>
+    <script type="text/javascript">
+        window.onload = function(){
+            var f = document.getElementById('files');
+            var result = document.getElementById('show');
+            f.onchange = function(){
+                var files = this.files,
+                    i = 0,
+                    len = files.length;
+                while (i < len) {
+                    result.innerHTML +='Name:' + files[i].name + ' Type:'+files[i].type+' Size:'+files[i].size+'</br>';
+                    i++;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

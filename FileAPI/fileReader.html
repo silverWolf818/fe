@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <input type="file" id="file"/>
+    <p id="progress"></p>
+    <p id="output"></p>
+    <script type="text/javascript">
+        window.onload = function(){
+            var file = document.getElementById('file'),
+            progress = document.getElementById('progress'),
+            output =document.getElementById('output');
+            file.onchange = function(){
+                var f = this.files;
+                var reader = new FileReader(), //异步文件读取机制
+                    type = 'default';
+                    if(/image/.test(f[0].type)){
+                        reader.readAsDataURL(f[0]);//读取文件并将文件以数据URL的形式保存
+                        type = 'image';
+                    }else{
+                        reader.readAsText();//以纯文本形式读取文件并保存
+                        type = 'text';
+                    }
+                    reader.onerror = function(){
+                        output.innerHTML = 'Could not read file,error code is '+ read.error.code;
+                    }
+                    reader.onprogress = function(e){
+                        if(e.lengthComputable){
+                            progress.innerHTML = Math.round(event.loaded/event.total*100)+"%";
+                        }
+                    }
+                    reader.onload = function(){
+                        var html = '';
+                        switch (type) {
+                            case 'image':html = "<img src=\""+reader.result+"\" >";
+                                        break;
+                            case 'text':html = reader.result;
+                                        break;
+
+                        }
+                        output.innerHTML = html;
+                    }
+
+            }
+        }
+    </script>
+</body>
+</html>
