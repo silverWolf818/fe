@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>类型检测</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var arr = [];
+        var fun = function(){};
+        var st = "111";
+        var a = 2;
+        function isReg(value){
+            console.log(Object.prototype.toString.call(value));
+            // return Object.prototype.toString.call(value);
+        }
+        isReg(arr);
+        isReg(fun);
+        isReg(a);
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript">
+        var timeView = function(){
+        var t = 259200,h,g,m,s;
+        function showTime(){
+            d = parseInt(t/86400);
+            h = parseInt((t%86400)/3600);
+            g = parseInt(t%3600);
+            m = parseInt(g/60);
+            s = parseInt(g%60);
+            console.log(d+'d'+h+'h'+m+'m'+s+"s");
+            t--;
+        }
+        setInterval(showTime,1000);
+    }
+    timeView();
+        </script>
+    </body>
+</html>
