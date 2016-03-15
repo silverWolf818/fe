@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+
+    <div class="all">
+        <div class="list">
+            <label name=price id="shop_1" data-price="400">400元</label>
+            <a name="opt" class="desc" href="javascript:" data-id="1">-</a><input id="iput_1" type="text" min="1" value="1"><a name="opt" class="add" data-id="1" href="javascript:">+</a>
+            <!-- <label id="price_1">0</label> -->
+        </div>
+        <div class="list">
+            <label name=price id="shop_2" data-price="500">500元</label>
+            <a name="opt" class="desc" href="javascript:" data-id="2">-</a><input id="iput_2" type="text" min="1" value="1"><a name="opt" class="add" data-id="2" href="javascript:">+</a>
+            <!-- <label id="price_2">0</label> -->
+        </div>
+        <div class="list">
+            <label name=price id="shop_3" data-price="600">600元</label>
+            <a name="opt" class="desc" href="javascript:" data-id="3">-</a><input id="iput_3" type="text" min="1" value="1"><a name="opt" class="add" data-id="3" href="javascript:">+</a>
+            <!-- <label id="price_3">0</label> -->
+        </div>
+    </div>
+    <div class="total"></div>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+ $(function(){
+      var all = 0;
+     $('label[name="price"]').each(function(e){
+            all += parseInt($(this).data('price'));
+     });
+     $(".total").text(all);
+    $('a[name="opt"]').bind('click',function(){
+            var targetInput = $("#iput_"+$(this).data('id'));
+            var shop = parseInt($("#shop_"+$(this).data('id')).data('price'));
+            // var price = $("#price_"+$(this).data('id'));
+            var num = parseInt(targetInput.val());
+            if($(this).hasClass('desc')){
+                if(num>1){
+                    targetInput.val(num * 1 - 1);
+                    all -= shop;
+                }
+            }else{
+                targetInput.val(num * 1 + 1);
+                all += shop;
+            }
+        $(".total").text(all);
+    });
+ });
+</script>
+</body>
+</html>
