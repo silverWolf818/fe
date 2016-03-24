@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>controller</title>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <input type="text" ng-model="one">
+        <input type="text" ng-model="two">
+        <p>{{one +" " + two }}</p>
+    </div>
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script type="text/javascript">
+    var app = angular.module('myApp',[]);
+        app.controller('myCtrl',function($scope){
+            $scope.one="tom";
+            $scope.two="haha";
+        });
+</script>
+</body>
+</html>
