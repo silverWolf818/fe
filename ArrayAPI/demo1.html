@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <div class="show" id="show"></div>
+<script type="text/javascript">
+    //创建数组(array) new关键字可以省略
+    var array = new Array();
+    console.log(array.__proto__);
+    //[]创建数组
+    var arr = [];
+    //检测数组方法
+    function isArray(obj){
+        return Array.isArray(obj);
+        //return (typeof obj !== 'undefined' && obj && obj.constructor === Array);
+        //return Object.prototype.toString.call(obj)
+    }
+    var arr1 = ['a','b'];
+    isArray(arr1);
+    console.log(arr1 instanceof Array);
+    //push
+    var arr2 = [];
+    console.log(arr);
+    arr2.push(1);
+    console.log(arr2);
+    arr2.pop();
+    console.log(arr2);
+    arr2.unshift(2,3);
+    console.log(arr2);
+    arr2.shift();
+    console.log(arr2);
+    //测试
+    var arr3 = [];
+    console.time('push');
+    for(var i =0;i<100000;i++){
+        arr3.push(i);
+    }
+    console.timeEnd('push');
+    arr3 =[];
+    console.time('unshift');
+    for(var i =0;i<100000;i++){
+        arr3.unshift(i);
+    }
+    console.timeEnd('unshift');
+    console.time('reverse');
+    arr3.reverse();
+    console.timeEnd('reverse');
+    //排序
+    var arr4 = [1,43,2,5,6,44];
+    function compareFun(a,b){
+        if(a < b){
+            return -1;  // a在b前
+        }else if(a > b){
+            return 1;   //a在b后
+        }else{
+            return 0; //a==b位置不变
+        }
+    }
+    arr4.sort(compareFun);
+    console.log(arr4);
+    //对于数字类型
+    var arr5 = [34,5,2,2423,1,43];
+    function ascSort(a,b){
+        return a - b;
+    }
+    function desSort(a,b){
+        return b - a;
+    }
+    arr5.sort(ascSort);
+    console.log(arr5);
+    arr5.sort(desSort);
+    console.log(arr5);
+    //对象排序
+    function objectSort(property,desc){
+        //降序
+        if(desc){
+            return function(a,b){
+                return (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
+            }
+        }else{
+                return (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        }
+    }
+    var myArray = [
+        { "name": "John Doe", "age": 29 },
+        { "name": "Anna Smith", "age": 24 },
+        { "name": "Peter Jones", "age": 39 }
+    ]
+    console.log(myArray.sort(objectSort('name',true)));
+</script>
+</body>
+</html>
