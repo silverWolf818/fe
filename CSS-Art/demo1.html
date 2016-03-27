@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS3的all属性</title>
+<style>
+    section{
+        color: green;
+        background-color:#f0f3f9;
+    }
+    section>textarea{
+        border: 1px solid #e4e4e4;
+        background: blue;
+        color: red;
+    }
+    .initial > * {
+        all: initial;
+    }
+    .inherit > * {
+        all: inherit;
+    }
+    .unset > * {
+        all: unset;
+    }
+</style>
+</head>
+<body>
+    all:<select id="select">
+        <option value="">请选择</option>
+        <option value="initial">initial</option>
+        <option value="inherit">inherit</option>
+        <option value="unset">unset</option>
+    </select>
+    <section>
+        <h1>标题</h1>
+        <p>我是文字</p>
+        <ol>
+            <li>列表1</li>
+            <li>列表2</li>
+            <li>列表3</li>
+        </ol>
+        <input type="button" value="我是按钮">
+        <input type="text" name="name" value="我是文本">
+        <textarea name="name" rows="8" cols="40">文本域</textarea>
+    </section>
+    <script type="text/javascript">
+        var section = document.querySelector('section');
+        if(section){
+            document.querySelector("#select").addEventListener('change',function(){
+                section.className = this.value;
+            })
+        }
+    </script>
+</body>
+</html>
