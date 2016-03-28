@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Arrary API</title>
+</head>
+<body>
+<script type="text/javascript">
+    // concat()合并数组
+    var arr = ['a','awe','www'];
+    var arr2 = arr.concat('sw','qwe');
+    console.log(arr2);
+
+    // concat()和push()
+    // 添加值
+    console.log('--addvalue--');
+    var a1 = ['a','b'];
+    console.log(a1);
+    a1.push('c','d');
+    console.log(a1);
+
+    var a2 = ['a','b'];
+    console.log(a2); // ["a", "b"]
+    a2.concat('c','d');
+    console.log(a2); // ["a", "b"]
+    var a3 = a2.concat('c','d');
+    console.log(a3); // ["a", "b", "c", "d"]
+    // 添加数组
+    console.log('--addarr--');
+    var a4 = ['a','b'];
+    console.log(a4);
+    a4.push(['c','d'],['e','f']);
+    console.log(a4);
+    var a5 = ['a','b'];
+    console.log(a5);
+    var a6 = a5.concat(['c','d'],['e','f']);
+    console.log(a6);
+
+    //slice()方法
+    var test = function(arr){
+        console.log('length'+arr.length);
+        arr.forEach(function(ele,index,arr){
+            console.log(index + ' ' + ele);
+        });
+    }
+    var arr7 = ['0','1','2','3','4','5'];
+    test(arr7);
+    test(arr7.slice(3));
+    test(arr7.slice(2, 5));
+    test(arr7.slice(-3));
+    test(arr7.slice(3, 3));
+    test(arr7.slice(4, 3));
+    test(arr7.slice(-1, 3));
+
+    //splice()方法
+    console.log('--splice--');
+    var arr8 = [0,2,3,4,5,6];
+    test(arr8);
+    // test(arr8.splice(1,3));
+    // test(arr8.splice(1,0,'a','b','c','d'));
+    test(arr8.splice(2,4,'a','b','c','d'));
+    test(arr8);
+</script>
+</body>
+</html>
