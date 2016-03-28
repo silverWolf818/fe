@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>插入换行符</title>
+<style>
+dt, dd {
+    display: inline;
+}
+ dd{
+     margin: 0;
+     font-weight: bold;
+ }
+ dd + dt::before {
+     content: '\A';
+     white-space: pre;
+ }
+ dd + dd::before {
+     content: ', ';
+     font-weight: normal;
+ }
+</style>
+</head>
+<body>
+    <dl>
+    <dt>Name:</dt>
+    <dd>Lea Verou</dd>
+    <dt>Email:</dt>
+    <dd>lea@verou.me</dd>
+    <dd>zzh@sina.com</dd>
+    <dt>Location:</dt>
+    <dd>Earth</dd>
+    </dl>
+</body>
+</html>
