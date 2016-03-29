@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="telephone=no,email=no" name="format-detection">
+<title>PX,EM or REM</title>
+<style>
+html{
+    font-size: 200%;
+}
+div{
+    height: 100px;
+}
+.pixel {
+    background: red;
+}
+.em {
+    background: green;
+}
+.rem {
+    background: blue;
+}
+@media screen and (min-width: 400px) {
+    .pixel {
+        opacity: .5
+    }
+}
+@media screen and (min-width: 25em) {
+    .em {
+        opacity: .5
+    }
+}
+@media screen and (min-width: 25rem) {
+    .rem {
+        opacity: .5
+    }
+}
+.box{
+    width: 5rem;
+}
+</style>
+</head>
+<body>
+    <div class="pixel"></div>
+    <div class="em"></div>
+    <div class="rem"></div>
+    <div class="box"></div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>demo</title>
+</head>
+<body>
+    <div id="app">{{ msg }}</div>
+    <div id="demo">
+        <p>{{ msg }}</p>
+        <input v-model="msg">
+    </div>
+    <div id="list">
+        <ul>
+            <li v-for="todo in todos">{{ todo.text }}</li>
+        </ul>
+    </div>
+    <div id="input">
+        <p>{{ msg }}</p>
+        <button v-on:click="reverseMsg"> Reverse </button>
+    </div>
+
+    <script type="text/javascript" src="../VueJS/bulid/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'hello'
+            }
+        });
+        new Vue({
+            el:'#demo',
+            data:{
+                msg:'demo'
+            }
+        });
+        new Vue({
+            el:"#list",
+            data:{
+                todos:[
+                    {text: 'angularjs'},
+                    {text: 'vuejs'},
+                    {text : 'javascript'}
+                ]
+            }
+        });
+        new Vue({
+            el:"#input",
+            data:{
+                msg:'this is input'
+            },
+            methods:{
+                reverseMsg:function(){
+                    this.msg = this.msg.split('').reverse().join('');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

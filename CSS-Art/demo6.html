@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="telephone=no,email=no" name="format-detection">
+<title>Fixed布局的解决方案</title>
+<style>
+header,main,footer{
+    display: block;
+}
+header,footer{
+    position: fixed;
+    height: 40px;
+    left: 0;
+    right: 0;
+    background: #999;
+    z-index: 998;
+}
+header{
+    top: 0;
+}
+footer{
+    bottom: 0;
+}
+main{
+    position: absolute;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.content{
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.box{
+    height: 80px;
+}
+</style>
+</head>
+<body>
+    <header></header>
+    <main>
+        <div class="content">
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+            <div class="box">111111</div>
+        </div>
+    </main>
+    <footer>
+        <input type="text" placeholder="center...">
+        <button type="button" class="submit">提交</button>
+    </footer>
+</body>
+</html>
