@@ -2,27 +2,34 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title></title>
+<title>v-if</title>
 </head>
 <body>
-    <ul id="appList" v-if="ok">
-    <li v-for="todo in todos">{{todo.text}}</li>
-    </ul>
-    <ul v-else>
-    <li>1111</li>
-    </ul>
+    <div id="condition">
+        <h1 v-if="true">Yes</h1>
+        <h1 v-else>No</h1>
+    </div>
+    <div id="temp">
+        <template v-if="true">
+          <h1>Title</h1>
+          <p>Paragraph 1</p>
+          <p>Paragraph 2</p>
+        </template>
+    </div>
+    <div id="show">
+        <h1 v-show="true">Hello!</h1>
+    </div>
 <script type="text/javascript" src="../VueJS/bulid/vue.js"></script>
 <script type="text/javascript">
-new Vue({
-el: '#appList',
-data: {
-todos: [
-  {text: 'HTML'},
-  {text: 'CSS'},
-  {text: 'javascript'}
-]
-}
-});
+    new Vue({
+        el:"#condition"
+    });
+    new Vue({
+        el:"#temp"
+    });
+    new Vue({
+        el:"#show"
+    })
 </script>
 </body>
 </html>

@@ -13,18 +13,26 @@
     <div id="styles" class="static" v-bind:class="{ 'class-a': isA, 'class-b': isB }"></div>
     <div id="cs" v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
     <div id="objcss" v-bind:style="styleObject"></div>
-    <template v-if="ok">
+    <template id="te" v-if="ok">
         <h1>Title</h1>
         <p>Paragraph 1</p>
         <p>Paragraph 2</p>
     </template>
-    <div v-if="Math.random() > 0.5">
-        Sorry
-    </div>
-    <div v-else>
-        Not sorry
+    <div id="show" v-show="true">111</div>
+    <div id="ifs">
+        <h1 v-if="true">Yes</h1>
+        <h1 v-else>No</h1>
     </div>
     <script type="text/javascript">
+    var ifs = new Vue({
+        el:"#ifs"
+    });
+    var qwe = new Vue({
+        el:"#te"
+    });
+    var vvv = new Vue({
+        el:"#show"
+    })
         var data = { a: 1 };
         var vm = new Vue({
             data:data
