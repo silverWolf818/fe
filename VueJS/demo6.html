@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>form</title>
+</head>
+<body>
+    <div id="single">
+        <input type="checkbox"  id="box" v-model="checked">
+        <label for="box">{{ checked }}</label>
+    </div>
+    <div id="mult">
+        <input type="checkbox" id="tom" value="tom" v-model="checkName">
+        <label for="tom">tom</label>
+        <input type="checkbox" id="cat" value="cat" v-model="checkName">
+        <label for="cat">cat</label>
+        <input type="checkbox" id="dog" value="dog" v-model="checkName">
+        <label for="dog">dog</label>
+        <br>
+        <span>name: {{ checkName }}</span>
+    </div>
+    <div id="raid">
+        <input type="radio" id="one" value="One" v-model="picked">
+        <label for="one">One</label>
+        <input type="radio" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <span>Picked: {{ picked }}</span>
+    </div>
+    <div id="sel">
+        <select v-model="selected">
+            <option selected>a</option>
+            <option >b</option>
+            <option >c</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+    <div id="sels">
+        <select v-model="selected" multiple>
+            <option selected>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <br>
+        <span>Selected: {{ selected | json }}</span>
+    </div>
+    <div id="modsel">
+        <select v-model="selected">
+            <option v-for="option in options" v-bind:value="option.value">{{ option.text }}</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+    <div id="dc">
+        <input type="checkbox" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b">
+    </div>
+    <div id="rc">
+        <input type="radio" v-model="pick" v-bind:value="a">
+        <input v-model="age" number>
+    </div>
+    <script type="text/javascript" src="../VueJS/bulid/vue.js"></script>
+    <script type="text/javascript">
+    var vs = new Vue({
+        el:"#dc",
+        data:{
+            toggle:true,
+            a:"a123",
+            b:"b123"
+        }
+    });
+    var sa = new Vue({
+        el:"#rc",
+        data:{
+            pick:true,
+            a:"23",
+            age:23
+        }
+    });
+            new Vue({
+                el:"#single",
+                data:{
+                    checked:false
+                }
+            });
+            new Vue({
+                el:"#mult",
+                data:{
+                    checkName:[]
+                }
+            });
+            new Vue({
+                el:"#raid",
+                data:{
+                    picked:'One'
+                }
+            });
+            new Vue({
+                el:"#sel",
+                data:{
+                    selected:'a'
+                }
+            });
+            new Vue({
+                el:"#sels",
+                data:{
+                    selected:'A'
+                }
+            });
+            new Vue({
+                el:"#modsel",
+                data:{
+                    selected:"A",
+                    options:[
+                        {text:'one',value:'A'},
+                        {text:'two',value:'B'},
+                        {text:'three',value:'C'}
+                    ]
+                }
+            });
+            // console.log(vs.toggle === vs.a);
+            // console.log(vs.toggle === vs.b);
+    </script>
+</body>
+</html>

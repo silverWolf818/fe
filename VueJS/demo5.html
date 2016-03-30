@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>method</title>
+</head>
+<body>
+    <div id="test">
+        <button v-on:click="greet">Greet</button>
+    </div>
+    <div id="test1">
+        <button v-on:click="say('hehe')">say1</button>
+        <button v-on:click="say('asds')">say2</button>
+    </div>
+    <script type="text/javascript" src="../VueJS/bulid/vue.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:"#test",
+            data:{
+                name:'haha'
+            },
+            methods:{
+                greet:function(event){
+                    console.log('hao'+this.name+'!');
+                    console.log(event.target.tagName);
+                }
+            }
+        });
+        // vm.greet();
+        new Vue({
+            el:"#test1",
+            methods:{
+                say:function(msg){
+                    console.log(msg);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

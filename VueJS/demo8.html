@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <template id="child-template">
+        <input v-model="msg">
+        <button v-on:click="notify">Dispatch Event</button>
+    </template>
+    <div id="events-example">
+        <p>Messages: {{ messages | json }}</p>
+        <child  v-on:child-msg="handleIt"></child>
+    </div>
+<script type="text/javascript" src="../VueJS/bulid/vue.js"></script>
+<script type="text/javascript">
+    Vue.component('child',{
+        template:'#child-template',
+        data:function(){
+            return { msg:'hello' }
+        },
+        methods:{
+            notify:function(){
+                if(this.msg.trim()){
+                    this.$dispatch('child-msg',this.msg);
+                    this.msg = '';
+                }
+            }
+        }
+    });
+    var pare = new Vue({
+        el:"#events-example",
+        data:{
+            messages:[]
+        },
+        methods:{
+            handleIt:function(msg){
+                this.messages.push(msg);
+            }
+        }
+        // events:{
+        //     'child-msg':function(msg){
+        //         this.messages.push(msg);
+        //     }
+        // }
+    });
+</script>
+</body>
+</html>
