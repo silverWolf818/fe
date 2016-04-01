@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>localStorage</title>
+</head>
+<body>
+    <input type="text" id="text">
+    <a href="javascript:" id="save">save</a>
+    <script type="text/javascript">
+        var text = document.getElementById('text');
+        document.getElementById('save').addEventListener('click',function(){
+                sessionStorage.setItem('msg', text.value);
+                location.href="other.html";
+                sessionStorage.getItem('msg');
+        });
+        if(localStorage.pagecount){
+            localStorage.pagecount = Number(localStorage.pagecount) + 1;
+        }else{
+            localStorage.pagecount = 1;
+        }
+        document.write('visits'+localStorage.pagecount + 'times');
+    </script>
+</body>
+</html>
