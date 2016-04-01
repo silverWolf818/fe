@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <!-- <div ng-app="myApp" ng-controller="myAppCtrl">
+          name:{{ name }}<br>
+          reverse name:{{ name | reverse }}<br>
+          reverse&uppercase name:{{ name | reverse:true }}
+      </div> -->
+    <!-- <div ng-app="">
+        <input type="text" ng-model="name">
+        <h1>{{name | uppercase }}</h1>
+    </div> -->
+        <div ng-app="myApp" ng-controller="myAppCtrl">
+        <ul>
+          <li ng-repeat="x in names | orderBy:'country'">
+                {{ x.name + ', ' + x.country }}
+          </li>
+        </ul>
+        <div> {{ tody | date:'shortTime' }} </div>
+        <input type="text" ng-model="txt">
+        <p>{{ "qweq" | cap }}</p>
+    <div>
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script type="text/javascript">
+var app = angular.module('myApp',[]);
+    app.controller('myAppCtrl',function($scope){
+            $scope.names = [{name:'Jani',country:'Norway'},{name:'Hege',country:'Sweden'},{name:'Kai',country:'Denmark'}];
+            $scope.tody = new Date();
+    });
+    app.filter('cap',function(){
+        return function(input){
+            if(input){
+                return input.toUpperCase();
+            }
+        }
+    });
+    // var myAppModule = angular.module("myApp",[]);
+    //
+    //        myAppModule.controller("myAppCtrl",["$scope",function($scope){
+    //            $scope.name = "xingoo";
+    //        }]);
+    //
+    //        myAppModule.filter("reverse",function(){
+    //            return function(input,uppercase){
+    //                var out = "";
+    //                for(var i=0 ; i<input.length; i++){
+    //                    out = input.charAt(i)+out;
+    //                }
+    //                if(uppercase){
+    //                    out = out.toUpperCase();
+    //                }
+    //                return out;
+    //            }
+    //        });
+</script>
+</body>
+</html>

@@ -5,17 +5,28 @@
 <title>controller</title>
 </head>
 <body>
-    <div ng-app="myApp" ng-controller="myCtrl">
+    <!-- <div ng-app="myApp" ng-controller="myCtrl">
         <input type="text" ng-model="one">
         <input type="text" ng-model="two">
         <p>{{one +" " + two }}</p>
+    </div> -->
+    <div ng-app="count" ng-controller="opt">
+        <button type="button" ng-click="add(1)">Add</button>
+        <button type="button" ng-click="sub(1)">sub</button>
+        <h4>count:{{ counter }}</h4>
     </div>
 <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
 <script type="text/javascript">
-    var app = angular.module('myApp',[]);
-        app.controller('myCtrl',function($scope){
-            $scope.one="tom";
-            $scope.two="haha";
+    // var app = angular.module('myApp',[]);
+    //     app.controller('myCtrl',function($scope){
+    //         $scope.one="tom";
+    //         $scope.two="haha";
+    //     });
+    var count = angular.module('count',[]);
+        count.controller('opt',function($scope){
+            $scope.counter = 0;
+            $scope.add = function(amount){ $scope.counter += amount };
+            $scope.sub = function(amount){ $scope.counter -= amount };
         });
 </script>
 </body>
