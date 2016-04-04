@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>validate</title>
+</head>
+<body ng-app="myApp">
+    <form ng-Controller="MyController" ng-submit="submitForm()" name="myForm">
+            <input type="text" name="name" ng-model="user.name" required ng-minlength="5">
+            <span>{{ user.name }},{{myForm.name.$pristine }},{{myForm.name.$invalid}},{{ myForm.name.$error }}</span>
+            <div>
+                <input type="submit" name="name" value="btns">
+            </div>
+    </form>
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script type="text/javascript">
+    angular.module('myApp',[]).controller('MyController',function($scope){
+        $scope.submitForm = function(){
+               if($scope.myForm.$valid){
+                    alert('通过验证可以提交表单');
+               }else{
+                   alert('表单没有通过验证');
+               }
+           };
+    })
+</script>
+</body>
+</html>

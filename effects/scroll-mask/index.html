@@ -22,17 +22,21 @@ html,body{
     width:100%;
     height: 100px;
     background: #cfd5da;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
 }
-
+.picker-modal.modal-in{
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
 </style>
 </head>
 <body>
-    <a href="javascript:" id="click">点击picker</a>
+    <a href="javascript:" id="picker">点击picker</a>
 <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="picker.js"></script>
-
 <script type="text/javascript">
-    $.picker();
+        $.picker();
 </script>
 </body>
 </html>
