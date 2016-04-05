@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<title>Date-plugins</title>
+<link rel="stylesheet" href="date.css" charset="utf-8">
+</head>
+<body>
+<input type="text" id="datePicker">
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="mobiscroll.date.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var currYear = (new Date()).getFullYear();
+        $('#datePicker').mobiscroll().date({
+            startYear:currYear - 10,
+            endYear:currYear + 10,
+            theme: 'android-holo-light',
+            mode: 'scroller',
+            display: 'modal',
+            lang: 'zh',
+            animate:'fade',
+            dateFormat:'yyyy 年 mm 月 dd 日'
+        });
+    })
+</script>
+</body>
+</html>
