@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自定义复选框</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+input[type="checkbox"] {
+    position: absolute;
+    clip: rect(0,0,0,0);
+}
+#box + label::before{
+    content: '\a0';
+    display: inline-block;
+    vertical-align: .2em;
+    width: .8em;
+    height: .8em;
+    margin-right: .2em;
+    border-radius: .2em;
+    background: silver;
+    text-indent: .15em;
+    line-height: .65;
+}
+#box:checked + label::before {
+    /*http://unicode-table.com/cn/#control-character*/
+    /*http://www.phpjz.cn/web/201311/1700.html*/
+    content: '\2713';
+    background: yellowgreen;
+}
+#box:focus + label::before {
+    box-shadow: 0 0 .1em .1em #58a;
+}
+#box1 + label{
+    display: inline-block;
+    padding: .3em .5em;
+    background: #ccc;
+    background-image: linear-gradient(#ddd, #bbb);
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3em;
+    box-shadow: 0 1px white inset;
+    text-align: center;
+    text-shadow: 0 1px 1px white;
+}
+#box1:checked + label,#box1:active + label {
+    box-shadow: .05em .1em .2em rgba(0,0,0,.6) inset;
+    border-color: rgba(0,0,0,.3);
+    background: #bbb;
+}
+</style>
+</head>
+<body>
+    <input type="checkbox" id="box">
+    <label for="box">this box</label>
+    <input type="checkbox" id="box1">
+    <label for="box1">BOOM</label>
+</body>
+</html>

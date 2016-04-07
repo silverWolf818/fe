@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>submitted</title>
+<link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+<style>
+.ng-valid{
+    border-color: #3c763d;
+}
+.ng-invalid{
+    border-color: #a94442;
+}
+.ng-pristine{
+    border-color: #ccc;
+}
+.ng-dirty{
+}
+</style>
+</head>
+<body ng-app="myApp">
+    <div class="container">
+        <form class="form-horizontal" ng-Controller="MyController" ng-submit="submitForm()" name="myForm" novalidate>
+            <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="email" ng-model="user.email" required type="email" id="email" placeholder="Email">
+                    <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="myForm.email.$dirty && myForm.email.$valid"></span>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="myForm.email.$dirty && myForm.email.$error.required && myForm.submitted"></span>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="myForm.email.$dirty && myForm.email.$error.email && myForm.submitted"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Username</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="name" ng-model="user.name" required ng-maxlength="6" type="text" id="name" placeholder="Username">
+                    <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="myForm.name.$dirty && myForm.name.$valid"></span>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="myForm.name.$dirty && myForm.name.$error.required && myForm.submitted"></span>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="myForm.name.$dirty && myForm.name.$error.maxlength && myForm.submitted"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                    <label for="pwd" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="pwd" ng-model="user.pwd" required type="text" id="pwd" placeholder="Password">
+                    <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="myForm.pwd.$dirty && myForm.pwd.$valid"></span>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="myForm.pwd.$dirty && myForm.pwd.$error.required && myForm.submitted"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" ng-disabled="" class="btn btn-default">Sign in</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--
+    {{ formName.inputFieldName.$pristine }} 布尔值属性，表示用户是否修改了表单。如果为ture，表示没有修改过；false表示修改过
+    {{ formName.inputFieldName.$dirty }} 布尔型属性，当且仅当用户实际已经修改的表单。不管表单是否通过验证
+    {{ formName.inputFieldName.$valid }} 布尔型属性，它指示表单是否通过验证。如果表单当前通过验证，他将为true
+    {{ formName.inputFieldName.$invalid }} 未通过验证的表单
+    {{ formName.inputfieldName.$error }} $error对象。它包含当前表单的所有验证内容，以及它们是否合法的信息
+    -->
+<script src="http://cdn.bootcss.com/angular.js/1.4.6/angular.min.js"></script>
+<script type="text/javascript">
+    angular.module('myApp',[]).controller('MyController',function($scope){
+        $scope.submitted = false;
+        $scope.submitForm = function(){
+               if($scope.myForm.$valid){
+                    alert('通过验证可以提交表单');
+               }else{
+                   $scope.myForm.submitted = true;
+                   alert('表单没有通过验证');
+               }
+           };
+    })
+</script>
+</body>
+</html>
