@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Document</title>
+</head>
+<body>
+    <img src="../img/1.png" alt="">
+    <img src="../img/2.png" name="myImg">
+    <img src="" alt="">
+    <img src="" alt="">
+    <a href="###" name="aaa">aaa</a>
+    <a href="#" name="bbb">bbb</a>
+    <script type="text/javascript">
+        console.log(document);
+        console.log(document.documentElement);//documentElement该属性始终指向HTML页面中的<html>元素
+        var html = document.documentElement;
+        console.log(document.childNodes[0]);
+        console.log(document.firstChild);
+        console.log(document.body);
+        console.log(document.URL);
+        console.log(document.domain);
+        console.log(document.referrer);
+        var imgs = document.getElementsByTagName('img');
+        console.log(imgs.length);
+        console.log(imgs[0].src);
+        console.log(imgs.item(0).src);
+        console.log(imgs.namedItem('myImg'));//<img>元素
+        console.log(imgs['myImg']);//<img>元素
+        console.log(document.anchors);
+        console.log(document.links);
+        document.write((new Date()).toString());
+        console.log(document.HTMLAnchorElement);
+    </script>
+</body>
+</html>

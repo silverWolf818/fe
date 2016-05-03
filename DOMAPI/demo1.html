@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Node类型</title>
+</head>
+<body>
+    <!-- HTML DOM 是关于如何获取、修改、添加或删除 HTML 元素的标准。 -->
+    <div id="box">
+        <input type="text">
+        <div><i></i></div>
+        <p></p>
+    </div>
+    <div id="li">1</div>
+    <div id="node">
+        <div></div>
+    </div>
+    <script type="text/javascript">
+    var box = document.querySelector('#box');
+    var li = document.querySelector("#li");
+    var node = document.querySelector("#node");
+        console.log(box.appendChild(li));
+        console.log(box.nodeType);
+        console.log(box.nodeName);
+        console.log(box.childNodes[0]);
+        console.log(box.childNodes[0].ownerDocument);
+        var nn = box.insertBefore(node,null);
+        console.log(nn == box.lastChild);
+        var nn = box.insertBefore(node,box.firstChild);
+        console.log(nn == box.firstChild);
+        var list = node.cloneNode(true);
+        console.log(list.childNodes.length);
+        var list = node.cloneNode(false);
+        console.log(list.childNodes.length);
+    </script>
+</body>
+</html>

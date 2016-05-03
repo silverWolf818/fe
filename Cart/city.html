@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<div id="list"></div>
+<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="city.js"></script>
+<script type="text/javascript">
+    $(function(){
+        for(var i in data){
+            $("#list").append('<li>'+data[i].name+'<ul class="city"></ul></li>');
+            for(var j in data[i].city){
+                // console.log(data[i].city);
+                var s ="";
+                var html = $(".city").eq(i).append('<li>'+data[i].city[j].name+'<ul class="area">'+s+'</ul></li>');
+                // console.log(data[i].city[j].area.length);
+                for(var k = 0;k<data[i].city[j].area.length;k++){
+                    var st = '<li>'+data[i].city[j].area[k]+'</li>';
+                    s = st;
+                            // $(this).eq(e).append('<li>'+data[i].city[j].area[k]+'</li>');
+                }
+                    // console.log(data[i].city[j].area[k]);
+                // console.log(data[i].city[j].area.length);
+                // console.log($(".area").length);
+                // for(var k = 0 ;k<data[i].city[j].area.length;k++){
+                // //     console.log(j);
+                //     for(var s = 0;s<3;s++){
+                //         $(".area").eq(s).append('<li>'+data[i].city[j].area[k]+'</li>');
+                //
+                //     }
+                //
+                //     // console.log(k);
+                //     // console.log(data[i].city[j].area[k]);
+                //     // $(".area").eq(j).append('<li>'+data[i].city[j].area[k]+'</li>');
+                // }
+                // for(var k in data[i].city[j].area){
+                //     // console.log($(".area").eq(k));
+                //     // console.log(data[i].city[j].area[k]);
+                //     // $(".area").eq(k).append('<li>'+data[i].city[j].area[k]+'</li>');
+                // }
+            }
+        }
+    })
+</script>
+</body>
+</html>
