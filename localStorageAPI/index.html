@@ -5,7 +5,7 @@
 <title>localStorage</title>
 </head>
 <body>
-    <input type="text" id="text">
+    <!-- <input type="text" id="text">
     <a href="javascript:" id="save">save</a>
     <script type="text/javascript">
         var text = document.getElementById('text');
@@ -20,6 +20,22 @@
             localStorage.pagecount = 1;
         }
         document.write('visits'+localStorage.pagecount + 'times');
+    </script> -->
+     <input type="text" id="text">
+     <a href="javascript:" id="save">other</a>
+     <a href="javascript:" id="get">get</a>
+    <script type="text/javascript">
+    var text = document.getElementById('text');
+        document.getElementById('save').addEventListener('click',function(){
+                sessionStorage.setItem('user',text.value);
+                location.href="other.html";
+                // text.value = sessionStorage.getItem('user');
+        });
+        document.getElementById('get').addEventListener('click',function(){
+                text.value = sessionStorage.getItem('user');
+                // location.href="other.html";
+                // text.value = sessionStorage.getItem('user');
+        });
     </script>
 </body>
 </html>

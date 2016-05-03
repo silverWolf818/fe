@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>writing-mode</title>
+<style>
+.verticle-mode {
+    writing-mode: tb-rl;
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+}
+.box {
+    width: 400px;
+    background-color: #f0f3f9;
+    overflow: hidden;
+}
+.list {
+    margin: 20px;
+    background-color: #cd0000;
+    color: #fff;
+}
+.box1{
+    width: 400px; height: 300px;
+    background-color: #f0f3f9;
+    overflow: hidden;
+}
+.auto {
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.verticle-mode {
+    writing-mode: tb-rl;
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+}
+.box2 {
+    width: 400px; height: 300px;
+    background-color: #f0f3f9;
+    text-align: center;
+}
+.btn {
+    display: block;
+    color: #a78252;
+    background-color: #ddc390;
+    width: 85px; height: 85px;
+    line-height: 85px;
+    text-align: center;
+    border: 6px solid #ddc390;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px #d6b681, 0 1px, 0 2px, 0 3px, 0 4px;
+    -webkit-transition: border-color .25s, background-color .25s;
+    transition: border-color .25s, background-color .25s;
+    font-size: 42px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:active {
+    text-indent: 2px;
+}
+</style>
+</head>
+<body>
+    <code>
+        /* 关键字值 */</br>
+        writing-mode: horizontal-tb;    /* 默认值 */</br>
+        writing-mode: vertical-rl;</br>
+        writing-mode: vertical-lr;</br>
+        默认值horizontal-tb表示，文本流是水平方向(horizontal)的，元素是从上往下(tb:top-bottom)堆叠的。</br>
+        vertical-rl表示文本是垂直方向(vertical)展示，然后阅读的顺序是从右往左(rl:right-left)，跟我们古诗的阅读顺序一致。</br>
+        vertical-lr表示文本是垂直方向(vertical)展示，然后阅读的顺序还是默认的从左往右(lr:left-right)，也就是仅仅是水平变垂直。</br>
+    </code>
+    <div class="verticle-mode">
+        <h4>咏柳</h4>
+        <p>碧玉妆成一树高，<br>万条垂下绿丝绦。<br>不知细叶谁裁出，<br>二月春风似剪刀。</p>
+    </div>
+<h2>1. 水平方向也能margin重叠</h2>
+<p><strong>默认流-垂直margin重叠</strong></p>
+<div class="box">
+    <div class="list">margin:20px;</div>
+    <div class="list">margin:20px;</div>
+</div>
+
+<p><strong>垂直流-水平margin重叠</strong></p>
+<div class="box verticle-mode">
+    <div class="list">margin:20px;</div>
+    <div class="list">margin:20px;</div>
+</div>
+<h2>2. 可以使用margin:auto实现垂直居中</h2>
+<p><strong>默认流-margin-top:auto;margin-bottom:auto不居中</strong></p>
+<div class="box1">
+    <img src="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg" class="auto">
+</div>
+
+<p><strong>垂直流-margin-top:auto;margin-bottom:auto垂直居中</strong></p>
+<div class="box1 verticle-mode">
+    <img src="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg" class="auto">
+</div>
+<h2>3. 可以使用text-align:center实现图片垂直居中</h2>
+<strong>默认流-text-align:center水平居中</strong>
+<div class="box2">
+    <img src="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg">
+</div>
+
+<strong>垂直流-text-align:center垂直居中</strong>
+<div class="box2 verticle-mode">
+    <img src="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg">
+</div>
+<h2>4. 可以使用text-indent实现文字下沉效果</h2>
+<a href="javascript:" class="btn verticle-mode">领</a>
+</body>
+</html>

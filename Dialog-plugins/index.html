@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<title>Dialog</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+</style>
+<link rel="stylesheet" href="dialog.css">
+<!-- http://www.lovewebgames.com/jsmodule/dialog.html -->
+</head>
+<body>
+<button class="btn2">confirm</button>
+<button class="btn1">ok</button>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="dialog.js"></script>
+<script type="text/javascript">
+$(document).on('touchend','.btn2',function(){
+    $.confirm('你确定要删除这条消息吗? ',[{no:'取消'},{yes:"确定"}],function(type){
+        if(type == 'yes'){
+            $.alert("这是确认对话框!",true,function(){
+                console.log("yes");
+            });
+        }else{
+            console.log("no");
+        }
+        this.hide();
+    });
+})
+$('.btn1').click(function(){
+    $.alert('选好商品才能上传素材哦',true,function(){
+    })
+});
+</script>
+</body>
+</html>

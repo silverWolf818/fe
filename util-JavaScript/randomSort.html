@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>数组随机排序</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    height: 100%;
+}
+#area{
+    height: 100%;
+}
+.box{
+    display: inline-block;
+    color: #fff;
+    font-size: 24px;
+    margin:10px;
+    width: 20%;
+    height: 20%;
+    text-align: center;
+    line-height: 200%;
+    background: blue;
+}
+</style>
+</head>
+<body>
+    <button class="sort">排序</button>
+    <div id="area"></div>
+<script type="text/javascript">
+    var sortBtn = document.querySelector(".sort");
+    var arr = [1,2,3,4,5,6,7,8];
+    function random(min, max) {
+        if (max == null) {
+          max = min;
+          min = 0;
+        }
+        return min + Math.floor(Math.random() * (max - min + 1));
+    };
+    function shuffle(arr) {
+      var length = arr.length,
+          shuffled = Array(length);
+      for (var index = 0, rand; index < length; index++) {
+          rand = random(0, index);
+          if (rand !== index) shuffled[index] = shuffled[rand];
+          shuffled[rand] = arr[index];
+        }
+        return shuffled;
+    }
+sortBtn.onclick = function(){
+    var sort = shuffle(arr);
+    var html = "";
+     for (var i = 0; i < sort.length; i++) {
+        html += '<div class="box">'+sort[i]+'</div>';
+     }
+      document.getElementById("area").innerHTML = html;
+}
+// 更简单易理解的写法：
+// function shuffle(arr) {
+//     var i,
+//         j,
+//         temp;
+//     for (i = arr.length - 1; i > 0; i--) {
+//         j = Math.floor(Math.random() * (i + 1));
+//         temp = arr[i];
+//         arr[i] = arr[j];
+//         arr[j] = temp;
+//     }
+//     return arr;
+// };
+</script>
+</body>
+</html>

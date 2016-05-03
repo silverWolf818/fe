@@ -5,9 +5,11 @@
 <title></title>
 </head>
 <body>
-    <div>other</div>
+    <a href="javascript:" id="go">index</a>
     <script type="text/javascript">
-        document.write(localStorage.pagecount);
+    document.getElementById('go').addEventListener('click',function(){
+            location.href='index.html?user='+sessionStorage.getItem('user')+'';
+    });
     </script>
 </body>
 </html>
