@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>unique</title>
+</head>
+<body>
+<script type="text/javascript">
+    var arr = [1,2,3,4,'a','b','c','d',1,3,4,'a','b','c'];
+    Array.prototype.unique1 = function(){
+        var newArray =  [this[0]];
+        for (var i = 1; i < this.length; i++) {
+             var repeat = false;
+             for (var j = 0; j < newArray.length; j++) {
+                 if(this[i] == newArray[j]){
+                     repeat = true;
+                     break;
+                 }
+             }
+             if (!repeat) {
+                 newArray.push(this[i]);
+             }
+        }
+        return newArray;
+    };
+    console.log(arr.unique1());
+
+    function unique2(){
+        var newArray = [];
+        this.forEach(function(index){
+            if (newArray.indexOf(index) == -1) {
+                newArray.push(index);
+            }
+        });
+        return newArray;
+    }
+    console.log(unique2.call(arr));
+</script>
+</body>
+</html>
