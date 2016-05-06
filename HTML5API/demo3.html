@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>getCurrentPosition</title>
+</head>
+<body>
+    <code>
+        getCurrentPosition()函数简介</br>
+        getCurrentPosition(successCallback,errorCallback,positionOptions)</br>
+        <h3>successCallback</h3></br>
+        表示调用getCurrentPosition函数成功以后的回调函数，该函数带有一个参数，对象字面量格式，表示获取到的用户位置数据。该对象包含两个属性 coords 和 timestamp。其中 coords 属性包含以下7个值：</br>
+        accuracy：精确度</br>
+        latitude：纬度</br>
+        longitude：经度</br>
+        altitude：海拔</br>
+        altitudeAcuracy：海拔高度的精确度</br>
+        heading：朝向</br>
+        speed：速度</br>
+        <h3>errorCallback</h3></br>
+
+        和 successCallback 函数一样带有一个参数，对象字面量格式，表示返回的错误代码。它包含以下两个属性：</br>
+
+        1、message：错误信息</br>
+        2、 code：错误代码。</br>
+
+        其中错误代码包括以下四个值：</br>
+
+        1、UNKNOW_ERROR：表示不包括在其它错误代码中的错误，这里可以在 message 中查找错误信息</br>
+        2、PERMISSION_DENIED：表示用户拒绝浏览器获取位置信息的请求</br>
+        3、 POSITION_UNAVALIABLE：表示网络不可用或者连接不到卫星</br>
+        4、TIMEOUT：表示获取超时。必须在options中指定了timeout值时才有可能发生这种错误</br>
+        <h3>positionOptions</h3></br>
+
+        positionOptions 的数据格式为JSON，有三个可选的属性：</br>
+
+        1、enableHighAcuracy — 布尔值： 表示是否启用高精确度模式，如果启用这种模式，浏览器在获取位置信息时可能需要耗费更多的时间。</br>
+        2、timeout — 整数： 表示浏览需要在指定的时间内获取位置信息，否则触发errorCallback。</br>
+        3、maximumAge — 整数/常量： 表示浏览器重新获取位置信息的时间间隔。</br>
+    </code>
+<input type="button" id="get" value="Get Location">
+<script type="text/javascript">
+    var btn = document.querySelector("#get");
+    btn.onclick = function(){
+        function getLocation(){
+            if (navigator.geolocation) {
+                var options = {timeout:60000};
+                navigator.geolocation.getCurrentPosition(showLocation,errorHandler,options);
+            }else{
+                alert("不支持定位");
+            }
+        };
+        getLocation();
+        function showLocation(position){
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            alert("lat :" + lat + "lng :" + lng);
+        };
+        function errorHandler(err){
+            if(err.code == 1) {
+                alert("Error: Access is denied!");
+            }else if( err.code == 2) {
+                alert("Error: Position is unavailable!");
+            }
+        };
+    }
+</script>
+</body>
+</html>
