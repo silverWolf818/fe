@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <p>1111</p>
+    <p id="ptext">1111</p>
+    <p>1111</p>
+<script type="text/javascript">
+    var p = document.querySelector("#ptext");
+    p.insertAdjacentHTML("beforebegin","<p>beforebegin</p>");
+    p.insertAdjacentHTML("afterbegin","<p>afterbegin</p>");
+    p.insertAdjacentHTML("beforeend","<p>beforeend</p>");
+    p.insertAdjacentHTML("afterend","<p>afterend</p>");
+    console.log(p.children[0]);
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+.box{
+    height: 100px;
+    width: 100px;
+    background: #e4e4e4;
+    color: #fff;
+    line-height: 100px;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+    <input type="button" name="name" value="click" id="btn">
+        <div>
+            <img src="https://img.alicdn.com/tps/TB15zLcJFXXXXc.XFXXXXXXXXXX-520-280.jpg"/>
+        </div>
+        <div>
+            <img src="https://img.alicdn.com/tps/TB15zLcJFXXXXc.XFXXXXXXXXXX-520-280.jpg"/>
+        </div>
+        <div>
+            <img src="https://img.alicdn.com/tps/TB15zLcJFXXXXc.XFXXXXXXXXXX-520-280.jpg"/>
+        </div>
+        <div>
+            <img src="https://img.alicdn.com/tps/TB15zLcJFXXXXc.XFXXXXXXXXXX-520-280.jpg"/>
+        </div>
+        <div>
+            <img src="https://img.alicdn.com/tps/TB15zLcJFXXXXc.XFXXXXXXXXXX-520-280.jpg"/>
+        </div>
+        <div>
+            <img src="https://img.alicdn.com/tps/TB15zLcJFXXXXc.XFXXXXXXXXXX-520-280.jpg"/>
+        </div>
+    <div class="box">scrollintoview</div>
+    <script type="text/javascript">
+        document.querySelector("#btn").onclick = function(){
+            document.querySelector(".box").scrollIntoView();
+        }
+    </script>
+</body>
+</html>
