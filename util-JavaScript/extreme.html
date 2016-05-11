@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<script type="text/javascript">
+var arr = [1,45,23,3,6,2,7,234,56];
+//max
+Array.prototype.max = function(){
+    var max = this[0];
+    this.forEach(function(ele,index){
+        if (ele > max) {
+            max = ele;
+        };
+    });
+    return max;
+};
+Array.prototype.max1 = function(){
+    return this.reduce(function(preVal,curVal,index,array){
+        return preVal > curVal ? preVal : curVal;
+    });
+};
+Array.max2 = function(array){
+    return Math.max.apply(Math,array);
+};
+Array.prototype.max3 = function(){
+    return Math.max.apply({},this);
+}
+console.log(arr.max());
+console.log(arr.max1());
+console.log(Array.max2(arr));
+console.log(arr.max3());
+//min
+Array.prototype.min = function(){
+    var min = this[0];
+    this.forEach(function(ele,index){
+        if (ele < min) {
+            min = ele;
+        };
+    });
+    return min;
+};
+Array.prototype.min1 = function(){
+    return this.reduce(function(preVal,curVal,index,array){
+        return preVal > curVal ? curVal : preVal;
+    });
+};
+Array.min2 = function(array){
+    return Math.min.apply(Math,array);
+};
+Array.prototype.min3 = function(){
+    return Math.min.apply({},this);
+}
+console.log(arr.min());
+console.log(arr.min1());
+console.log(Array.min2(arr));
+console.log(arr.min3());
+// ES2105
+var numbers = [7,324, 2, 345, 3, 111, 4];
+console.log(Math.max(...numbers)); // 4
+console.log(Math.min(...numbers)); // 1
+</script>
+</body>
+</html>

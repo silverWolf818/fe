@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<script type="text/javascript">
+    Number.prototype.add = function(x){
+        return this + x;
+    }
+    var v = 8['add'](2);
+    console.log(v);
+    Number.prototype.sub = function(x){
+        return this - x;
+    }
+    console.log(8["add"](2)["sub"](4));
+    Number.prototype.iterate = function(){
+        var result = [];
+        for (var i = 0; i < this; i++) {
+            result.push(i);
+        }
+        return result;
+    }
+    console.log((8).iterate());
+    // Object.defineProperty() 方法直接在一个对象上定义一个新属性，或者修改一个已经存在的属性， 并返回这个对象。
+    // Object.defineProperty(obj, prop, descriptor)
+    // obj
+    // 需要定义属性的对象。
+    // prop
+    // 需被定义或修改的属性名。
+    // descriptor
+    // 需被定义或修改的属性的描述符。
+    Number.prototype = Object.defineProperty(
+      Number.prototype, "double", {
+        get: function (){return (this + this)}
+      }
+  );
+
+    Number.prototype =  Object.defineProperty(
+      Number.prototype, "square", {
+        get: function (){return (this * this)}
+      }
+  );
+console.log((8).square.double);
+</script>
+</body>
+</html>

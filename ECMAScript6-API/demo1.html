@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <code>
+
+    </code>
+<script type="text/javascript">
+{
+    let a = 10;
+    var b =10;
+}
+var a = [];
+for (let i = 0; i < 10; i++) {
+    a[i] = function(){
+        console.log(i);
+    }
+}
+a[6]();
+function f() { console.log('I am outside!'); }
+(function () {
+  if(true) {
+    // 重复声明一次函数f
+    function f() { console.log('I am inside!'); }
+  }
+
+  f();
+}());
+
+// let f;
+// {
+//   f = function () {
+//     return 'secret';
+//   }
+// }
+// f();
+'use strict';
+if (true) {
+  function f() {}
+}
+
+'use strict';
+const PI = 3.1415;
+console.log(PI);
+
+let [x, , y] = [1, 2, 3];
+console.log(y);
+
+</script>
+</body>
+</html>
