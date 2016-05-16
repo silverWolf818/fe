@@ -37,6 +37,12 @@
     console.log(a6);
 
     //slice()方法
+    // arrayObject.slice(start,end)
+    // slice() 方法可从已有的数组中返回选定的元素。
+    // 返回值
+    // 返回一个新的数组，包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。
+    // 说明
+    // 请注意，该方法并不会修改数组，而是返回一个子数组。
     var test = function(arr){
         console.log('length'+arr.length);
         arr.forEach(function(ele,index,arr){
@@ -44,7 +50,6 @@
         });
     }
     var arr7 = ['0','1','2','3','4','5'];
-    test(arr7);
     test(arr7.slice(3));
     test(arr7.slice(2, 5));
     test(arr7.slice(-3));
@@ -53,6 +58,14 @@
     test(arr7.slice(-1, 3));
 
     //splice()方法
+    // splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+    //注释：该方法会改变原始数组。
+    //arrayObject.splice(index,howmany,item1,.....,itemX)
+    // index	必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+    // howmany	必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+    // item1, ..., itemX	可选。向数组添加的新项目。
+    // 返回值
+    // Array	包含被删除项目的新数组，如果有的话
     console.log('--splice--');
     var arr8 = [0,2,3,4,5,6];
     test(arr8);

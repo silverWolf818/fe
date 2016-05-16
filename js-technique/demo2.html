@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<input type="text" id="box" value="还你问且沃尔去">
+<input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" >
+<script type="text/javascript">
+    var box = document.querySelector("#box");
+    // box.select();
+    // box.onselect = function(){
+    //     console.log(box.value.substring(box.selectionStart,box.selectionEnd));
+    // };
+    box.onkeypress = function(){
+        if(!/\d/.test(parseInt(box.value))){
+            console.log("1");
+        }
+    }
+</script>
+</body>
+</html>
