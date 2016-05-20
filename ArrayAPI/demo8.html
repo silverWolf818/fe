@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Array</title>
+</head>
+<body>
+    <code>
+增加数组项方法：除了直接改变数组项的值和修改数组的length给数组添加数组项方法之外，还可以使用push()、unshift()、concat()和splice()添加数组项</br>
+删除数组项方法：删除数组项方法有pop()、shift()、slice()和splice()方法</br>
+改变数组项方法：在数组中主要通过splice()方法来改变数组项</br>
+查询数组项方法： 查询数组项方法其实就是对数组做查询提取功能，主要使用的方法是slice()方法</br>
+    </code>
+<script type="text/javascript">
+//array add
+var arr = [];
+arr.push('a','b');
+console.log(arr);
+var arr1 = ['a','b'];
+arr1.unshift(1,2);
+console.log(arr1);
+var arr2 = ['a','b','c',1,2];
+arr2.splice(2,0,'d','c','e');
+console.log(arr2);
+var arr3 = ['a','b','c'];
+console.log(arr3.concat('d',1,2));
+//array del
+console.log('----del----');
+var arr4 = ['a','b','d','e'];
+arr4.pop();
+console.log(arr4);
+var arr5 = ['a','b','3','1'];
+arr5.shift();
+console.log(arr5);
+var arr6 = [1,2,3,4,'a','b'];
+console.log(arr6.slice(2));
+// update
+var arr7 = [1,2,3,4,5,6];
+console.log(arr7.splice(2,3,'a','b','c'));
+//query
+var arr8 = [1,2,3,4,5,6];
+console.log(arr8.slice(1));
+</script>
+</body>
+</html>

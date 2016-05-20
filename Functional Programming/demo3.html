@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>函数在某些操作执行完成之后被触发</title>
+</head>
+<body>
+<input type="text" id="put">
+<script type="text/javascript">
+function debounce(fn,delay){
+    var timer = null;
+    return function(...args){
+        clearTimeout(timer);
+        timer = setTimeout(()=>fn.apply(this,args),delay);
+    }
+};
+var put = document.querySelector("#put");
+    put.addEventListener("input",debounce(function(){
+        console.log("loading");
+    },500));
+</script>
+</body>
+</html>
