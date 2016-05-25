@@ -5,8 +5,16 @@
 <title></title>
 </head>
 <body>
+    <code>
+        delete 操作符用来删除对象的属性，这里所说的属性实际上是属性本身，而不是属性指向的对象（对于引用类型来说）。
+        所以，对于引用类型的值，delete 删除了对象属性的本身，不会删除属性指向的对象。
+    </code>
 <script type="text/javascript">
     var o = {};
+    o.x = new Object();
+    console.log(o.x);
+    delete o.x;
+    console.log(o.x);
 </script>
 </body>
 </html>
