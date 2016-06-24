@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JavaScript学习笔记：对象属性的枚举</title>
+</head>
+<body>
+    <code>
+        for...in	数组、对象	获取可枚举的实例和原型属性名</br>
+        Object.keys()	数组，对象	返回可枚举的实例属性名组成的数组</br>
+        Object.getPropertyNames()	数组、对象	返回除原型属性以外的所有属性（包括不可枚举的属性）名组成的数组</br>
+        for...of	可迭代对象(Array, Map, Set, arguments等)	返回属性值</br>
+    </code>
+<script type="text/javascript">
+var obj = {
+    'x' : 1,
+    'y' : 2,
+    'z' :3
+
+}
+//Object.keys()方法会返回一个由给定对象的所有可枚举自身属性的属性名组成的数组
+console.log(Object.keys(obj));
+//Object.getOwnPropertyNames()方法返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性）组成的数组
+console.log(Object.getOwnPropertyNames(obj));
+Object.prototype.foo = 3;
+console.log(obj.propertyIsEnumerable('toString'));
+var props = [];
+for (prop in obj) {
+    if (obj.hasOwnProperty(prop)){
+        props.push(prop);
+    }
+}
+console.log(props);
+</script>
+</body>
+</html>
