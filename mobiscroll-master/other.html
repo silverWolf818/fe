@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<title></title>
+</head>
+<body>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="js/mobiscroll.core.js"></script>
+<script src="js/mobiscroll.frame.js"></script>
+<script src="js/mobiscroll.scroller.js"></script>
+<script src="js/mobiscroll.util.datetime.js"></script>
+<script src="js/mobiscroll.datetimebase.js"></script>
+<script src="js/mobiscroll.datetime.js"></script>
+<script src="js/mobiscroll.frame.android-holo.js"></script>
+<script src="js/i18n/mobiscroll.i18n.zh.js"></script>
+<link href="css/mobiscroll.animation.css" rel="stylesheet" type="text/css" />
+<link href="css/mobiscroll.frame.css" rel="stylesheet" type="text/css" />
+<link href="css/mobiscroll.frame.android-holo.css" rel="stylesheet" type="text/css" />
+<link href="css/mobiscroll.scroller.css" rel="stylesheet" type="text/css" />
+<link href="css/mobiscroll.scroller.android-holo.css" rel="stylesheet" type="text/css" />
+<link href="css/mobiscroll.android-holo-light.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function(){
+        var currYear = (new Date()).getFullYear();
+        $('#addDate').mobiscroll().date({
+            startYear:currYear - 10,
+            endYear:currYear + 10,
+            theme: 'android-holo-light',
+            mode: 'scroller',
+            display: 'bottom',
+            lang: 'zh',
+            animate:'fade',
+            dateFormat:'yyyy-mm-dd'
+        });
+        // var currYear = (new Date()).getFullYear();
+		// 	var opt={};
+		// 	opt.date = {preset : 'date'};
+		// 	opt.datetime = {preset : 'datetime'};
+		// 	opt.time = {preset : 'time'};
+		// 	opt.default = {
+		// 		theme: 'android-holo-light', //皮肤样式
+		//         display: 'modal', //显示方式
+		//         mode: 'scroller', //日期选择模式
+		// 		lang:'zh',
+        //         animate:'fade',
+		//         startYear:currYear - 10, //开始年份
+		//         endYear:currYear + 10, //结束年份
+        //         dateFormat:'yyyy-mm-dd'
+		// 	};
+		// 	$("#addDate").mobiscroll($.extend(opt['date'], opt['default']));
+    })
+</script>
+<input type="text" id="addDate">
+</body>
+</html>

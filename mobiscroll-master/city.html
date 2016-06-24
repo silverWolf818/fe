@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<title></title>
+</head>
+<body>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="js/mobiscroll.core.js"></script>
+<script src="js/mobiscroll.frame.js"></script>
+<script src="js/mobiscroll.scroller.js"></script>
+<script src="js/mobiscroll.listbase.js"></script>
+<script src="js/mobiscroll.treelist.js"></script>
+<script src="js/mobiscroll.frame.android-holo.js"></script>
+<script src="js/i18n/mobiscroll.i18n.zh.js"></script>
+<script src="js/citydata.js"></script>
+<link href="css/mobiscroll.animation.css" rel="stylesheet" type="text/css" />
+<link href="css/mobiscroll.frame.css" rel="stylesheet" type="text/css" />
+<link href="css/mobiscroll.frame.android-holo.css" rel="stylesheet" type="text/css" />
+<link href="css/mobiscroll.scroller.css" rel="stylesheet" type="text/css" />
+<link href="css/mobiscroll.scroller.android-holo.css" rel="stylesheet" type="text/css" />
+<link href="css/mobiscroll.android-holo-light.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function(){
+        for (var i in cityData) {
+            $("#list").append('<li class="pro"><span>'+cityData[i].name+'</span><ul class="city"></ul></li>');
+            for(var j in cityData[i].city){
+                $(".city").eq(i).append('<li><span>'+cityData[i].city[j].name+'</span><ul class="area"><li>'+cityData[i].city[j].area.join('</li><li>')+'</li></ul></li>');
+            }
+        }
+        $("#list").mobiscroll().treelist({
+                headerText:'选择',
+                theme: 'android-holo-light',
+                display: 'bottom',
+                lang:'zh',
+                defaultValue:[0,0,0],
+                formatValue:dataFormat,
+                onChange:mobiscroll_change
+           });
+           function mobiscroll_change(valueText,inst){
+               $("#list_dummy").val(valueText);
+           };
+           function dataFormat(data){
+               var pro = $(".pro>span").eq(data[0]).text();
+               var city = $(".city").eq(data[0]).find('span').eq(data[1]).text();
+               var area = $(".city").eq(data[0]).find('.area').eq(data[1]).find('li').eq(data[2]).text();
+               return pro + ' ' + city + ' ' + area;
+           }
+    })
+</script>
+<div id="list"></div>
+</body>
+</html>

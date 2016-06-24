@@ -3,21 +3,109 @@
 <head>
 <meta charset="utf-8">
 <title></title>
+<<<<<<< HEAD
 <style media="screen">
+=======
+<style>
+>>>>>>> origin/master
 *{
     margin: 0;
     padding: 0;
 }
+<<<<<<< HEAD
 p{
     
+=======
+.box{
+    width: 70%;
+    /* 行高控制垂直居中 */
+    height: 200px;
+    line-height: 200px;
+    padding: 10px; margin: 10px auto;
+    background-color: #f0f3f9;
+}
+.fill-available{
+    /* 元素内联，响应行高和vertical-align控制 */
+    display: inline-block;
+    line-height: 20px;
+    padding: 20px;
+    background-color: #cd0000;
+    color: #fff;
+    vertical-align: middle;
+
+    width: -webkit-fill-available;
+    width: -moz-fill-available;
+    width: -moz-available;    /* FireFox目前这个生效 */
+    width: fill-available;
+}
+.box1{
+    background-color: #f0f3f9;
+    padding: 10px;
+    margin: 10px 20px;
+    overflow: hidden;
+}
+.max-content {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+}
+.min-content {
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+}
+.box2{
+    background-color: #f0f3f9;
+    padding: 10px;
+    margin: 10px auto 20px;
+    overflow: hidden;
+}
+.fit-content {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+>>>>>>> origin/master
 }
 </style>
 </head>
 <body>
+<<<<<<< HEAD
     <p>
         width:fill-available可以让元素的宽度表现为默认的block水平元素的尺寸表现。<br>
         但这里实际上是display:inline-block水平的，<br>
         于是，我们可以保证宽度满尺寸自适应的同时使用line-height实现近似的垂直居中效果。
     </p>
+=======
+    <h3>width:fill-available</h3>
+    <div class="box">
+        <p class="fill-available">
+            width:fill-available可以让元素的宽度表现为默认的block水平元素的尺寸表现。<br>
+          但这里实际上是display:inline-block水平的，<br>
+          于是，我们可以保证宽度满尺寸自适应的同时使用line-height实现近似的垂直居中效果。
+        </p>
+    </div>
+    <h3>width:max-content</h3>
+    <div class="box1 max-content">
+        <p>display:inline-block具有收缩特性，但是，当（例如这里的）描述文字超过一行显示的时候，其会这行，不会让自身的宽度超过父级容器的可用空间的，但是，width:max-content就不是酱样子哦咯！表现得好像设置了white-space:nowrap一样，科科！display:inline-block具有收缩特性，但是，当（例如这里的）描述文字超过一行显示的时候，其会这行，不会让自身的宽度超过父级容器的可用空间的，但是，width:max-content就不是酱样子哦咯！表现得好像设置了white-space:nowrap一样，科科！</p>
+    </div>
+    <h3>width:min-content</h3>
+    <div class="box1" style="display:inline-block">
+        <img src="" width="200" height="100">
+        <p>display:inline-block具有收缩特性，但这里宽度随文字。而width:min-content随图片。</p>
+    </div>
+    <div class="box1 min-content">
+        <img src="" width="200" height="100">
+        <p>display:inline-block具有收缩特性，但这里宽度随文字。而width:min-content随图片。</p>
+    </div>
+    <h3>width:fit-content</h3>
+    <div class="box2" style="display:inline-block">
+        <img src="" width="200" height="100">
+        <p>display:inline-block居中要靠父元素，而width:fit-content直接margin:auto.</p>
+    </div>
+    <div class="box2 fit-content ">
+        <img src="" width="200" height="100">
+        <p>display:inline-block居中要靠父元素，而width:fit-content直接margin:auto.</p>
+    </div>
+>>>>>>> origin/master
 </body>
 </html>
