@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JavaScript学习笔记：对象属性检测</title>
+</head>
+<body>
+    <code>
+    in 自身存在的属性，继承的属性，返回true</br>
+    hasOwnProperty() 自身存在的属性返回true，继承属性返回false</br>
+    propertyIsEnumerable() 自身存在的属性，且为枚举属性返回true,</br>
+    !== undefined 自身存在的属性，继承的属性，不能识别值为undefined的属性</br>
+    tip:然而有一种场景只能使用in运算符，而不能使用上述属性访问的方式。in可以区分不存在的属性和存在的属性但其值为undefined</br>
+    </code>
+<script type="text/javascript">
+    function print(obj){
+        return console.log(obj);
+    }
+//in
+    var myCar = {
+        'make': 'Honda',
+        'model': 'Accord',
+        'year': 1998
+    }
+    console.log('make' in myCar); // true
+    console.log('name' in myCar);// false
+    console.log('toString' in myCar);// true
+    delete myCar.make;
+    console.log('make' in myCar);
+    myCar.chair = undefined;
+    console.log('chair' in myCar);
+//hasOwnProperty
+console.log('----hasOwnProperty------');
+var obj = {
+    'name' : 'zzh',
+    'age' : 24,
+    'x' : undefined
+}
+    console.log(obj.hasOwnProperty('name'));
+    console.log(obj.hasOwnProperty('toString'));
+//propertyIsEnumerable
+console.log('----propertyIsEnumerable------');
+console.log(obj.propertyIsEnumerable('name'));    // true
+console.log(obj.propertyIsEnumerable('toString')); // false
+//!==undefined
+console.log('-----!==undefined-----');
+console.log(obj.name !== undefined);
+console.log(obj.room !== undefined);
+console.log(obj.x !== undefined);
+console.log('-----in-----');
+print(obj.x !== undefined); //false,属性存在，但值为undefined
+print(obj.y !== undefined);//false,属性不存在
+"x" in obj; // true 属性存
+"y" in obj; // false 属性不存在
+delete obj.x; // 删除属性x
+"x" in obj; // false 属性不存
+</script>
+</body>
+</html>

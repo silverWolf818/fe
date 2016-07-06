@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<<<<<<< HEAD
 <title>JavaScript算法练习：字符串反转</title>
 </head>
 <body>
@@ -18,5 +19,45 @@
  }
 console.log( reverseString("hello"));
 </script>
+=======
+<title>基于screen.width的伪响应式开发</title>
+<script type="text/javascript">
+window.onload = function(){
+    (function(doc, win) {
+        var screenWidth = 0, size = 'M', root = doc.documentElement;
+        if (window.screen && screen.width) {
+            screenWidth = screen.width;
+            if (screenWidth > 1920) {
+                // 超大屏，例如iMac
+                size = 'L';
+            } else if (screenWidth < 480) {
+                // 小屏，如手机
+                size = 'S';
+            }
+        }
+        // 标记CSS
+        root.className = size;
+        // 标记JS
+        win.SIZE = size;
+    })(document, window);
+}
+</script>
+<style>
+.box{
+    height: 300px;
+    text-align: center;
+    line-height: 300px;
+}
+.box {
+  background: red;
+}
+.S .box {
+  background: blue;
+}
+</style>
+</head>
+<body>
+    <div class="box">box</div>
+>>>>>>> origin/master
 </body>
 </html>
