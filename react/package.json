@@ -1,0 +1,28 @@
+{
+  "name": "zzh",
+  "version": "1.0.0",
+  "description": "this is webpack",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --port 9999 --content-base build"
+  },
+  "author": "zzh",
+  "license": "MIT",
+  "devDependencies": {
+    "amazeui-touch": "^1.0.0-beta.1",
+    "babel-core": "^6.7.7",
+    "babel-loader": "^6.2.4",
+    "css-loader": "^0.23.1",
+    "jsx-loader": "^0.13.2",
+    "react-dom": "^15.0.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.0"
+  },
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "react": "^15.0.1",
+    "react-router": "^2.5.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
