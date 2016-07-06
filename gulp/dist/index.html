@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="telephone=no,email=no" name="format-detection">
+<title>index</title>
+<link rel="stylesheet" href="assets/css/tools.css">
+<link rel="stylesheet" href="assets/css/layout.min.css">
+</head>
+<body>
+    <div class="page" id="index">
+        <header class="bar bar-nav">
+            <a class="icon icon-me pull-left open-panel"></a>
+            <h1 class="title">首页</h1>
+        </header>
+        <div class="content">
+            <div class="swiper-container">
+                <swiperlist></swiperlist>
+              <div class="swiper-pagination"></div>
+            </div>
+            <div class="entrance">
+                <div class="vertical-view">
+                    <ul class="horizontal-view">
+                        <iconlist v-ref:profile v-for="item in source1" :item="item"></iconlist>
+                    </ul>
+                    <ul class="horizontal-view">
+                        <iconlist v-for="item in source2" :item="item"></iconlist>
+                    </ul>
+                </div>
+            </div>
+            <test></test>
+        </div>
+    </div>
+<script src="assets/js/tools.js"></script>
+<script src="assets/js/index.min.js"></script>
+</body>
+</html>
