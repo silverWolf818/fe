@@ -16,40 +16,29 @@
 <script>
   (function() {
       var html = '<h1 v-for="item in items">{{item.src }}</h1>';
+      var data = [];
     var detail = Vue.component('detail', {
       template: html,
       data: function(){
         return {
-          items: [
-              { src: 'assets/img/1.jpg' },
-              { src: 'assets/img/2.jpg' },
-              { src: 'assets/img/3.jpg' },
-              { src: 'assets/img/4.jpg' }
-          ]
-        }
+          items: data
+      };
       }
     });
     var answer = Vue.component('answer', {
       template: html,
       data: function(){
             return {
-              items: [
-                  { src: 'assets/img/1.jpg' },
-                  { src: 'assets/img/2.jpg' },
-                  { src: 'assets/img/3.jpg' },
-              ]
-            }
+              items: data
+          };
           }
   });
   var question = Vue.component('question', {
     template: html,
     data: function(){
       return {
-        items: [
-            { src: 'assets/img/1.jpg' },
-            { src: 'assets/img/2.jpg' }
-        ]
-      }
+        items: data
+    };
     }
   })
     var app = new Vue({
@@ -66,9 +55,31 @@
         toggleComponent: function(res){
             console.log(res);
           this.view = res;
+          ajaxData(res);
         }
       }
     });
+    function ajaxData(type){
+        if(type == 'detail'){
+            data = [
+                { src: 'assets/img/1.jpg' },
+                { src: 'assets/img/2.jpg' },
+                { src: 'assets/img/123123213.jpg' },
+            ];
+        }else if(type == 'answer'){
+            data = [
+                { src: 'assets/img/1.jpg' },
+                { src: 'assets/img/2.jpg' },
+                { src: 'assets/img/3.jpg' },
+                { src: 'assets/img/4.jpg' }
+            ];
+        }else if(type == 'question'){
+            data = [
+                { src: 'assets/img/1.jpg' },
+                { src: 'assets/img/2.jpg' }
+            ];
+        }
+    }
   })();
 </script>
 </body>
