@@ -11,7 +11,7 @@
     </template>
     <div id="events-example">
         <p>Messages: {{ messages | json }}</p>
-        <child  v-on:child-msg="handleIt"></child>
+        <child @child-msg="handleIt"></child>
     </div>
 <script type="text/javascript" src="../VueJS/bulid/vue.js"></script>
 <script type="text/javascript">

@@ -87,12 +87,12 @@ var isBigPeople = peoples.some(function(e){
 });
 console.log(isBigPeople);
 var usersDb = peoples.map(function(e,index){
+    e.item = true;
     if(e.age>30){
         return e;
     }
 });
 console.log(usersDb);
-var guys = peoples.filter(function())
 </script>
 </body>
 </html>

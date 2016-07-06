@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JavaScript算法练习：使用JavaScript截断字符串</title>
+</head>
+<body>
+<script type="text/javascript">
+// String.slice(begin[,end])
+// String.substring(from[,to])
+// String.substr(star[,length])
+function truncateString(str, num) {
+    return str.length <= num ? str : num <= 3 ? str.slice(0, num).trim() + '...' : str.slice(0, num - 3).trim() + '...';
+}
+console.log(truncateString('A-tisket a-tasket A green and yellow basket',11));
+</script>
+</body>
+</html>

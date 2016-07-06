@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model='msg'>
+        <p v-text = "msg | currencyDisplay"></p>
+    </div>
+<script type="text/javascript" src="../VueJS/bulid/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data:{
+            msg:123.23
+        },
+        filters:{
+            currencyDisplay:{
+                read: function(val) {
+                    if(val == '' || isNaN(val)){
+                        val = 0;
+                    }
+                    console.log(Object.prototype.toString.call(val));
+                    return '$'+ parseFloat(val).toFixed(2);
+                },
+                write: function(val, oldVal) {
+                    var number = +val.replace(/[^\d.]/g, ' ');
+                    return isNaN(number) ? 0 : parseFloat(number.toFixed(2));
+                }
+            }
+        }
+    });
+// Vue.filter('reverse', function (value) {
+//   return value.split('').reverse().join('');
+// });
+// Vue.filter('wrap', function (value, begin, end) {
+//   return begin + value + end
+// });
+</script>
+</body>
+</html>

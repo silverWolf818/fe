@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="../VueJS/bulid/vue.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>111</title>
+</head>
+<body>
+ <div id="app">
+     <button type="button" @click="toggleComponent('detail')">Change to another component</button>
+     <button type="button" @click="toggleComponent('answer')">Change to another component</button>
+     <button type="button" @click="toggleComponent('question')">Change to another component</button>
+     <component :is="view" keep-alive></component>
+ </div>
+<script>
+  (function() {
+      var html = '<h1 v-for="item in items">{{item.src }}</h1>';
+    var detail = Vue.component('detail', {
+      template: html,
+      data: function(){
+        return {
+          items: [
+              { src: 'assets/img/1.jpg' },
+              { src: 'assets/img/2.jpg' },
+              { src: 'assets/img/3.jpg' },
+              { src: 'assets/img/4.jpg' }
+          ]
+        }
+      }
+    });
+    var answer = Vue.component('answer', {
+      template: html,
+      data: function(){
+            return {
+              items: [
+                  { src: 'assets/img/1.jpg' },
+                  { src: 'assets/img/2.jpg' },
+                  { src: 'assets/img/3.jpg' },
+              ]
+            }
+          }
+  });
+  var question = Vue.component('question', {
+    template: html,
+    data: function(){
+      return {
+        items: [
+            { src: 'assets/img/1.jpg' },
+            { src: 'assets/img/2.jpg' }
+        ]
+      }
+    }
+  })
+    var app = new Vue({
+      el: "#app",
+      data:{
+        view: "detail"
+      },
+      components:{
+       detail: detail,
+       answer: answer,
+       question: question
+      },
+      methods: {
+        toggleComponent: function(res){
+            console.log(res);
+          this.view = res;
+        }
+      }
+    });
+  })();
+</script>
+</body>
+</html>

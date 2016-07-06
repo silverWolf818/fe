@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+  .Alert__close {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .Success {
+    color: green;
+  }
+  .Warning {
+    color: #aa0;
+  }
+  .Error {
+    color: red;
+  }
+</style>
+</head>
+<body>
+    <alert></alert>
+    <alert type="success">
+  <strong>Success!</strong> Looks good to me!
+</alert>
+
+<alert type="warning">
+  <strong>Warning!</strong> Something not good.
+</alert>
+
+<alert type="error">
+  <strong>Error!</strong> Oooops...
+</alert>
+    <template id="alert-template">
+  <div :class="alertClasses"  v-show="show">
+    <slot><strong>Default!</strong> Hello World~</slot>
+    <span class="Alert__close" @click="show = false">x</span>
+  </div>
+</template>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/vue/1.0.24/vue.min.js"></script>
+<script type="text/javascript">
+Vue.component('alert', {
+  template: '#alert-template',
+  props: ['type'],
+  computed: {
+    alertClasses: function () {
+        console.log(this.type);
+      return {
+        Success: this.type === 'success',
+        Warning: this.type === 'warning',
+        Error: this.type === 'error'
+      }
+    }
+  },
+  data: function () {
+    return {
+      show: true
+    };
+  }
+});
+
+new Vue({
+  el: 'body'
+});
+
+</script>
+</body>
+</html>

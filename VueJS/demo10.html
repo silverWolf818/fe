@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style media="screen">
+/* 必需 */
+.expand-transition {
+  transition: all .3s ease;
+  padding: 10px;
+  background-color: #eee;
+  overflow: hidden;
+}
+
+/* .expand-enter 定义进入的开始状态 */
+/* .expand-leave 定义离开的结束状态 */
+.expand-enter, .expand-leave {
+  height: 0;
+  padding: 0 10px;
+  opacity: 0;
+}
+.bounce-transition {
+  display: inline-block; /* 否则 scale 动画不起作用 */
+}
+.bounce-enter {
+  animation: bounce-in .5s;
+}
+.bounce-leave {
+  animation: bounce-out .5s;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes bounce-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+</style>
+</head>
+<body>
+    <div id="test">
+        <div class="item" v-for="item in items" @click="toggle(item)">
+            <div>{{item.name}}</div>
+                <div v-show="item.show" transition="expand">
+                初始隐藏
+                </div>
+        </div>
+    </div>
+    <div id="mk">
+        <span v-show="show" transition="bounce">Look at me!</span>
+        <button @click = "greet">Toggle</button>
+    </div>
+<script type="text/javascript" src="../VueJS/bulid/vue.js"></script>
+<script type="text/javascript">
+var data =  [{
+    name: 'box1',
+    }, {
+    name: 'box2',
+    }, {
+    name: 'box3',
+}];
+data.map(function(item){
+item.show = false;
+});
+console.log(data);
+var test = new Vue({
+    el:'#test',
+    data:{
+        items:data
+    },
+    methods: {
+        toggle: function(item) {
+            item.show = !item.show;
+        }
+    }
+});
+
+var mk = new Vue({
+    el:'#mk',
+    data:{
+        show:false
+    },
+    methods: {
+        greet: function() {
+            this.show = !this.show;
+        }
+    }
+})
+</script>
+</body>
+</html>

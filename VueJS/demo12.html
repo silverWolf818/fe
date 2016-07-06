@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<div id="app">
+    <template id="list">
+            <div>{{ ms }} {{ data }} {{ msg }} {{ s.title }}</div>
+            <slot><strong>Default!</strong> Hello World~</slot>
+            <as></as>
+    </template>
+    <child data="data" :msg = 'parentMsg' v-for="item in items" :s="item"></child>
+    <child v-for="item in itemss" :s="item"></child>
+</div>
+<div id="other">
+{{ ms }}
+</div>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/vue/1.0.24/vue.min.js"></script>
+<script type="text/javascript">
+new Vue({
+    el:'#other',
+    data:{
+        ms:"111"
+    }
+})
+var lis = Vue.extend({
+    template:'<div v-for="item in items">{{ item.src }}</div>',
+    data: function () {
+    return {
+        items: [
+            { src: 'assets/img/ljb.png',title: '标题1' },
+            { src: 'assets/img/ljb.png',title: '标题3' },
+            { src: 'assets/img/ljb.png',title: '标题4' },
+            { src: 'assets/img/ljb.png',title: '标题5' },
+            { src: 'assets/img/ljb.png',title: '标题1' }
+        ]
+    }
+  }
+});
+Vue.component('child',{
+    props:['data','msg','s'],
+    template: '#list',
+    components:{
+        'as':lis
+    },
+    data:function(){
+        return {
+            ms:"ms"
+        }
+    }
+})
+new Vue({
+  el: '#app',
+  data:{
+      parentMsg:'1122222222111',
+      lis:'list a',
+      items: [
+          { src: 'assets/img/ljb.png',title: '标题1' },
+          { src: 'assets/img/ljb.png',title: '标题3' },
+          { src: 'assets/img/ljb.png',title: '标题4' },
+          { src: 'assets/img/ljb.png',title: '标题5' },
+          { src: 'assets/img/ljb.png',title: '标题1' }
+      ],
+      itemss: [
+          { src: 'assets/img/ljb.png',title: '标题11' },
+          { src: 'assets/img/ljb.png',title: '标题31' },
+          { src: 'assets/img/ljb.png',title: '标题41' },
+          { src: 'assets/img/ljb.png',title: '标题51' },
+          { src: 'assets/img/ljb.png',title: '标题11' }
+      ]
+  }
+})
+</script>
+</body>
+</html>
