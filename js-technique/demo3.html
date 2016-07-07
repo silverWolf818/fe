@@ -2,25 +2,23 @@
 <html>
 <head>
 <meta charset="utf-8">
-<<<<<<< HEAD
-<title>JavaScript算法练习：字符串反转</title>
+<title>基于screen.width的伪响应式开发</title>
+<style>
+.box{
+    height: 300px;
+    text-align: center;
+    line-height: 300px;
+}
+.box {
+  background: red;
+}
+.S .box {
+  background: blue;
+}
+</style>
 </head>
 <body>
-<script type="text/javascript">
-// split()方法将一个字符串对象的每个字符拆出来，并且将每个字符串当成数组的每个元素
-// reverse()方法用来改变数组，将数组中的元素倒个序排列，第一个数组元素成为最后一个，最后一个变成第一个
-// join()方法将数组中的所有元素边接成一个字符串
- function reverseString(str){
-    //  var splitString  = str.split('');
-    //  var reverseArray = splitString.reverse();
-    //  var joinArray = reverseArray.join('');
-    //  return joinArray;
-    return str.split('').reverse().join('');
- }
-console.log( reverseString("hello"));
-</script>
-=======
-<title>基于screen.width的伪响应式开发</title>
+<div class="box">box</div>
 <script type="text/javascript">
 window.onload = function(){
     (function(doc, win) {
@@ -42,22 +40,5 @@ window.onload = function(){
     })(document, window);
 }
 </script>
-<style>
-.box{
-    height: 300px;
-    text-align: center;
-    line-height: 300px;
-}
-.box {
-  background: red;
-}
-.S .box {
-  background: blue;
-}
-</style>
-</head>
-<body>
-    <div class="box">box</div>
->>>>>>> origin/master
 </body>
 </html>
