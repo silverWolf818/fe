@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>localStorage</title>
+</head>
+<body>
+<script type="text/javascript" src="store.min.js"></script>
+<script type="text/javascript">
+    store.set('user', { name: 'marcus', likes: 'javascript' });
+    var user = store.get('user')
+    alert(user.name + ' likes ' + user.likes);
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>设计模式之单例模式</title>
+</head>
+<body>
+<script type="text/javascript">
+var mySingleton = function(){
+    var privateVariable = 'something private';
+    function showPrivate(){
+        console.log(privateVariable);
+    };
+
+    return {
+        publicMethod:function(){
+            showPrivate();
+        },
+        publicVar : 'this public can see'
+    };
+};
+var single = mySingleton();
+single.publicMethod();
+console.log(single.publicVar);
+
+var SingletonTester = (function(){
+    function Singleton(args){
+        var args = args || {};
+        this.name = 'SingletonTester';
+        this.pointX = args.pointX || 6;
+        this.pointY = args.pointY || 10;
+    }
+    var instance;
+    var _static = {
+        name:'SingletonTester',
+        getInstance:function(args){
+            if (instance === undefined) {
+                instance = new Singleton(args);
+            }
+            return instance;
+        }
+    };
+    return _static;
+})();
+var singleton = SingletonTester.getInstance({ pointX:5 });
+console.log(singleton.pointX);
+</script>
+</body>
+</html>

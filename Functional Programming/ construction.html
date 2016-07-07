@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>设计模式之构造函数模式</title>
+</head>
+<body>
+<script type="text/javascript">
+function Car(model,year,miles){
+    if (!(this instanceof Car)) {
+       return new Car(model, year, miles);
+   }
+    this.model = model;
+    this.year = year;
+    this.miles = miles;
+    this.output = function(){
+        return this.model + '行驶' + this.miles + '里';
+    };
+};
+Car('qwe',2009,100);
+console.log(window.output());
+</script>
+</body>
+</html>

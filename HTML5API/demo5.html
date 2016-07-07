@@ -8,35 +8,30 @@
     <button id="button">有人想加你为好友</button>
     <p id="text"></p>
 <script type="text/javascript">
-if (window.Notification) {
-    var button = document.getElementById('button'), text = document.getElementById('text');
-
-    var popNotice = function() {
-        if (Notification.permission == "granted") {
-            var notification = new Notification("Hi，帅哥：", {
+    var btn = document.querySelector("#button"),text = document.querySelector("#text");
+    if (window.Notification) {
+        btn.onclick = function(){
+            if (Notification.permission == 'granted') {
+                showNotice();
+            }else if(Notification.permission != 'denied'){
+                Notification.requestPermission(function(permission){
+                    showNotice();
+                });
+            }
+        };
+        function showNotice(){
+            var notification = new Notification('呵呵达',{
                 body: '可以加你为好友吗？',
                 icon: 'http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg'
             });
-
-            notification.onclick = function() {
-                text.innerHTML = '张小姐已于' + new Date().toTimeString().split(' ')[0] + '加你为好友！';
+            notification.onclick = function(){
+                text.innerHTML = '呵呵哒' + new Date().toTimeString().split(' ')[0] + '加你为好友';
                 notification.close();
             };
         }
-    };
-
-    button.onclick = function() {
-        if (Notification.permission == "granted") {
-            popNotice();
-        } else if (Notification.permission != "denied") {
-            Notification.requestPermission(function (permission) {
-              popNotice();
-            });
-        }
-    };
-} else {
-    alert('浏览器不支持Notification');
-}
+    }else{
+        alert("浏览器不支持通知属性");
+    }
 // var titleInit = document.title, isShine = true;
 //
 // setInterval(function() {
