@@ -6,17 +6,20 @@
 </head>
 <body>
 <script type="text/javascript">
-    var productManager = {};
-    productManager.createA = function(){
-        console.log('createA');
-    }
-    productManager.createB = function(){
-        console.log('createB');
-    }
-    productManager.factory = function(type){
-        return new productManager[type];
-    }
-    
+var productManager = {};
+productManager.createA = function(){
+    console.log('createA');
+}
+productManager.createB = function(){
+    console.log('createB');
+}
+productManager.factory = function(type){
+    return productManager[type]();
+}
+    productManager.factory('createA');
+
+var page = page || {};
+page.dom = page.dom || {};
 </script>
 </body>
 </html>
