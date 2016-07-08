@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <input type="text" id="text" value="984"/>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+        var index = {
+            cal:function(){
+                console.log("1111");
+            },
+            zz:function(){
+                console.log("22222");
+            }
+        };
+        index.cal();
+        index.zz();
+        console.log(undefined === null);
+        var timeView = function(){
+            var t = 259200,h,g,m,s;
+            var hh = 86400;
+            function showTime(){
+                d = parseInt(t/3600/24);
+                if(t>86400){
+                    h = parseInt(hh/3600);
+                }else{
+                    h = parseInt(t/3600);
+                }
+			    g = parseInt(t%3600);
+			    m = parseInt(g/60);
+			    s = parseInt(g%60);
+                console.log(d+'d'+h+'h'+m+'m'+s+"s");
+                t--;
+                hh--;
+            }
+            setInterval(showTime,1000);
+        }
+        timeView();
+    // var F = function(id){
+    //     return document.getElementById(id);
+    // }
+    // console.log(new F("text"));
+    // var S = function(){
+    //     return ['a','b'];
+    // }
+    // console.log(new S());
+    // var A = function(){
+    //     return this;
+    // }
+    // console.log(new A());
+//             $.fn['kind'] = $['kind'] = function(options,callback){
+//                 console.log("213");
+//                 console.log(options.a);
+//             }
+//             var x = {a:1,b:2}
+//             $.kind(x);
+//         $.fix = function(){
+//             console.log("111");
+//         }
+//         $.fn.test = function(){
+//             console.log(this);
+//         }
+//         $("#text").test();
+//         $.fix();
+//         $.extend({
+// 　　          add:function(a,b){return console.log(a+b);},
+//             miuns:function(a,b){return console.log(a-b);}
+//         });
+//         $.miuns(3,4);
+//         $.extend(String.prototype,{
+//             isInteger:function(){
+//                 var num = /^\d+$/;
+//                 if(num.test(this)){
+//                     console.log("ok");
+//                 }
+//                 // return (new RegExp(/^\d+$/).test(this));
+//             }
+//         });
+//         $('#text').val().isInteger();
+        // ;(funtion($, window, document,undefined){
+        //
+        // })(jQuery, window, document);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0">
+<title></title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    height: 100%;
+}
+#container{height:100%}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=RD9t0QLyRR22ItjHOBbfOiF9"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript">
+var map = new BMap.Map("container");          // 创建地图实例
+var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
+map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+// map.addControl(new BMap.NavigationControl()); //平移缩放控件
+// map.addControl(new BMap.ScaleControl());       //比例尺控件
+// map.addControl(new BMap.OverviewMapControl());//缩略地图控件
+// map.addControl(new BMap.MapTypeControl());   //地图类型控件
+// map.setCurrentCity("北京");
+var marker = new BMap.Marker(new BMap.Point(116.404, 39.915));
+var polygon = new BMap.Polygon([
+    new BMap.Point(116.387112, 39.920977),
+    new BMap.Point(116.385243, 39.913063),
+    new BMap.Point(116.394226, 39.917988),
+    new BMap.Point(116.401772, 39.921364),
+    new BMap.Point(116.41248, 39.927839)
+],{strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});
+map.addOverlay(marker);
+map.addOverlay(polygon);
+//var circle = new BMap.Circle(point,500,{strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5}); //创建圆
+//手机定位
+// map.addControl(new BMap.GeolocationControl());
+// var geolocation = new BMap.Geolocation();
+// geolocation.getCurrentPosition(function(r){
+//     if(this.getStatus() == BMAP_STATUS_SUCCESS){
+//         var point = new BMap.Point(r.point.lng,r.point.lat);
+//         var marker = new BMap.Marker(new BMap.Point(r.point.lng,r.point.lat));
+//         var circle = new BMap.Circle(point,500,{strokeColor:"blue",strokeWeight:2,strokeOpacity:0.5});
+//         map.addOverlay(marker);
+//         map.addOverlay(circle);
+//         map.centerAndZoom(point, 15);
+//     }
+// })
+
+// //定义一个控件类，即function
+// function ZoomControl(){
+//     // 设置默认停靠位置和偏移量
+//     this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+//     this.defaultOffset = new BMap.Size(10, 10);
+// }
+// // 通过JavaScript的prototype属性继承于BMap.Control
+// ZoomControl.prototype = new BMap.Control();
+//
+// // 自定义控件必须实现initialize方法，并且将控件的DOM元素返回
+// // 在本方法中创建个div元素作为控件的容器，并将其添加到地图容器中
+// ZoomControl.prototype.initialize = function(map){
+// // 创建一个DOM元素
+//  var div = document.createElement("div");
+// // 添加文字说明
+//  div.appendChild(document.createTextNode("放大2级"));
+//  // 设置样式
+//  div.style.cursor = "pointer";
+//  div.style.border = "1px solid gray";
+//  div.style.backgroundColor = "white";
+//  // 绑定事件，点击一次放大两级
+//  div.onclick = function(e){
+//   map.zoomTo(map.getZoom() + 2);
+//  }
+//  // 添加DOM元素到地图中
+//  map.getContainer().appendChild(div);
+//  // 将DOM元素返回
+//  return div;
+//  }
+//  var myZoomCtrl = new ZoomControl();
+//  map.addControl(myZoomCtrl);
+</script>
+</body>
+</html>

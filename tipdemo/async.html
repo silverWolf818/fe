@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <div id="f1"></div>
+    <div id="f2"></div>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+    // function f1(callback){
+    //     setTimeout(function(){
+    //         document.getElementById('f1').innerHTML = "f1";
+    //         callback();
+    //     },2000);
+    // }
+    // f1(f2);
+    // function f2(){
+    //     document.getElementById('f2').innerHTML = "f2";
+    // }
+    // function f1(){
+    //     setTimeout(function(){
+    //         document.getElementById('f1').innerHTML = "f1";
+    //         f1.trigger('done');
+    //     },1000);
+    // }
+    // f1.on('done',f2);
+    // function f2(){
+    //     document.getElementById('f2').innerHTML = "f2";
+    // }
+    jQuery.subscribe('done',f2);
+    function f1(){
+        setTimeout(function(){
+            document.getElementById('f1').innerHTML = "f1";
+            jQuery.publish('done');
+        },1000);
+    }
+    function f2(){
+        document.getElementById('f2').innerHTML = "f2";
+    }
+</script>
+</body>
+</html>

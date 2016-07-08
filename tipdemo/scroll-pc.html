@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+.test{
+    border: 1px solid #e4e4e4;
+    width: 210px;
+    height: 200px;
+    overflow: auto;
+}
+</style>
+</head>
+<body>
+    <div class="test">
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+        <p>content</p>
+    </div>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+$.fn.scrollUnique = function() {
+        return $(this).each(function() {
+            var eventType = 'mousewheel';
+            if (document.mozHidden !== undefined) {
+                eventType = 'DOMMouseScroll';
+            }
+            $(this).on(eventType, function(event) {
+        // 一些数据
+        var scrollTop = this.scrollTop,
+            scrollHeight = this.scrollHeight,
+            height = this.clientHeight;
+
+        var delta = (event.originalEvent.wheelDelta) ? event.originalEvent.wheelDelta : -(event.originalEvent.detail || 0);
+
+        if ((delta > 0 && scrollTop <= delta) || (delta < 0 && scrollHeight - height - scrollTop <= -1 * delta)) {
+            // IE浏览器下滚动会跨越边界直接影响父级滚动，因此，临界时候手动边界滚动定位
+            this.scrollTop = delta > 0? 0: scrollHeight;
+            // 向上滚 || 向下滚
+            event.preventDefault();
+        }
+    });
+});
+};
+
+$('#test').scrollUnique();
+    </script>
+</body>
+</html>

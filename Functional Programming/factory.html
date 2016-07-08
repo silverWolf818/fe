@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>设计模式之工厂模式</title>
+</head>
+<body>
+<script type="text/javascript">
+    var productManager = {};
+    productManager.createA = function(){
+        console.log('createA');
+    }
+    productManager.createB = function(){
+        console.log('createB');
+    }
+    productManager.factory = function(type){
+        return new productManager[type];
+    }
+    
+</script>
+</body>
+</html>

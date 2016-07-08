@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<script type="text/javascript">
+var curryWeight = function(fn) {
+var _fishWeight = [];
+return function() {
+    if (arguments.length === 0) {
+        return fn.apply(null, _fishWeight);
+    } else {
+        _fishWeight = _fishWeight.concat([].slice.call(arguments));
+    }
+}
+};
+var fishWeight = 0;
+var addWeight = curryWeight(function() {
+var i=0; len = arguments.length;
+for (i; i<len; i+=1) {
+    fishWeight += arguments[i];
+}
+});
+
+addWeight(2.3);
+addWeight(6.5);
+addWeight(1.2);
+addWeight(2.5);
+addWeight();    //  这里才计算
+console.log(fishWeight);
+</script>
+</body>
+</html>

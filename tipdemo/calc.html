@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<form id="calForm"  method="post">
+    <span id="unitPrice_110">400</span>元<input id="unitNumber_110" name="unitNumber_110" value="6" />小计：<span id="unitTotal_110"></span>元
+    <span id="unitPrice_111">50</span>元<input id="unitNumber_111" name="unitNumber_111" value="10" />小计：<span id="unitTotal_111"></span>元
+    <p id="allTotal"></p>
+</form>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/calc.js"></script>
+<script type="text/javascript">
+var rule = {
+unitTotal_110: function() {
+   return 400 * this.unitNumber_110;
+},
+unitTotal_111: function(){
+   return 50 * this.unitNumber_111;
+},
+allTotal:function(){
+    if (this.unitTotal_110 + this.unitTotal_111 === 0) return 0;
+    return this.unitTotal_110  + this.unitTotal_111;
+}
+};
+$.calculate($("#calForm"), rule);
+</script>
+</body>
+</html>

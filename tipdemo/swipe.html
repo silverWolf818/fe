@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0">
+<title></title>
+<style media="screen">
+#box{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    line-height: 80px;
+    background: #FFF;
+    text-align: center;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    -webkit-transition: -webkit-transform 0.3s ease-in-out;
+    z-index: 1001;
+}
+#mask{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #000;
+    display: none;
+    opacity: 0.5;
+    z-index: 1000;
+}
+#result{
+    position: absolute;
+    right: 0;
+}
+#btn{
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: #444;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+<div id="box">box</div>
+<div id="mask"></div>
+<p id="result"></p>
+<div id="btn">btn</div>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/hammer.js"></script>
+<script type="text/javascript">
+    var lx=0,rx=0;
+    var handle = new Hammer(document.getElementById('box'));
+    handle.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+    handle.add(new Hammer.Pinch());
+    handle.on('panleft',function(e){
+        $("#result").html(e.deltaX);
+        lx = e.deltaX;
+        var x = lx+'px';
+        $("#box").css("transform","translate3d("+x+",0,0)");
+    });
+    handle.on('panright',function(e){
+        $("#result").html(e.deltaX);
+        rx = e.deltaX;
+        var x = rx+'px';
+        if(rx < 0){
+            $("#box").css("transform","translate3d("+x+",0,0)");
+        }else{
+            $("#box").css("transform","translate3d(0,0,0)");
+        }
+    });
+    handle.on('panend',function(e){
+        if(e.deltaX< -100){
+            hide();
+        }
+    });
+    $(document).on("touchstart","#btn",function(){
+        $("#mask").show(300);
+        $("#box").css("transform","translate3d(0,0,0)");
+    });
+    $(document).on('touchstart',"#mask",function(){
+        hide();
+    });
+    function hide(){
+        $("#mask").hide(300);
+        $("#box").css("transform","translate3d(-100%,0,0)");
+    }
+</script>
+</body>
+</html>

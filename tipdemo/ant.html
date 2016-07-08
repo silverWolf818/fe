@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+ <div id="pro" style="background:#999;width:1px;height:20px"></div>
+ <input type="button" value="run" id="run"/>
+ <script type="text/javascript">
+    var start = null;
+    var pro = document.getElementById('pro');
+    var run = document.getElementById('run');
+    var progress = 0;
+    function step(times){
+        progress += 1;
+        pro.style.width = progress + '%';
+        pro.innerHTML = progress + '%';
+        if(progress<100){
+            start = requestAnimationFrame(step);
+        }
+    }
+    requestAnimationFrame(step);
+    run.addEventListener('click',function(){
+        pro.style.width = "1px";
+        progress = 0;
+        cancelAnimationFrame(start);
+        requestAnimationFrame(step);
+    });
+ </script>
+</body>
+</html>

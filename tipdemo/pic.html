@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript">
+;(function ($,document,window){
+var pic = 1;//图片数量
+var oReq=[];
+var ofile = {};
+var picname;
+var loadtype = $('.file').data('value');
+var type = $('.file').data('type');
+var picnum = $('.file').data('num');
+var url;
+if(loadtype=='rz'){
+     url = 'wap.php?s=/Rz/upload/type/'+type;
+}else{
+     url = '/wap.php?s=/User/qrcode/type/'+type;
+}
+ $(document).on('change', '.file', function(){
+        var num = 0;
+        var ifile = {};//符合条件的上传集合
+        picname = $(this).attr('name');
+        if(window.FileReader){
+            for (var i = 0; i < this.files.length; i++) {
+                if(this.files[i].size<10*1024||this.files[i].size>8*1024*1024||this.files[i].type.indexOf('image')<0){
+                        num++;
+                        $.alert("请上传jpg、gif、png格式，单张照片在10k-8M之间的照片");
+                }else if (this.files.length>picnum){
+                        $.alert("请上传符合数量的图片！");
+                        break;
+                }else{
+                    $("#btn-step3,.car_sub,.real,.btn_next").html("正在上传图片");
+                    $(".real").attr('data-value', '0');
+                    if(pic>=picnum){
+                        $(".i-filepic").remove();
+                    }
+                        ifile[pic] = this.files[i];
+                        $('.picarea').prepend("<span class='loadpic' id='t"+pic+"'><i class='process'></i></span>");
+                        if(picname=='picz'){
+                            $('#realz').prepend("<span class='loadpic' id='t"+pic+"'><i class='process'></i></span>");
+                            $(".realz").hide();
+                        }
+                        else if(picname=='picf'){
+                            $('#realf').prepend("<span class='loadpic' id='t"+pic+"'><i class='process'></i></span>");
+                            $(".realf").hide();
+                        }
+                        var reader = new FileReader();
+                        reader.id = 't'+pic;
+                        reader.onload = function(e){
+                            var img = $("<img />");
+                            img[0].src = this.result;
+                            img[0].style.opacity = "0.6";
+                            $("#"+e.target.id).append(img);
+                        }
+                        reader.readAsDataURL(this.files[i]);
+                        pic++;
+                }
+            }
+            for(var i in ifile){
+                postFile(ifile[i],i);
+            }
+        }
+ });
+ function postFile(file,i){
+        var form = $('<form enctype="multipart/form-data"></form>');
+        var newFormData = new FormData(form[0]);
+        oReq[i] = new XMLHttpRequest();
+        oReq[i].id = i;
+        oReq[i].name = file.name;
+        oReq[i].upload.id = i;
+        oReq[i].upload.addEventListener("progress", uploadProgress, false);
+        oReq[i].onreadystatechange = uploadComplete;
+        oReq[i].open("POST",url);
+        if(picname=='ispic'){
+                newFormData.append("ispic", file);
+        }else if(picname=='picz'){
+            newFormData.append("picz", file);
+        }else if(picname=='picf'){
+            newFormData.append("picf", file);
+        }else{
+             newFormData.append("pic", file);
+        }
+        newFormData.append('from',1);
+        oReq[i].send(newFormData);
+    }
+    function uploadProgress(evt){
+        var id = evt.target.id;
+        var process = Math.round(evt.loaded/evt.total*100);
+        $("#t"+id).find('.process').html(process+"%");
+    }
+    function uploadComplete(evt){
+        if(evt.target.readyState == 4 && evt.target.status == 200){
+            var dataText = evt.target.responseText;
+                if(dataText){
+                    var data = JSON.parse(dataText);
+                    if(data.code==200){
+                        $("#t"+evt.target.id).data('picid',data.data.id);
+                        $("#t"+evt.target.id).find('img').attr('src',data.data.src).css({opacity:'1'});
+                        $("#t"+evt.target.id).find(".process").css({'opacity':'0.7',background:'#000000'}).html('上传成功');
+                        $("#btn-step3,.car_sub").html("发布");
+                        $(".btn_next").html("下一步");
+                        $(".real,.car_sub").attr('data-value',1).html("申请认证");
+                    }else{
+                        $.alert(data.data);
+                    }
+                }
+        }
+    }
+}(jQuery, document, window));
+        </script>
+    </body>
+</html>

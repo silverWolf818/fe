@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<input type="file" id="file" class="file" multiple accept="image/*" name="file">
+<div class="picarea"></div>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+;(function(){
+    var pic = 1,
+        oReq = [],
+        ofile = {},
+        picname='',
+        url;
+    $(document).on('change', '.file', function(event) {
+        event.preventDefault();
+        var num = 0;
+        var ifile = {};
+        var len = this.files.length;
+        if(window.FileReader){
+            for(var i = 0;i<len;i++){
+                ifile[pic] = this.files[i];
+                $(".picarea").prepend('<div class="loadpic" id="t'+pic+'"></div>');
+                var reader = new FileReader();
+                reader.id = 't'+pic;
+                reader.onload = function(e){
+                    var img = $("<img />");
+                    console.log(e.target.id);
+                    img[0].src = this.result;
+                    img[0].style.opacity = "0.6";
+                    $("#"+e.target.id).append(img);
+                }
+                reader.readAsDataURL(this.files[i]);
+                pic++;
+            }
+            
+        }
+    });
+})();
+</script>
+</body>
+</html>

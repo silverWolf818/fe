@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <textarea  style="display:none;" id="ttt">
+    <li>
+        <a href="javascript:" data-id="$couponid$">
+            <img src="$imgsrc$" width="240" height="180" />
+            <p>$traffic$</p>
+            <p>$buynum$人购买</p>
+            <div>
+                <div><del class="g6 db">¥$cost$现金券</del>$discount$折</div>
+                <strong class="cr price r pr20">¥$price$</strong>
+            </div>
+            <h3>$resname$</h3>
+        </a>
+    </li>
+    </textarea>
+    <ul>
+
+    </ul>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        var JSON = {
+        data: [{
+            couponid: "111",
+            imgsrc: "img/1.png",
+            resname: "俏江南 仙乐斯广场",
+            traffic: "肇嘉浜路沿线",
+            buynum: 180,
+            cost: 100,
+            discount: 8.5,
+            price: 85
+        }, {
+            couponid: "222222",
+            imgsrc: "img/1.png",
+            resname: "申城五月天",
+            traffic: "静安寺",
+            buynum: 0,
+            cost: 100,
+            discount: 8.0,
+            price: 80
+        }, {
+            couponid: "3",
+            imgsrc: "img/1.png",
+            resname: "申城五月天",
+            traffic: "静安寺",
+            buynum: 0,
+            cost: 100,
+            discount: 8.0,
+            price: 80
+        }]
+    };
+    String.prototype.temp = function(obj) {
+        return this.replace(/\$\w+\$/gi, function(matchs) {
+            var returns = obj[matchs.replace(/\$/g, "")];
+            return (returns + "") == "undefined"? "": returns;
+        });
+    };
+    var htmlList = ''
+         // textarea中的模板HTML
+        , htmlTemp = $("textarea").text();
+    JSON.data.forEach(function(object) {
+        htmlList += htmlTemp.temp(object);
+    });
+    $("ul").append(htmlList);
+    // htmlList就是我们需要的HTML代码啦！
+    })
+    </script>
+</body>
+</html>

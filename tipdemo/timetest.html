@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <div id="timer0" class="clock" data-mm="99999">
+    </div>
+    <div id="timer1" class="clock" data-mm="66666">
+    </div>
+    <div id="timer2" class="clock" data-mm="234">
+    </div>
+    <div id="timer3" class="clock" data-mm="33333">
+    </div>
+    <div id="timer4" class="clock" data-mm="66666">
+    </div>
+    <div id="timer5" class="clock" data-mm="99999">
+    </div>
+    <div id="timer6" data-mm="1800"></div>
+    <a href="javascript:;" id="btn">btn</a>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/timeView.js" async="async"></script>
+    <!-- <script type="text/javascript">
+        function showTime(time){
+            setInterval(go,1000);
+            function go(){
+                m = parseInt(time%3600/60);
+                s = parseInt(time%3600%60);
+                $("#timer6").html(m+' '+s);
+                time--;
+            }
+        }
+        showTime($("#timer6").data('mm'));
+    </script> -->
+</body>
+</html>
