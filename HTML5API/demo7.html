@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <div data-local="demo">
+        <div>这里有一些内容</div>
+        <p>额呵呵回答 </p>
+        <div>内容太多内容太多内容太多内容太多</div>
+        <div>内容太多内容太多内容太多内容太多</div>
+        <div>内容太多内容太多内容太多内容太多</div>
+    </div>
+<script type="text/javascript">
+    function cacheOne(attrid){
+        var content = document.querySelector('[data-local= "'+attrid+'" ]').outerHTML;
+        localStorage.setItem(attrid,content);
+    }
+    cacheOne('demo');
+</script>
+<script type="text/javascript" data-local='demo'>
+    function readOne(attrid){
+        var content = localStorage.getItem(attrid);
+        document.querySelector('[data-local= "'+attrid+'" ]').outerHTML = content;
+    }
+    readOne('demo');
+</script>
+</body>
+</html>

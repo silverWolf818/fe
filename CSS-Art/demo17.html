@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>等宽字体在web布局中应用以及CSS3 ch单位</title>
+<style media="screen">
+.grebtn{
+    display: inline-block;
+    padding: 0.25em 1.25em;
+    border: 1px solid;
+    border-radius: 2px;
+    vertical-align: bottom;
+    font-weight: inherit;
+    border-color: #208000 #1F7F00;
+    background-color: #289600;
+    box-shadow: inset 0 0 1px rgba(255,255,255,.6), 0 1px #8DBF62;
+    color: #fff;
+    text-shadow: 0 -1px #137900;
+    text-decoration: none;
+}
+dot {
+        display: inline-block;
+        width: 3ch;
+        text-indent: -1ch;
+        text-align: left;
+        vertical-align: bottom;
+        overflow: hidden;
+        animation: dot 3s infinite step-start both;
+        font-family: Consolas, Monaco, monospace;
+    }
+@keyframes dot{
+    33% { text-indent: 0; }
+    66% { text-indent: -2ch; }
+}
+</style>
+</head>
+<body>
+    <a href="javascript:" class="grebtn">订单提交中<dot>...</dot></a>
+</body>
+</html>
