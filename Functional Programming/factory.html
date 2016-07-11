@@ -20,6 +20,33 @@ productManager.factory = function(type){
 
 var page = page || {};
 page.dom = page.dom || {};
+page.dom.Text = function(){
+    this.insert = function(where){
+        var text = document.createTextNode(this.word);
+        where.appendChild(text);
+    }
+};
+page.dom.Link = function(){
+    this.insert = function(where){
+        var link = document.createElement('a');
+        link.href = this.url;
+        link.appendChild(document.createTextNode(this.url));
+        where.appendChild(link);
+    }
+};
+page.dom.Image = function(){
+    this.insert = function(where){
+        var img = document.createElement('img');
+        img.src = this.url;
+        where.append(img);
+    }
+};
+page.dom.factory = function(type){
+    return new page.dom[type];
+};
+var l = page.dom.factory('Link');
+l.url = 'http://www.baidu.com';
+l.insert(document.body);
 </script>
 </body>
 </html>
