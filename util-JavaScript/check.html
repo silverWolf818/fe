@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>check</title>
+</head>
+<body>
+<script type="text/javascript">
+// typeof
+typeof 37;           // => "number"
+typeof "haha";    // => "string"
+typeof true;         // => "boolean"
+typeof Symbol();     // => "symbol"
+typeof undefined;    // => "undefined"
+typeof {};           // => "object"
+typeof function (){};// => "function"
+
+typeof ["qq","we"];         // => "object"
+typeof new Date();          // => "object"
+typeof new String("str");   // => "object"
+typeof new function (){};   // => "object"
+typeof /test/i;             // => "object"
+
+typeof null; // => "object"
+
+// 使用typeof一个较好的习惯是写一个多种状态的函数
+function f (x) {
+    if (typeof x == "function") {
+         // 当x是一个函数时，做些什么...
+    } else {
+         // 其它状态
+    }
+}
+
+// 检测是否存在全局变量jQuery
+if (typeof(jQuery) !== 'undefined')
+
+// 检测函数改进版
+function typeTest(obj){
+    return Object.prototype.toString.call(obj);
+}
+function toType (obj) {
+    return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+}
+console.log(toType(Math));
+
+// instanceof
+// instanceof操作符用于检测某个对象的原型链是否包含某个构造函数的prototype属性。
+// 比如直接原型关系
+function Animal () {};
+var a =  new Animal();
+a instanceof Animal; // => true
+
+// 原型链上的间接原型
+function Cat() {};
+Cat.prototype = new Animal;
+var b = new Cat();
+console.log(b instanceof Animal); // =>
+
+[1, 2, 3] instanceof Array // true
+/abc/ instanceof RegExp // true
+({}) instanceof Object // true
+(function(){}) instanceof Function // true
+
+// instanceof对基本数据类型检测不起作用，主要是因为基本数据类型没有原型链。
+3 instanceof Number // false
+true instanceof Boolean // false
+'abc' instanceof String // false
+
+// constructor
+// constructor属性返回一个指向创建了该对象原型的函数引用。需要注意的是，该属性的值是那个函数本身
+function Animal () {};
+function Cat () {};
+function BadCat () {};
+Cat.prototype = new Animal;
+BadCat.prototype = new Cat;
+var a = new BadCat;
+a.constructor === Animal;  // => true
+Animal.constructor === Function; // => true
+// 和instanceof不同的是，在访问基本数据类型的属性时，JavaScript会自动调用其构造函数来生成一个对象
+(3).constructor === Number // true
+true.constructor === Boolean // true
+'abc'.constructor === String // true
+// 相当于
+(new Number(3)).constructor === Number
+(new Boolean(true)).constructor === Boolean
+(new String('abc')).constructor === String
+
+// 使用constructor有两个问题。第一个问题它不会走原型链
+function Animal () {};
+function Cat () {};
+Cat.prototype = new Animal;
+Cat.prototype.constructor = Cat;
+var felix = new Cat;
+felix.constructor === Cat; // => true
+felix.constructor === Animal; // => false
+// 第二个问题，就是null和undefined使用constructor会报异常。
+
+// 总结
+// typeof只能检测基本数据类型，对于null还有Bug；
+// instanceof适用于检测对象，它是基于原型链运作的；
+// constructor指向的是最初创建者，而且容易伪造，不适合做类型判断；
+// toString适用于ECMA内置JavaScript类型（包括基本数据类型和内置对象）的类型判断；
+// 基于引用判等的类型检查都有跨窗口问题，比如instanceof和constructor。
+// 如果你要判断的是基本数据类型或JavaScript内置对象，使用toString； 如果要判断的是自定义类型，请使用instanceof
+
+
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.axis = factory();
+  }
+}(this, function () {
+
+  'use strict';
+
+  var axis = {};
+
+  var types = 'Array Object String Date RegExp Function Boolean Number Null Undefined'.split(' ');
+
+  function type() {
+    return Object.prototype.toString.call(this).slice(8, -1);
+  }
+
+  for (var i = types.length; i--;) {
+    axis['is' + types[i]] = (function (self) {
+      return function (elem) {
+        return type.call(elem) === self;
+      };
+    })(types[i]);
+  }
+
+  return axis;
+
+}));
+
+axis.isArray([]); // true
+axis.isObject({}); // true
+axis.isString(''); // true
+
+
+// 如果你要判断的是基本数据类型或JavaScript内置对象，使用toString； 如果要判断的时自定义类型，请使用instanceof。
+</script>
+</body>
+</html>

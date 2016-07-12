@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>typeof</title>
+</head>
+<body>
+<script type="text/javascript">
+    var x = function(){};
+    console.log(typeof x);
+function toType (obj) {
+    return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+}
+function typeTest(obj){
+    return Object.prototype.toString.call(obj);
+}
+</script>
+</body>
+</html>
