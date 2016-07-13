@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<script type="text/javascript">
+// function Animal(){
+// 　　this.species = "动物";
+// };
+// function Cat(name,color){
+//     this.name = name;
+//     this.color = color;
+//     Animal.apply(this,arguments);
+// };
+// var cat1 = new Cat('呵呵','黄色');
+// console.log(cat1.species);
+
+// Fish.prototype = new Animal();
+// Fish.prototype.constructor = Fish;
+// var fish1 = new Fish('ff',100);
+// console.log(fish1.species);
+
+// var F = function(){};
+// F.prototype = Animal.prototype;
+// Fish.prototype = new F();
+// Fish.prototype.constructor = Fish;
+
+function Animal(){}
+　Animal.prototype.species = "动物";
+function Cat(name,price){
+    this.name = name;
+    this.price = price;
+};
+function extend(Child, Parent) {
+　　　　var F = function(){};
+　　　　F.prototype = Parent.prototype;
+　　　　Child.prototype = new F();
+　　　　Child.prototype.constructor = Child;
+　　　　Child.uber = Parent.prototype;
+　　}
+extend(Cat,Animal);
+var cat1 = new Cat('as',111);
+alert(cat1.species);
+
+//
+
+var Chinese = {
+    nation:'中国'
+};
+var Doctor = {
+    career:'医生'
+};
+
+function obj(o){
+    function F(){};
+    F.prototype = o;
+    return new F();
+}
+var Doctor = obj(Chinese);
+Doctor.career = '医生';
+console.log(Doctor.nation);
+</script>
+</body>
+</html>
