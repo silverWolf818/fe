@@ -12,23 +12,23 @@
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
 var func = {};
-    $(document).on('click', '.btn', function(event) {
-        event.preventDefault();
-        var type = $(this).data('type');
-        func[type]();
-    });
-    func.one = function(){
-        console.log('one');
-    }
-    func.two = function(){
-        console.log('two');
-    }
-    func.three = function(){
-        console.log('three');
-    }
-    func.four = function(){
-        console.log('four');
-    }
+$(document).on('click', '.btn', function(event) {
+    event.preventDefault();
+    var type = $(this).data('type');
+    func[type]();
+});
+func.one = function(){
+    console.log('one');
+}
+func.two = function(){
+    console.log('two');
+}
+func.three = function(){
+    console.log('three');
+}
+func.four = function(){
+    console.log('four');
+}
 </script>
 </body>
 </html>
