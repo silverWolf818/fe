@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>setInterval</title>
+</head>
+<body>
+<script type="text/javascript">
+function fun() {
+     console.log(1);
+ }
+setInterval("fun()",1000);//全局作用域下正常执行
+setInterval(fun(),1000); //调用函数正常，setInterval调用出错
+setInterval(fun,1000);  //正确
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>template</title>
+</head>
+<body>
+<script type="text/javascript">
+    var caffeineBeverage = function(){};
+    caffeineBeverage.prototype.prepareRecipe = function(){
+        this.boilWater();
+        this.brew();
+        this.pourOnCup();
+        if(this.customerWantsCondiments()){
+            this.addCondiments();
+        }
+    };
+    caffeineBeverage.prototype.boilWater = function(){
+        console.log("water");
+    };
+    caffeineBeverage.prototype.pourOnCup = function(){
+        console.log("pourOnCup");
+    };
+    caffeineBeverage.prototype.brew = function(){
+        throw new Error("rewrite");
+    };
+    caffeineBeverage.prototype.addCondiments = function(){
+        throw new Error("rewrite");
+    };
+    caffeineBeverage.prototype.customerWantsCondiments = function(){
+        return true;
+    };
+
+    var Coffee = function(){
+        caffeineBeverage.apply(this);
+    };
+    Coffee.prototype = new caffeineBeverage();
+    Coffee.prototype.brew = function () {
+        console.log("从咖啡机想咖啡倒进去!");
+    };
+    Coffee.prototype.addCondiments = function () {
+        console.log("添加糖和牛奶");
+    };
+    Coffee.prototype.customerWantsCondiments = function () {
+        return confirm("你想添加糖和牛奶吗？");
+    };
+
+    var o = new Coffee();
+    o.prepareRecipe();
+</script>
+</body>
+</html>
