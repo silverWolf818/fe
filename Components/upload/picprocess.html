@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.i{
+			font-style: normal;
+		}
+		#box{
+			margin:10px; 
+			width: 1000px;
+			height: 400px;
+			border: 1px solid #e4e4e4;
+		}
+		#file{
+			width: 100px;
+			height: 100px;
+			border:1px solid #bababa;
+		}
+		.loadpic{
+			margin: 0 2px;
+			width: 100px;
+			height: 100px;
+			border:1px solid #bababa;
+			position: relative;
+			float: left;
+		}
+		.loadpic img{
+			width: 100%;
+			height: 100%;
+		}
+		.process{
+			display: block;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 20px;
+			text-align: center;
+			background: #000000;
+			opacity: 0.7;
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<input type="file" id="file" accept="image/*" multiple="multiple">
+	</div>
+</body>
+<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+<script>
+	$(function(){
+		var picid = 1;
+		$(document).on('change','#file',function(){
+			var num = 0; //图片数量
+			var ifile = {};//符合条件的上传集合
+			if(window.FileReader){
+				for(var i = 0; i <this.files.length; i++) {
+ 					if(this.files[i].size < 10*1024||this.files[i].size>8*1024*1024){
+                                num++;
+ 					}else{
+ 						 ifile[picid] = this.files[i];
+ 						 $('#box').prepend('<div class="loadpic" id="'+picid+'"><i class="process"></i></div>');
+ 						 var reader = new FileReader();
+ 						 reader.id = picid;
+ 						 reader.onload = function(e){
+ 						 		var img = $("<img />");
+ 						 		img[0].src = e.target.result;
+ 						 		console.log(e.target.result);
+ 						 		console.log($("#"+e.target.id));
+ 						 		$("#"+e.target.id).append(img);
+ 						 	}
+ 						 	reader.readAsDataURL(this.files[i]);
+ 						 	picid++;
+ 						}
+ 					}
+				}
+		});
+					function uploadProgress(e){
+							var id = e.target.id;
+							var processs = Math.round(e.loaded/e.total*100);
+							$('#'+id).find('.process').html(processs+'%');
+ 				}
+	});
+</script>
+</html>

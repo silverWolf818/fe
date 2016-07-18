@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <div class="box">
+        <div><label>用户名：</label><input type="text" check="user"></div>
+        <div><label>密 码：</label><input type="password" check="pwd"></div>
+        <div><label>手机号：</label><input type="text" check="mobile"></div>
+        <input type="submit" id="btn"/>
+    </div>
+<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="validate.js"></script>
+<script type="text/javascript">
+$(document).on("click","#btn",function(e){
+    e.preventDefault();
+    $(".box").validate();
+});
+</script>
+</body>
+</html>

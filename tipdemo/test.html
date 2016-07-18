@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0">
 <meta charset="utf-8">
 <style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .box{
     height: 50px;
     line-height: 50px;
@@ -10,10 +16,28 @@
     /*display: none;*/
     visibility: hidden;
 }
+.col{
+    display:-webkit-flex;
+	display:flex;
+    -webkit-flex-wrap:wrap;
+	flex-wrap:wrap;
+}
+img{
+    width:25vw;height:25vw;
+    padding-left:10px;
+}
 </style>
+
 <title></title>
 </head>
 <body>
+    <div class="col">
+        <img src="http://p2.jianai365.com:8002/s/99/fb/ae8818b0e4199eddab733d8e1b15.jpg?v=1" alt="">
+        <img src="http://p2.jianai365.com:8002/s/99/fb/ae8818b0e4199eddab733d8e1b15.jpg?v=1" alt="">
+        <img src="http://p2.jianai365.com:8002/s/99/fb/ae8818b0e4199eddab733d8e1b15.jpg?v=1" alt="">
+        <img src="http://p2.jianai365.com:8002/s/99/fb/ae8818b0e4199eddab733d8e1b15.jpg?v=1" alt="">
+        <img src="http://p2.jianai365.com:8002/s/99/fb/ae8818b0e4199eddab733d8e1b15.jpg?v=1" alt="">
+    </div>
     <ul>
         <li>1</li>
         <li>2</li>

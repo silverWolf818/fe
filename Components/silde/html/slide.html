@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.clearfix:before,
+			.clearfix:after {
+				content: " ";
+				display: table;
+			}
+
+			.clearfix:after {
+				clear: both;
+			}
+
+			ul,
+			li {
+				list-style: none;
+			}
+
+			img {
+				border: none;
+				height: auto;
+				width: 100%;
+				vertical-align: top;
+				display: block;
+			}
+
+			.slider {
+				overflow: hidden;
+			}
+
+			.slider ul {
+				width: 1000%;
+			}
+
+			.slider ul:after {
+				content: "";
+				display: block;
+				clear: both;
+				visibility: hidden;
+				line-height: 0;
+				height: 0;
+			}
+
+			.slider ul li {
+				float: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="slider">
+			<ul>
+				<li><img src="../img/1.jpg" alt="" /></li>
+				<li><img src="../img/2.jpg" alt="" /></li>
+				<li><img src="../img/3.jpg" alt="" /></li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="../js/jquery-2.1.4.min.js" ></script>
+		<script>
+			$(function() {
+				var lis = $('.slider li');
+				/*lis.eq(0).clone().appendTo('ul');
+				lis.eq(1).clone().appendTo('ul');*/
+				var ul = $('ul');
+				console.log(lis.length);
+				lis.width($(window).width());
+				$(window).resize(function() {
+					lis.width($(window).width());
+				});
+				var i = 1;
+				 function autopaly(){
+					ul.css({
+						"transform": "translateX(" + -$(window).width() * i + "px)",
+						"transition-duration": "1s"
+					});
+					i++;
+					if (i > lis.length) {
+						ul.css({
+							"transform": "translateX(0px)",
+							"transition-duration": "0s"
+						});
+						i = 1;
+					}
+				}
+				setInterval(autopaly,2000);
+				$('li').hover(function(){
+					alert("1");
+				},function(){
+					alert("2");
+				})
+			});
+		</script>
+	</body>
+
+</html>

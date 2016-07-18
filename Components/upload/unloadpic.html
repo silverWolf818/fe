@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box1">
+		<input id="file1" class="pic" multiple="false" type="file"  accept="image/*"/>
+	</div>
+	<div id="box2">
+		<input type="file" id="file2" class="pic" accept="image/*" multiple="false"/>
+	</div>
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(document).on('change','.pic',function(){
+				window.URL = window.URL || window.webkitURL;
+				var $files = $(this);
+				var files = $files[0];
+				var fileSrc = files.files;
+				var img = new Image();
+				if($('.photo')){
+					$(this).parent().find('.photo').remove();
+				}
+				if(window.URL){
+					img.src = window.URL.createObjectURL(fileSrc[0]);
+					img.className = 'photo';
+					img.onload = function(e) {
+						window.URL.revokeObjectURL(img.src);
+						 $files.parent().append(img);
+					   }
+				   }
+			});
+		});
+	</script>
+</body>
+</html>

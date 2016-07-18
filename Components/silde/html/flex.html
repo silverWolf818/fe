@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../js/flexible.js" ></script>
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.flex-wrap {
+				height: 400px;
+				display: -webkit-box;
+				display: -moz-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-wrap: wrap;
+				-ms-flex-wrap: wrap;
+				flex-wrap: wrap;
+				background: #E4E4E4;
+			}
+			.mid{
+				justify-content: center;
+			}
+			.flex-start{
+				align-content: flex-start;
+				align-items:center;
+			}
+			.flex-box {
+				-webkit-box-flex: 1;
+				-moz-box-flex: 1;
+				-webkit-flex: 1;
+				-ms-flex: 1;
+				flex: 1;
+				width: 0;
+				-webkit-flex-basis: 0;
+				-ms-flex-preferred-size: 0;
+				flex-basis: 0;
+				max-width: 100%;
+				display: block;
+				position: relative;
+			}
+			.box1,.box2,.box3{
+				line-height: 50px;
+				height: 50px;
+				color: #FFFFFF;
+				text-align: center;
+			}
+			.box1{
+				width: 50px;
+				background: #04B7FB;
+			}
+			.box2{
+				width: 100px;
+				background: #1CA41F;
+			}
+			.box3{
+				width: 150px;
+				background: #C0A16B;
+				align-self:flex-end;
+			}
+			.box4{
+				
+				width: 10rem;
+				height: 2rem;
+				border: 1px solid #e4e4e4;
+				box-sizing: border-box;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<div class="flex-wrap flex-start">
+			 <div class="box1"></div>
+			 <div class="box2">box2</div>
+			 <div class="box3">box3</div>
+		</div>-->
+      <div class="box4">
+      	<p>box1</p>
+      </div>
+	</body>
+
+</html>

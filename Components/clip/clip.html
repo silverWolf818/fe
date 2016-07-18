@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>图片裁剪</title>
+		<link rel="stylesheet" type="text/css" href="clip.css"/>
+	</head>
+
+	<body>
+		<div class="clipArea" id="clipArea">
+			<div class="overlay">
+				<div class="photo-clip-view" id="pcView"></div>
+				<div class="photo-clip-mask-top"></div>
+				<div class="photo-clip-mask-right"></div>
+				<div class="photo-clip-mask-bottom"></div>
+				<div class="photo-clip-mask-left"></div>
+			</div>
+			<div id="box" class="box"></div>
+		</div>
+		<div class="btn">
+			<a href="javascript:;">上传照片</a>
+			<input type="file" class="fileimg" accept="image/*" />
+		</div>
+	</body>
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="hammer.js"></script>
+	<script>
+		$(function() {
+			var box = $("#box"),cl,ct,cw,ch;
+			$(document).on('change', '.fileimg', function() {
+				var file = $(this)[0].files[0];
+				var len = file.size;
+				var img = new Image();
+				window.URL = window.URL || window.webkitURL;
+				if (window.URL) {
+					img.src = window.URL.createObjectURL(file);
+					img.id = 'photo';
+					img.onload = function(e) {
+						window.URL.revokeObjectURL(this.src);
+						getImg(img);
+					}
+				}
+				function getImg(img) {
+					box.html('');
+					box.css({width: 'auto',height: 'auto'});
+					box.append(img);
+					var w, h, bw, bh;
+					w = $(img).width();
+					h = $(img).height();
+					bw = $('#clipArea').width();
+					bh = $("#clipArea").height();
+					if ((w / h) > (bw / bh)) {
+						if (w > bw) {
+							$(img).css({width: bw + 'px'});
+							h = h * bw / w;
+							w = bw;
+						}
+					}else{
+						if(h>bh){
+							$(img).css({height:bh+"px"});
+							w = w*bh/h;
+							h = bh;
+						}
+					}
+					box.css({'left':(bw-w)/2+'px','top':(bh-h)/2+'px','width':w+'px','height':h+'px'});
+					cl = parseInt(box.css('left'));
+					ct = parseInt(box.css('top'));
+					cw = box.width();
+					ch = box.height();
+				}
+			});
+			var clipView = $("#pcView");
+			var l = clipView.offset().left;
+			var t = clipView.offset().top;
+			var hm = new Hammer(document.getElementById("box"));
+			hm.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+			hm.add(new Hammer.Pinch());
+			var move = true,scaled = true;
+			hm.on('pan',function(e){
+				if(move){
+					scaled = false;
+					box.css({left:(cl+e.deltaX)+'px',top:(ct+e.deltaY)+'px'});
+				}
+			});
+			hm.on('panend',function(e){
+				if(move){
+					checkOut();
+					scaled = true;
+				}
+			});
+			hm.on('pinch',function(e){
+				if(scaled){
+					move = false;
+					box.width(cw*e.scale).height(ch*e.scale).children().width(cw*e.scale).height(ch*e.scale);
+				}
+			});
+			hm.on('pinchend',function(){
+				cw = box.width();
+				ch = box.height();
+				checkOut();
+				move = true;
+			});
+			function checkOut(){
+				cl = parseInt(box.css('left')),ct = parseInt(box.css('top'));
+				var $data;
+				var dl = Math.max(Math.min(cl,l),l+clipView.width()+2-box.width());
+				var dt = Math.max(Math.min(ct,t),t+clipView.height()+2-box.height());
+				$data = {left:dl+'px',top:dt+'px'};
+				box.animate($data,300,function(){
+					cl = parseInt(box.css('left')),ct = parseInt(box.css('top'));
+				});
+			}
+		})
+	</script>
+
+</html>
