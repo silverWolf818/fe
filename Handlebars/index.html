@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script id="entry-template" type="text/x-handlebars-template">
+  <div class="entry">
+    <h1>{{title}}</h1>
+    <div class="body">
+      {{body}}
+    </div>
+  </div>
+</script>
+<script type="text/javascript">
+var source   = $("#entry-template").html();
+var template = Handlebars.compile(source);
+var context = {
+    title: "My New Post",
+    body: "<p>This is a post about &lt;p&gt; tags</p>"
+};
+var html = template(context);
+$("#test1").html(html);
+var source = "<p>Hello, my name is {{name}}. I am from {{hometown}}. I have " +
+             "{{kids.length}} kids:</p>" +
+             "<ul>{{#kids}}<li>{{name}} is {{age}}</li>{{/kids}}</ul>";
+var template = Handlebars.compile(source);
+
+var data = { "name": "Alan", "hometown": "Somewhere, TX",
+             "kids": [{"name": "Jimmy", "age": "12"}, {"name": "Sally", "age": "4"}]};
+var result = template(data);
+$("#test2").html(result);
+</script>
+</body>
+</html>

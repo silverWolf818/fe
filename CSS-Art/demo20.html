@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>css居底部</title>
+<style>
+* {
+	margin: 0;
+    padding: 0;
+}
+html, body {
+	height: 100%;
+}
+.wrapper {
+    width: 700px;
+    min-height: 100%;
+    margin: 0 auto -40px;
+}
+.footer,.push{
+	height: 40px;
+}
+</style>
+</head>
+<body>
+    <div class="wrapper">
+        <div style="height:600px;">
+            1111
+        </div>
+        <div style="height:600px;">
+            1111
+        </div>
+        <div style="height:600px;">
+            1111
+        </div>
+        <div>222</div>
+        <div class="push"></div>
+    </div>
+    <div class="footer">footer</div>
+</body>
+</html>

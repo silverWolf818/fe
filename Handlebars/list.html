@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <div class="list"></div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+<script id="list-template" type="text/x-handlebars-template">
+    {{#list people}}{{firstName}} {{lastName}}{{/list}}
+    {{{link1 story}}}
+    {{{link2 story.text href=story.url class="story"}}}
+    {{out (ins '21313')}}
+</script>
+<script type="text/javascript">
+var data = {
+  people: [
+    {firstName: "Yehuda", lastName: "Katz"},
+    {firstName: "Carl", lastName: "Lerche"},
+    {firstName: "Alan", lastName: "Johnson"}
+    ],
+  story: {text:"links",url:'wwww.baidu.com'}
+};
+Handlebars.registerHelper('link1', function(object) {
+  return new Handlebars.SafeString(
+    "<a href='" + object.url + "'>" + object.text + "</a>"
+  );
+});
+Handlebars.registerHelper('link2', function(text, options) {
+  var attrs = [];
+  for(var prop in options.hash) {
+    attrs.push(prop + '="' + options.hash[prop] + '"');
+  }
+  return new Handlebars.SafeString(
+    "<a " + attrs.join(" ") + ">" + text + "</a>"
+  );
+});
+Handlebars.registerHelper('out', function(options) {
+    return options;
+});
+Handlebars.registerHelper('ins', function(options) {
+    return options;
+});
+Handlebars.registerHelper('list', function(items, options) {
+  var out = "<ul>";
+  for(var i=0, l=items.length; i<l; i++) {
+    out = out + "<li>" + options.fn(items[i]) + "</li>";
+  }
+  return out + "</ul>";
+});
+var handle = Handlebars.compile($("#list-template").html());
+var html = handle(data);
+$(".list").html(html);
+</script>
+</body>
+</html>

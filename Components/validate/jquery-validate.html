@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquery-validate</title>
+<style>
+input.error {
+    border: 1px solid red;
+}
+label.error{
+    color: #EA5200;
+}
+label.checked {
+  color: #999;
+}
+</style>
+</head>
+<body>
+<form id="validate_form">
+    <fieldset>
+        <legend>表单验证</legend>
+        <div class="form-control">
+            <label for="username">用户名：</label>
+            <input type="text" id="username" name="username">
+            <div class="verify"></div>
+        </div>
+        <div class="form-control">
+            <label for="password">密码：</label>
+            <input type="password" id="password" name="password">
+            <div class="verify"></div>
+        </div>
+        <div class="form-control">
+            <label for="confirmPwd">验证密码：</label>
+            <input type="password" id="confirmPwd" name="confirmPwd">
+            <div class="verify"></div>
+        </div>
+        <div class="form-control">
+            <label for="phone">手机号：</label>
+            <input type="text" id="phone" name="phone">
+            <div class="verify"></div>
+        </div>
+        <div class="form-control">
+            <label for="mail">邮箱：</label>
+            <input type="text" id="mail" name="mail">
+            <div class="verify"></div>
+        </div>
+        <div class="form-control">
+            <input class="submit" type="submit" value="提交">
+        </div>
+    </fieldset>
+</form>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $("#validate_form").validate({
+        rules:{
+            username:{
+                required:true,
+                minlength:2,
+                maxlength:12
+            },
+            password:{
+                required:true,
+                minlength:6,
+                maxlength:12
+            },
+            confirmPwd:{
+                required:true,
+                minlength:6,
+                maxlength:12,
+                equalTo: "#password"
+            },
+            phone:{
+                required:true,
+                minlength:11
+            },
+            mail:{
+                required: true,
+                email: true
+            }
+        },
+        messages:{
+            username:{
+                required:"用户名不能为空",
+                minlength:"不能小于2个字符",
+                maxlength:"不能大于12个字符"
+            },
+            password:{
+                required:"密码不能为空",
+                minlength:"不能小于6个字符",
+                maxlength:"不能大于12个字符"
+            },
+            confirmPwd:{
+                required:"确认密码不能为空",
+                minlength:"不能小于6个字符",
+                maxlength:"不能大于12个字符",
+                equalTo:"两次密码输入不一致"
+            },
+            phone:{
+                required:"手机号不能为空",
+                minlength:"不能小于11个字符"
+            },
+            mail:{
+                required:"邮箱不能为空",
+                email:"请输入一个正确的邮箱"
+            }
+        },
+        errorPlacement:function(error,element){
+            error.appendTo(element.siblings('.verify'));
+        },
+        success:function(element){
+            // element.html("验证通过").addClass("checked");
+            element.parent('.verify').removeClass('verify-error').addClass('verify-correct');
+        },
+        highlight:function(element){
+            $(element).siblings('.verify').removeClass('verify-correct').addClass('verify-error');
+        },
+        submitHandler:function(form){
+            alert("111");
+            $(form).ajaxSubmit();
+        }
+    });
+});
+</script>
+</body>
+</html>
