@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+	<meta name="renderer" content="webkit"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>photo-view</title>
+</head>
+<body>
+	<div class="photo-view">
+		<ul>
+			<li><img src="../../images/page-components/photo-view/1.jpg"></li>
+			<li><img src="../../images/page-components/photo-view/2.jpg"></li>
+			<li><img src="../../images/page-components/photo-view/3.jpg"></li>
+			<li><img src="../../images/page-components/photo-view/4.jpg"></li>
+			<li><img src="../../images/page-components/photo-view/5.jpg"></li>
+		</ul>
+		<div class="view"></div>
+	</div>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script>
+$(function(){
+	;(function($){
+		var PhotoView = function(){
+			var self = this;
+			this.view = $('.view');
+			this.renderDOM();
+		};
+		PhotoView.prototype = {
+			renderDOM:function(){
+				var strDOM = '<img class="view-pic">';
+				this.view.html(strDOM);
+			}
+		};
+		window["PhotoView"] = PhotoView;
+	})(jQuery);
+
+
+
+	var photoView = new PhotoView();
+});	
+</script>	
+</body>
+</html>

@@ -9,24 +9,23 @@
   	init:function(){
   		this.create();
   		if(this.settings.lock){
-  				this.lock();
+  			this.lock();
   		}
   	},
   	create:function(){
-			console.log(this);
   		var divHeader = (this.settings.title==null)?'':'<div class="dialog-header">'+this.settings.title+'</div>',
           divContent = '<div class="dialog-content">'+this.settings.content+'</div>',
-          divFooter = '<div class="dialog-footer"></div>'
-  		var templates = '<div class="dialog-wrap">'+divHeader+''+divContent+''+divFooter+'</div>';
+          divFooter = '<div class="dialog-footer"></div>',
+  		  templates = '<div class="dialog-wrap">'+divHeader+''+divContent+''+divFooter+'</div>';
   		this.dialog = $('<div>').addClass('dialog').css({ zIndex :this.settings.zIndex+(count++)}).html(templates).prependTo('body');
   		//设置大小
   		this.size();
-  		//位置
-  		this.position();
   		//设置确定按钮
-  		this.contentHeight();
+  // 		this.contentHeight();
 
-			this.animated();
+		// this.animated();
+		//位置
+  		this.position();
 
   		if($.isFunction(this.settings.ok)){
   				this.ok();
@@ -42,12 +41,12 @@
   			height:this.settings.height
   		});
   	},
-  	contentHeight:function(){
-  		var allH = this.dialog.find('.dialog-wrap').height(),
-  		    headerH = this.dialog.find('.dialog-header').height(),
-  		    footerH = this.dialog.find('.dialog-footer').height();
-  		   	this.dialog.find('.dialog-content').height(allH-headerH-footerH);
-  	},
+ //  	contentHeight:function(){
+ //  		var allH = this.dialog.find('.dialog-wrap').height(),
+ //  		    headerH = this.dialog.find('.dialog-header').height(),
+ //  		    footerH = this.dialog.find('.dialog-footer').height();
+ //  		   	this.dialog.find('.dialog-content').height(allH-headerH-footerH);
+ //  	},
   	position:function(){
   		var _this = this;
   		this.dialog.css({
@@ -97,26 +96,22 @@
   	close:function(){
   		this.dialog.remove();
   		this.unLock();
-  	},
-		animated:function(){
-			// var content = this.dialog.find('.dialog-wrap');
-			// content.animate({width:'400px',height:'200px'}, 300);
-		}
-  }
+  	}
+};
   Dialog.defaults = {
   	title:'header',
   	content: 'this is content',
-  	width:'800',
-  	height:'600',
+  	width:'',
+  	height:'',
   	ok:null,
   	cancel:null,
   	okText:'确定',
   	cancelText: '取消',
   	lock: true,
   	zIndex: 9999
-  }
+};
   var rDialog = function(options){
   	return new Dialog(options);
-  }
+};
   $.dialog = rDialog;
 })(jQuery,window,document);

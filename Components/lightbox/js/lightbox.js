@@ -1,6 +1,10 @@
 ;(function($){
-var LightBox = function(){
+var LightBox = function(settings){
     var self = this;
+    this.settings = {
+        speed:500
+    };
+    $.extend(this.settings,settings||{});
     this.popupMask = $('<div id="lightbox-mask"></div>');
     this.popupWin = $('<div id="lightbox-popup">');
     this.bodyNode = $(document.body);
@@ -13,7 +17,6 @@ var LightBox = function(){
     this.closeBtn = this.popupWin.find('span.lightbox-close-btn');
     this.captionText = this.popupWin.find('p.lightbox-pic-desc');
     this.currentIndex = this.popupWin.find('p.lightbox-of-index');
-
     //事件委托
     this.groupName = null;
     this.groupData = [];
@@ -22,13 +25,134 @@ var LightBox = function(){
             var currentGroupName = $(this).data('group');
             if (currentGroupName != self.groupName) {
                 self.groupName = currentGroupName;
+                console.log(self.groupName);
                 //获取一组数据
                 self.getGroup();
             }
             self.initPopup($(this));
     });
+    this.popupMask.on("click",function(){
+        $(this).fadeOut();
+        self.popupWin.fadeOut();
+        self.clear = false;
+    });
+    //上下切换
+    this.flag = true;
+    this.closeBtn.on("click",function(){
+        self.popupMask.fadeOut();
+        self.popupWin.fadeOut();
+        self.clear = false;
+    });
+    this.prevBtn.hover(function(){
+        if(!$(this).hasClass('disabled') && self.groupData.length>1){
+            $(this).addClass('lightbox-prevBtn-show');
+        }
+    },function(){
+        if(!$(this).hasClass('disabled') && self.groupData.length>1){
+            $(this).removeClass('lightbox-prevBtn-show');
+        }
+    }).click(function(e){
+        e.stopPropagation();
+        if (!$(this).hasClass('disabled')&&self.flag) {
+            self.flag = false;
+            self.goto("prev");
+        }
+    });
+    this.nextBtn.hover(function(){
+        if(!$(this).hasClass('disabled') && self.groupData.length>1){
+            $(this).addClass('lightbox-nextBtn-show');
+        }
+    },function(){
+        if(!$(this).hasClass('disabled') && self.groupData.length>1){
+            $(this).removeClass('lightbox-nextBtn-show');
+        }
+    }).click(function(e){
+        e.stopPropagation();
+        if (!$(this).hasClass('disabled')&&self.flag) {
+            self.flag = false;
+            self.goto("next");
+        }
+    });
+    //绑定窗口事件
+    var timer = null;
+    this.clear = false;
+    $(window).resize(function(){
+        if (self.clear) {
+            window.clearTimeout(timer);
+            timer = window.setTimeout(function(){
+                self.loadPicSize(self.groupData[self.index].src);
+            },500);
+        }
+    });
 };
+
 LightBox.prototype = {
+    goto:function(dir){
+        if (dir=='next') {
+            this.index++;
+            if (this.index >= this.groupData.length-1) {
+                this.nextBtn.addClass('disabled').removeClass('lightbox-nextBtn-show');
+            };
+            if(this.index != 0){
+                this.prevBtn.removeClass('disabled');
+            }
+        }else{
+            this.index--;
+            if (this.index <= 0) {
+                this.prevBtn.addClass('disabled').removeClass('lightbox-prevBtn-show');
+            }
+            if (this.index != this.groupData.length-1) {
+                this.nextBtn.removeClass('disabled');
+            }
+        }
+        var src = this.groupData[this.index].src;
+        this.loadPicSize(src);
+    },
+    loadPicSize:function(sourceSrc){
+        var self = this;
+        this.popupPic.css({width:'auto',height:'auto'}).hide();
+        this.picCaption.hide();
+        this.preLoadImg(sourceSrc,function(){
+            self.popupPic.attr('src', sourceSrc);
+            var picWidth = self.popupPic.width(),
+                picHeight = self.popupPic.height();
+            self.changePic(picWidth,picHeight);
+        });
+    },
+    changePic:function(width,height){
+        var self = this,
+            winWidth = $(window).width()/2,
+            winHeight = $(window).height();
+            console.log(this);
+        // 边界判断
+        var scale = Math.min(winWidth/(width+10),winHeight/(height+10),1);
+        width = width*scale;
+        height = height*scale;
+        this.picViewArea.animate({width:width-10,height:height-10},self.settings.speed);
+        this.popupWin.animate({width:width,height:height,marginLeft:-width/2,top:(winHeight-height)/2},self.settings.speed,function(){
+            self.popupPic.css({width:width-10,height:height-10}).fadeIn();
+            self.picCaption.fadeIn();
+            self.flag = true;
+            self.clear = true;
+        });
+        this.captionText.text(this.groupData[this.index].caption);
+        this.currentIndex.text("当前索引： "+(this.index+1)+" of "+this.groupData.length);
+    },
+    preLoadImg:function(src,callback){
+        var img = new Image();
+        if(!!window.ActiveXObject){
+            img.onreadystatechange = function(){
+                    if(this.readyState == "complete"){
+                        callback();
+                    }
+            };
+        }else{
+            img.onload = function(){
+                callback();
+            }
+        };
+        img.src = src;
+    },
     showView:function(sourceSrc,currentId){
         var self = this;
         this.popupPic.hide();
@@ -39,11 +163,13 @@ LightBox.prototype = {
         this.picViewArea.css({ width:winWidth,height:winHeight });
         var viewWide = winWidth+10,
             viewTop = winHeight+10;
-        this.popupWin.fadeIn().css({ width:viewWide,height:viewTop,marginLeft:-viewWide/2,top:-viewTop }).animate({top:winHeight-viewTop/2 },function(){
-
+        this.popupWin.fadeIn().css({ width:viewWide,height:viewTop,marginLeft:-viewWide/2,top:-viewTop }).animate({top:winHeight-viewTop/2 },self.settings.speed,function(){
+                //加载图片
+                self.loadPicSize(sourceSrc);
         });
         //根据当前id获取当前索引
         this.index = this.getIndexOf(currentId);
+        console.log(this.index);
         var groupDataLength = this.groupData.length;
         if (groupDataLength>1) {
             //this.prevBtn this.nextBtn
@@ -62,7 +188,7 @@ LightBox.prototype = {
     getIndexOf:function(currentId){
         var index = 0;
         $(this.groupData).each(function(i) {
-            index == i;
+            index = i;
             if (this.id == currentId) {
                 return false;
             };
@@ -96,7 +222,7 @@ LightBox.prototype = {
             '<div class="lightbox-pic-caption">'+
                 '<div class="lightbox-caption-area">'+
                     '<p class="lightbox-pic-desc"></p>'+
-                    '<p class="lightbox-of-index">当前索引：0 of 0</p>'+
+                    '<p class="lightbox-of-index"></p>'+
                 '</div>'+
                 '<span class="lightbox-close-btn"></span>'+
             '</div>';

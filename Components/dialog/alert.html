@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<style type="text/css">
-		*{
-			margin: 0;
-			padding: 0;
-		}
-		a{
-			text-decoration: none;
-			color: #000000;
-		}
-	</style>
-	<link rel="stylesheet" type="text/css" href="alert-layout.css"/>
+<meta charset="UTF-8">
+<title>Document</title>
+<style type="text/css">
+*{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+	color: #000000;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="alert-layout.css"/>
 </head>
 <body>
 	<div>
@@ -26,12 +26,10 @@
 	<button id="alert">alert-button</button>
 </body>
 <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
-<script src="alert-plugin.js" type="text/javascript"></script>
+<script type="text/javascript" src="alert-plugin.js"></script>
 <script>$(function() {
 	$("#alert").click(function() {
 		$.dialog({
-			width:600,
-			height:400,
 			ok: function() {
 
 			},

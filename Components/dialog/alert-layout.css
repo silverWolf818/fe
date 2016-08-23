@@ -19,6 +19,7 @@
 	opacity: 0.7;
 	background-clip: padding-box;
 	text-align: center;
+	box-shadow: 1px 1px 50px rgba(0, 0, 0, .3);
 }
 .dialog-header{
 	height: 44px;
@@ -48,4 +49,3 @@
 .dialog-cancel{
 	background: #10CAA5;
 }
-

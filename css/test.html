@@ -7,9 +7,33 @@
 p{
     background: rgb(100%, 0%, 0%);
 }
+.flex-box{
+    height: 200px;
+    display: flex;
+    align-items:flex-end;
+}
+.st{
+    color: red;
+    font-size: 24px;
+}
 </style>
 </head>
 <body>
-    div>ul>li*10
+    <span class="st">&#x263a</span>
+    <span class="st">&#x2600</span>
+    <div class="flex-box">
+        <div class="box" style="width:20px;height:20px;background:red"></div>
+    </div>
+    <div>
+        <input type="text" class="inp">
+    </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $(document).on("keyup",".inp",function(){
+        $(this).val($(this).val().replace(/\D/g,''));
+    });
+});
+</script>
 </body>
 </html>
