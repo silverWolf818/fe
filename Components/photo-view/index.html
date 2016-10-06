@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+	<meta name="renderer" content="webkit"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/photo-view.css">
+	<title>photo-view</title>
+</head>
+<body>
+	<div class="photo-view clearfix" data-group="group-1">
+		<ul class="clearfix">
+			<li><img class="scalePic" data-role="jsphoto" data-id="a" data-source="img/1.jpg" src="img/1.jpg"></li>
+			<li><img class="scalePic" data-role="jsphoto" data-id="b" data-source="img/2.jpg" src="img/2.jpg"></li>
+			<li><img class="scalePic" data-role="jsphoto" data-id="c" data-source="img/3.jpg" src="img/3.jpg"></li>
+			<li><img class="scalePic" data-role="jsphoto" data-id="d" data-source="img/4.jpg" src="img/4.jpg"></li>
+			<li><img class="scalePic" data-role="jsphoto" data-id="e" data-source="img/5.jpg" src="img/5.jpg"></li>
+		</ul>
+		<div class="pic-view">
+			<a class="view-btn view-prev-btn" id="1"></a><img class="pic-area"><a class="view-btn view-next-btn"></a>
+		</div>
+	</div>
+	<div class="photo-view clearfix" data-group="group-2">
+		<ul class="clearfix">
+			<li><img class="scalePic" data-role="jsphoto" data-id="f" data-source="img/1.jpg" src="img/1.jpg"></li>
+			<li><img class="scalePic" data-role="jsphoto" data-id="bg" data-source="img/2.jpg" src="img/2.jpg"></li>
+			<li><img class="scalePic" data-role="jsphoto" data-id="cqw" data-source="img/3.jpg" src="img/3.jpg"></li>
+		</ul>
+		<div class="pic-view">
+			<a class="view-btn view-prev-btn" id="2"></a><img class="pic-area"><a class="view-btn view-next-btn"></a>
+		</div>
+	</div>
+	<div class="photo-view clearfix" data-group="group-3">
+		<ul class="clearfix">
+			<li><img class="scalePic" data-role="jsphoto" data-id="fqwe" data-source="img/1.jpg" src="img/1.jpg"></li>
+			<li><img class="scalePic" data-role="jsphoto" data-id="bgqqq" data-source="img/2.jpg" src="img/2.jpg"></li>
+			<li><img class="scalePic" data-role="jsphoto" data-id="cqwqqq" data-source="img/3.jpg" src="img/3.jpg"></li>
+		</ul>
+		<div class="pic-view">
+			<a class="view-btn view-prev-btn" id="3"></a><img class="pic-area"><a class="view-btn view-next-btn"></a>
+		</div>
+	</div>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/photo-view.js"></script>
+<script>
+$(function(){
+	new PhotoView({
+		speed:300
+	});
+});	
+</script>	
+</body>
+</html>

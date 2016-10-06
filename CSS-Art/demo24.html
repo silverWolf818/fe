@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>用自定义数据属性和attr()函数</title>
+<style>
+*{
+	margin:0;
+	padding: 0;
+}
+.tooltip{
+	position: relative;
+}	
+.tooltip::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 20px;
+    width: 200px;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+	<div class="tooltip" data-title="this is tooltip">tooltip</div>
+</body>
+</html>

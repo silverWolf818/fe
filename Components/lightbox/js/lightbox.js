@@ -2,7 +2,9 @@
 var LightBox = function(settings){
     var self = this;
     this.settings = {
-        speed:500
+        speed:500,
+        scale:1,
+        disabled:false
     };
     $.extend(this.settings,settings||{});
     this.popupMask = $('<div id="lightbox-mask"></div>');
@@ -87,6 +89,13 @@ var LightBox = function(settings){
 };
 
 LightBox.prototype = {
+    hidden:function(bool){
+        if (bool) {
+            this.prevBtn.hide();
+            this.nextBtn.hide();
+            this.picCaption.hide();
+        }
+    },
     goto:function(dir){
         if (dir=='next') {
             this.index++;
@@ -123,9 +132,8 @@ LightBox.prototype = {
         var self = this,
             winWidth = $(window).width()/2,
             winHeight = $(window).height();
-            console.log(this);
         // 边界判断
-        var scale = Math.min(winWidth/(width+10),winHeight/(height+10),1);
+        var scale = Math.min(winWidth/(width+10),winHeight/(height+10),self.settings.scale);
         width = width*scale;
         height = height*scale;
         this.picViewArea.animate({width:width-10,height:height-10},self.settings.speed);
@@ -134,6 +142,7 @@ LightBox.prototype = {
             self.picCaption.fadeIn();
             self.flag = true;
             self.clear = true;
+            self.hidden(self.settings.disabled);
         });
         this.captionText.text(this.groupData[this.index].caption);
         this.currentIndex.text("当前索引： "+(this.index+1)+" of "+this.groupData.length);
@@ -159,17 +168,16 @@ LightBox.prototype = {
         this.picCaption.hide();
         this.popupMask.fadeIn();
         var winWidth = $(window).width()/2,
-            winHeight = $(window).height()/2;
+            winHeight = $(window).height()/2;    
         this.picViewArea.css({ width:winWidth,height:winHeight });
         var viewWide = winWidth+10,
-            viewTop = winHeight+10;
+            viewTop = winHeight+10;  
         this.popupWin.fadeIn().css({ width:viewWide,height:viewTop,marginLeft:-viewWide/2,top:-viewTop }).animate({top:winHeight-viewTop/2 },self.settings.speed,function(){
                 //加载图片
                 self.loadPicSize(sourceSrc);
         });
         //根据当前id获取当前索引
         this.index = this.getIndexOf(currentId);
-        console.log(this.index);
         var groupDataLength = this.groupData.length;
         if (groupDataLength>1) {
             //this.prevBtn this.nextBtn

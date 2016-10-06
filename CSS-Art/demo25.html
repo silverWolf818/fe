@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSS Counters</title>
+<style>
+body {
+	counter-reset: characters;
+}
+
+input:checked {
+	counter-increment: characters;
+}
+
+.total::after {
+	content: counter(characters);
+}
+.reset{
+	counter-reset: num;
+}
+.counter::before{
+	content:counter(num) '.'; 
+	counter-increment: num;
+}
+</style>
+</head>
+<body>
+  <div>
+	  <input id="b" type="checkbox"><label for="b">Relm</label>
+	  <input id="c" type="checkbox"><label for="c">Mog</label>
+	  <input id="e" type="checkbox"><label for="e">Celes</label>
+	  <input id="g" type="checkbox"><label for="g">Edgar</label>
+	  <input id="i" type="checkbox"><label for="i">Gau</label>
+	  <input id="k" type="checkbox"><label for="k">Terra</label>
+	  <input id="l" type="checkbox"><label for="l">Locke</label>
+	  <input id="o" type="checkbox"><label for="o">Cyan</label>
+  </div>
+  <div class="total">
+  	Total:
+  </div>
+	<div class="reset">
+		<p class="counter">hehe</p>
+		<p class="counter">hehe</p>
+		<p class="counter">hehe</p>
+		<p class="counter">hehe</p>
+		<p class="counter">hehe</p>
+	</div>
+</body>
+</html>

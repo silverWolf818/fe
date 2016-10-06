@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style media="screen">
+*{
+    margin: 0;
+    padding: 0;
+}
+.text_overflow{
+    width: 27em;
+}
+</style>
+</head>
+<body>
+<div class="text_overflow">这是一段测试文字，主要是用来测试文字溢出后是否会用省略号显示。</div>
+<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    (function($){
+    $.fn.wordLimit = function(num){
+        this.each(function(){
+            if(!num){
+                var copyThis = $(this.cloneNode(true)).hide().css({
+                    'position': 'absolute',
+                    'width': 'auto',
+                    'overflow': 'visible'
+                });
+                $(this).after(copyThis);
+                if(copyThis.width()>$(this).width()){
+                    $(this).text($(this).text().substring(0,$(this).text().length-4));
+                    $(this).html($(this).html()+'...');
+                    copyThis.remove();
+                    $(this).wordLimit();
+                }else{
+                    copyThis.remove();
+                    return;
+                }
+            }else{
+                var maxwidth=num;
+                if($(this).text().length>maxwidth){
+                    $(this).text($(this).text().substring(0,maxwidth));
+                    $(this).html($(this).html()+'...');
+                }
+            }
+        });
+    }
+    })(jQuery);
+    $(".text_overflow").wordLimit();
+})
+</script>
+</body>
+</html>
