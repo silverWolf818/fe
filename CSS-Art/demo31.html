@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>text-decoration:underline</title>
+<style>
+/*a{
+  text-decoration-skip: ink;
+  text-decoration: none;
+  border-bottom: 1px solid;
+  text-shadow:0 1px;
+}*/
+a{
+  text-decoration: none;
+}
+.line-shadow{
+    text-decoration: none;
+    box-shadow: 0 1px;
+}
+a:hover {
+    color: #cd0000;
+    text-decoration: none;
+}
+.solid{
+  padding-bottom: 2px;
+  background-image: linear-gradient(to top, currentColor, currentColor 1px, transparent 1px);
+}
+.dashed {
+    padding-bottom: 2px;
+    background: linear-gradient(to right, currentColor, currentColor 4px, transparent 4px) repeat-x 0 bottom/7px 1px;
+}
+</style>
+</head>
+<body>
+  <a href="#" class="line-shadow">javascript呵呵哒</a>
+  <a href="#" class="solid">这是一段链接</a>
+  <a href="#" class="dashed">这是另一段文本</a>
+</body>
+</html>
