@@ -22,7 +22,22 @@
 <script src="gesture.js"></script>
 <script type="text/javascript">
 $(document).on("tap","#box",function(){
-    console.log("111");
+    alert('tap')
+})
+.on("swipeUp","#box",function(){
+    alert('swipeUp')
+})
+.on("swipeDown","#box",function(){
+    alert('swipeDown')
+})
+.on("swipeLeft","#box",function(){
+    alert('swipeLeft')
+})
+.on("swipeRight","#box",function(){
+    alert('swipeRight')
+})
+.on("longTap","#box",function(){
+    alert('longTap')
 })
 </script>
 </body>
