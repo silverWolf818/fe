@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>border等高布局</title>
+<style media="screen">
+*{
+  margin: 0;
+  padding: 0;
+}
+.box{
+  border-left: 300px solid #ccc;
+}
+.left{
+  color: blue;
+  width: 300px;
+  float: left;
+  margin-left: -300px;
+}
+.mod{
+  background-color: #f4f4f4;
+}
+</style>
+</head>
+<body>
+<div class="box">
+  <nav class="left">
+    <h3>导航</h3>
+  </nav>
+  <section>
+    <div class="mod">模块</div>
+    <div class="mod">模块</div>
+    <div class="mod">模块</div>
+  </section>
+</div>
+</body>
+</html>
