@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>js events</title>
+</head>
+<body>
+  <div id="click">click</div>
+  <input type="text" id="inp" name="name" value="">
+  <script type="text/javascript">
+    window.onload = function(){
+      var div = document.getElementById('click');
+      var inp = document.getElementById('inp')
+      div.onmouseout = function(e){
+        console.log(e.relatedTarget);
+        console.log(e.toElement);
+        console.log(e.fromElemnent);
+      };
+      div.onclick = function(e){
+        console.log(e.button);
+      }
+      inp.onkeypress = function(e){
+        console.log(e.charCode);
+        console.log(e.key);
+        console.log(e.char);
+        console.log(e.keyIdentifier);
+        console.log(e.keyLocation);
+      }
+      inp.ontextInput = function(e){
+        console.log(e);
+      }
+    }
+  </script>
+</body>
+</html>

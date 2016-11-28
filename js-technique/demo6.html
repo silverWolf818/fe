@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="telephone=no,email=no" name="format-detection">
+<title>orientation</title>
+</head>
+<body>
+<h1>orientation test</h1>
+<div id="out" style="margin-top:50px"></div>
+<script type="text/javascript">
+window.onload = function(){
+  var put = document.getElementById('out');
+  window.onorientationchange = function(){
+    alert(window.orientation);
+  }
+  // window.ondeviceorientation = function(e){
+  //   put.innerHTML = "alpha" + e.alpha+"beta"+e.beta+"gamma"+e.gamma;
+  // }
+  window.ondevicemotion = function(e){
+    put.innerHTML = "alpha" + e.rotationRate.alpha+"beta"+e.rotationRate.beta+"gamma"+e.rotationRate.gamma;
+  }
+}
+</script>
+</body>
+</html>

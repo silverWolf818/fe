@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>坐标方法</title>
+<style media="screen">
+  div{
+    margin-top: 1000px;
+  }
+</style>
+</head>
+<body>
+  <div id="body">click</div>
+<script type="text/javascript">
+  window.onload = function(){
+    var body = document.getElementById('body');
+    body.onclick = function(e){
+      console.log('client ' + e.clientX + ',' +e.clientY);
+      console.log('page ' + e.pageX + ',' + e.pageY);
+      console.log('screen ' + e.screenX + ',' + e.screenY);
+    }
+  }
+</script>
+</body>
+</html>

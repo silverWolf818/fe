@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS content换行技术实现字符animation loading效果</title>
+<style>
+  dot{
+    display: inline-block;
+    height: 1em;
+    line-height: 1;
+    text-align: left;
+    vertical-align: -.25em;
+    overflow: hidden;
+  }
+  dot::before{
+    display: block;
+    content: "...\A..\A.";
+    white-space: pre;/*空白会被浏览器保留。其行为方式类似 HTML 中的 <pre> 标签*/
+    animation: dot 3s infinite step-start both;
+  }
+  @keyframes dot {
+    33% {
+      transform: translateY(-2em);
+    }
+    66% {
+      transform: translateY(-1em);
+    }
+  }
+</style>
+</head>
+<body>
+  <div>提交订单<dot>...</dot></div>
+</body>
+</html>
