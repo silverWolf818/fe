@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <div><input class="selAll" type="checkbox" value="全选">全选/反选</div>
+    <div><input class="sel" type="checkbox" value="1">1</div>
+    <div><input class="sel" type="checkbox" value="2">2</div>
+    <div><input class="sel" type="checkbox" value="3">3</div>
+    <div><input class="sel" type="checkbox" value="4">4</div>
+    <div><input class="sel" type="checkbox" value="5">5</div>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $(".selAll").click(function() {
+            $(".sel").prop("checked",$(this).prop("checked"));
+            console.log($(".sel").prop('checked'));
+    });
+    $(".sel").click(function() {
+        if($(this).prop("checked") === false){
+            $(".selAll").prop("checked",false);
+        }
+        var v = [];
+        $(".sel").each(function() {
+            if ($(this).prop("checked") === true) {
+                v.push($(this).val());
+            }
+        });
+        console.log(v);
+        if (v.length == $(".sel").length) {
+            $(".selAll").prop("checked",true);
+        }
+    });
+});
+</script>
+</body>
+</html>

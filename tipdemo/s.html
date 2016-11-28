@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+ <script type="text/javascript">
+ function setTimesec(sec){
+     var t;
+     function outTime(){
+         sec--;
+         console.log(sec);
+         t = setTimeout(outTime,1000);
+         if(sec<0){
+             clearTimeout(t);
+         }
+     }
+     outTime();
+ }
+ setTimesec(60);
+ </script>
+</body>
+</html>

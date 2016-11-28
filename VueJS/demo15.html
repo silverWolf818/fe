@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<div id="app">
+    <app></app>
+</div>
+<script type="text/javascript" src="../VueJS/bulid/vue2.js"></script>
+<script type="text/javascript">
+// 注册
+Vue.component('app', {
+template: '<div>A custom component!</div>'
+})
+// 创建根实例
+new Vue({
+el: '#app'
+})
+</script>
+</body>
+</html>
