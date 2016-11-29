@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS/CSS3原生变量var</title>
+<style>
+:root { --color: purple; }
+div { --color: green; }
+#alert { --color: red; }
+* { color: var(--color); }
+
+.box {
+  --1: #369;
+}
+.cell {
+  background-color: var(--1, #cd0000);
+}
+body {
+  --size: 20px;
+  font-size: var(--size);
+}
+body {
+  --size: 20;
+  font-size: calc(var(--size) * 1px);
+}
+.as {
+  --green: #4CAF50;
+  --backgroundColor: var(--green);
+  background: var(--backgroundColor);
+}
+</style>
+</head>
+<body>
+    <p>我的紫色继承于根元素</p>
+<div>我的绿色来自直接设置</div>
+<div id='alert'>
+  ID选择器权重更高，因此阿拉是红色！
+  <p>我也是红色，占了继承的光</p>
+  <div class="cell">2222</div>
+  <div class="as">qqqqq</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>模块设计模式</title>
+</head>
+<body>
+<script type="text/javascript">
+    var HTMLChanger = (function(){
+        var html = "this is html";
+        return {
+            render:function(){
+                console.log(html);
+            }
+        };
+    })();
+    HTMLChanger.render();
+
+    var Exposer = (function(){
+        var privateVal = 10;
+        var privateFun = function(){
+            console.log('this is a private function');
+            privateVal++;
+        }
+        var funToExpose = function(){
+            console.log();
+        }
+    })()
+</script>
+</body>
+</html>
