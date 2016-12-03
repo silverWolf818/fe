@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Web Components</title>
+</head>
+<body>
+<button-hello></button-hello>
+<script>
+document.registerElement('button-hello',{
+	prototype:Object.create(HTMLButtonElement.prototype,{
+		createdCallback:{
+			value:function createdCallback(){
+				this.innerHTML = '<button>hello world</button>',
+				this.addEventListener('click',()=>{ alert("hello") })
+			}
+		}
+	})
+})
+</script>
+</body>
+</html>

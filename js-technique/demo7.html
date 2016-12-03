@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>js中函数节流&函数去抖</title>
+<style>
+body{
+    height: 1000px;
+}
+</style>
+</head>
+<body>
+<script type="text/javascript">
+window.onscroll = function(){
+    console.log(window.onScrollTag);
+    if(window.onScrollTag != undefined){
+        clearTimeout(window.onScrollTag);
+    }
+    window.onScrollTag = setTimeout(function(){
+         console.log(new Date());
+    },1000);
+}
+</script>
+</body>
+</html>
