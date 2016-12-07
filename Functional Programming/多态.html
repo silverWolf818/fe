@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>javascript多态性</title>
+</head>
+<body>
+<script type="text/javascript">
+    var googleMap = {
+        show:function(){
+            console.log("开始渲染谷歌地图");
+        }
+    };
+    var baiduMap = {
+        show:function(){
+            console.log("开始渲染百度地图");
+        }
+    };
+    // var renderMap = function(type){
+    //     if(type === 'googleMap'){
+    //         googleMap.show();
+    //     }else if (type === 'baiduMap') {
+    //         baiduMap.show();
+    //     }
+    // }
+    var renderMap = function(type){
+        if (type.show instanceof Function) {
+            type.show();
+        }
+    }
+    renderMap(googleMap);
+    renderMap(baiduMap);
+</script>
+</body>
+</html>

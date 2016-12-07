@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<a href="javascript:">btn1</a>
+<a href="javascript:">btn2</a>
+<a href="javascript:">btn3</a>
+<a href="javascript:">btn4</a>
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    console.log($("a").get(0));
+    console.log($("a").eq(0));
+    $("a").get(0).click(function(){
+        console.log("111");
+    })
+});
+</script>
+</body>
+</html>

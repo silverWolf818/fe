@@ -6,38 +6,50 @@
 <meta content="yes" name="apple-mobile-web-app-capable" />
 <meta content="yes" name="apple-touch-fullscreen">
 <meta content="telephone=no,email=no" name="format-detection">
-<title></title>
+<title>touch</title>
 <style>
-#box{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #333;
+.box{
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    background: #10ccae;
+    color: #fff;
+    margin-bottom: 10px;
 }
 </style>
 </head>
 <body>
-    <div id="box"></div>
+    <div class="box" id="tap">tap</div>
+    <div class="box" id="longTap">longTap</div>
+    <div class="box" id="doubleTap">doubleTap</div>
+    <div class="box" id="swipeLeft">swipeLeft</div>
+    <div class="box" id="swipeRight">swipeRight</div>
+    <div class="box" id="swipeUp">swipeUp</div>
+    <div class="box" id="swipeDown">swipeDown</div>
 <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 <script src="gesture.js"></script>
 <script type="text/javascript">
-$(document).on("tap","#box",function(){
+$(document).on("tap","#tap",function(){
     alert('tap')
 })
-.on("swipeUp","#box",function(){
+.on("swipeUp","#swipeUp",function(){
     alert('swipeUp')
 })
-.on("swipeDown","#box",function(){
+.on("swipeDown","#swipeDown",function(){
     alert('swipeDown')
 })
-.on("swipeLeft","#box",function(){
+.on("swipeLeft","#swipeLeft",function(){
     alert('swipeLeft')
 })
-.on("swipeRight","#box",function(){
+.on("swipeRight","#swipeRight",function(){
     alert('swipeRight')
 })
-.on("longTap","#box",function(){
+.on("longTap","#longTap",function(){
     alert('longTap')
+})
+.on("doubleTap","#doubleTap",function(){
+    alert('doubleTap')
 })
 </script>
 </body>
