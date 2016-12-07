@@ -8,25 +8,43 @@
 <meta content="telephone=no,email=no" name="format-detection">
 <title>touch</title>
 <style>
+*{
+    -webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
 .box{
     width: 80px;
     height: 80px;
     line-height: 80px;
     text-align: center;
-    background: #10ccae;
+    background: #01aaec;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    float: left;
+    margin-left: 50px;
+}
+.cell{
+    clear: both;
 }
 </style>
 </head>
 <body>
-    <div class="box" id="tap">tap</div>
-    <div class="box" id="longTap">longTap</div>
-    <div class="box" id="doubleTap">doubleTap</div>
-    <div class="box" id="swipeLeft">swipeLeft</div>
-    <div class="box" id="swipeRight">swipeRight</div>
-    <div class="box" id="swipeUp">swipeUp</div>
-    <div class="box" id="swipeDown">swipeDown</div>
+    <div class="cell">
+        <div class="box" id="tap">tap</div>
+        <div class="box" id="longTap">longTap</div>
+    </div>
+    <div class="cell">
+        <div class="box" id="doubleTap">doubleTap</div>
+        <div class="box" id="swipeLeft">swipeLeft</div>
+    </div>
+    <div class="cell">
+        <div class="box" id="swipeRight">swipeRight</div>
+        <div class="box" id="swipeUp">swipeUp</div>
+    </div>
+    <div class="cell">
+        <div class="box" id="swipeDown">swipeDown</div>
+    </div>
 <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 <script src="gesture.js"></script>
 <script type="text/javascript">
