@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>width and height</title>
+<style type="text/css">
+.box{
+	height: 100px;
+	width: 200px;
+	padding: 10px;
+	overflow: auto;
+	border: 10px solid #000000;
+}	
+</style>
+</head>
+<body>
+	<div class="box">
+		<div>qweqwe</div>
+		<div>qweqwe</div>
+		<div>qweqwe</div>
+		<div>qweqwe</div>
+		<div>qweqwe</div>
+		<div>qweqwe</div>
+		<div>qweqwe</div>
+		<div>qweqwe</div>
+		<div>qweqwe</div>
+		<div>qweqwe</div>
+	</div>
+<script type="text/javascript">
+  console.log('innerHeight:'+ window.innerHeight + ', innerWidth:' + window.innerWidth);
+  console.log('outerHeight:'+ window.outerHeight + ' ,outerWidth:' + window.outerWidth);
+  console.log('screenHeight:'+ window.screen.height + ' ,screenWidth:'+window.screen.width);
+  console.log('availHeight:' + screen.availHeight + ', availWidth:' + screen.availWidth);
+  console.log('screenLeft:'+ screenLeft + ', screenTop:'+screenTop);
+  var box = document.querySelector('.box');
+  console.log(box.clientHeight + ',' + box.clientWidth);
+  //padding+width-scroll window系统滚动条会占用高宽
+  console.log(document.body.clientLeft+','+document.body.clientTop);
+</script>
+</body>
+</html>

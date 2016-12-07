@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<script type="text/javascript">
+//不带new操作符，像一个函数一样调用。它将忽略所有传入的参数，并返回当前日期和时间的一个字符串表示。
+//new Date();
+//可接受一个数字参数，该参数表示设定时间与1970年1月1日0点之间的毫秒数。
+//new Date(value);
+//可接受一个字符串参数，参数形式类似于Date.parse()方法。但parse()方法返回的是一个数字，而Date()函数返回的是一个对象。
+//new Date(dateString);
+//可接受参数形式类似于Date.UTC()方法的参数，但Date.UTC()方法返回是一个毫秒数，且是UTC时间，而Date()函数返回是一个对象，且是本地时间。
+//new Date(year, month[, day[, hour[, minutes[, seconds[, milliseconds]]]]]);
+//---------------------------------------------------------------------------------------------------------------------
+//year：四位年份，如果写成两位数，则加上1900
+//month：表示月份，0表示一月，11表示12月
+//date：表示日期，1到31
+//hour：表示小时，0到23
+//minute：表示分钟，0到59
+//second：表示秒钟，0到59
+//ms：表示毫秒，0到999
+	console.log(new Date());
+	console.log(new Date(1293879600000));
+	console.log(new Date('2011-01-01T11:00:00'));
+	console.log(new Date('2011/01/01 11:00:00'));
+	console.log(new Date(2011,0,1,11,0,0));
+	console.log(new Date('sss'));
+	
+	
+var date1 = new Date(2007,0,1);
+var date2 = new Date(2007,1,1);
+console.log(date1 > date2);//false
+console.log(date1 < date2);//true
+
+console.log(Date.parse('6/13/2004'));//1087056000000
+console.log(Date.parse('January 12,2004'));//1073836800000
+console.log(Date.parse('Tue May 25 2004 00:00:00 GMT-0700'));//1085468400000
+console.log(Date.parse('2004-05-25T00:00:00'));//1085443200000
+console.log(Date.parse('2016'));//1451606400000
+console.log(Date.parse('T00:00:00'));//NaN
+console.log(Date.parse());//NaN
+
+//在ECMAScript5中，如果使用标准的日期时间字符串格式规则的字符串中，
+//数学前有前置0，则会解析为UTC时间，时间没有前置0，则会解析为本地时间。其他情况一般都会解析为本地时间
+console.log(Date.parse('7/12/2016'));//1468252800000
+console.log(Date.parse('2016-7-12'));//1468252800000
+console.log(Date.parse('2016-07-12'));//1468281600000
+
+var d = new Date();
+console.log(d.getDate());
+console.log(d.getMonth());
+console.log(d.getFullYear());
+console.log(d.getTimezoneOffset());
+
+var d1 = new Date('January 6, 2013');
+d1.setDate(32) // 1359648000000
+d1 // Fri Feb 01 2013 00:00:00 GMT+0800 (CST)
+var d2 = new Date ('January 6, 2013');
+d.setDate(-1) // 1356796800000
+d // Sun Dec 30 2012 00:00:00 GMT+0800 (CST)
+var d = new Date();
+// 将日期向后推1000天
+d.setDate( d.getDate() + 1000 );
+// 将时间设为6小时后
+d.setHours(d.getHours() + 6);
+// 将年份设为去年
+d.setFullYear(d.getFullYear() - 1);
+
+
+const nMS = 1320; //以毫秒单位表示的差值时间
+var nD = Math.floor(nMS/(1000 * 60 * 60 * 24));
+var nH = Math.floor(nMS/(1000*60*60)) % 24;
+var nM = Math.floor(nMS/(1000*60)) % 60;
+var nS = Math.floor(nMS/1000) % 60;
+</script>	
+</body>
+</html>
