@@ -33,9 +33,10 @@
   console.log('availHeight:' + screen.availHeight + ', availWidth:' + screen.availWidth);
   console.log('screenLeft:'+ screenLeft + ', screenTop:'+screenTop);
   var box = document.querySelector('.box');
-  console.log(box.clientHeight + ',' + box.clientWidth);
-  //padding+width-scroll window系统滚动条会占用高宽
+  console.log(box.clientHeight + ',' + box.clientWidth);//padding+width-scroll window系统滚动条会占用高宽
   console.log(document.body.clientLeft+','+document.body.clientTop);
+  console.log(document.body.offsetHeight + ',' + document.body.offsetWidth);
+  //元素的border+padding+content 的宽度和高度,只和本来的设定的border以及width和height
 </script>
 </body>
 </html>

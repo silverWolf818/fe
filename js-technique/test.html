@@ -11,13 +11,23 @@
 <a href="javascript:">btn4</a>
 <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
-$(function(){
-    console.log($("a").get(0));
-    console.log($("a").eq(0));
-    $("a").get(0).click(function(){
-        console.log("111");
-    })
-});
+// $(function(){
+//     console.log($("a").get(0));
+//     console.log($("a").eq(0));
+//     $("a").get(0).click(function(){
+//         console.log("111");
+//     })
+// });
+var func = function(){
+  var a = 1;
+  return function(){
+    a++;
+    alert(a);
+  }
+}
+var f = func();
+f();
+f();
 </script>
 </body>
 </html>

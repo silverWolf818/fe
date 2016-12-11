@@ -5,7 +5,12 @@
 <title></title>
 </head>
 <body>
+	<iframe src="demo2.html" name="x" width="auto" height="auto" id="dd"></iframe>
 <script type="text/javascript">
+window.onload = function(){
+	var s = document.getElementById("dd").contentWindow.document.getElementById('box')
+alert(s)
+}
     Number.prototype.add = function(x){
         return this + x;
     }
