@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="telephone=no,email=no" name="format-detection">
+<title>内容loading加载后高度变化CSS3 transition</title>
+<style>
+.loading{
+    font-size: 14px;
+    width: 200px;
+    height: 30px;
+    line-height: 31px;
+    text-align: center;
+    color: #fff;
+    background:#eee;
+    vertical-align: middle;
+}
+.loading i{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    vertical-align: middle;
+    background:#eee url(loading.gif) no-repeat center;
+    background-size: contain;
+}
+.box { width: 200px;border: 1px solid #a0b3d6; background-color: #eee; overflow: hidden; }
+.in{
+    width: 100px;border: 1px solid #beceeb; background-color: #f0f3f9;
+}
+</style>
+</head>
+<body>
+    <a href="javascript:" id="button">click</a>
+    <div class="box" id="box"></div>
+<script type="text/javascript">
+window.onload = function(){
+    var funTransitionHeight = function(element, time) { // time, 数值，可缺省
+        if (typeof window.getComputedStyle == "undefined") return;
+        var height = window.getComputedStyle(element).height;
+        element.style.transition = "none";    // 本行2015-05-20新增，mac Safari下，貌似auto也会触发transition, 故要none下~
+        element.style.height = "auto";
+        var targetHeight = window.getComputedStyle(element).height;
+        element.style.height = height;
+        element.offsetWidth = element.offsetWidth;
+        if (time) element.style.transition = "height "+ time +"ms";
+        element.style.height = targetHeight;
+    };
+    var button = document.getElementById('button'),
+        load = document.getElementById('load'),
+        box = document.getElementById('box');
+        button.onclick = function(){
+            box.innerHTML = '<div class="loading"><i></i>正在加载，请稍等</div>';
+            setTimeout(function(){
+                box.innerHTML = '<div class="in" style="height:'+ Math.round(400 * Math.random()) +'px;">我是加载内容啦啦啦</br>我是加载内容啦啦啦</br>我是加载内容啦啦啦</br></div>';
+                funTransitionHeight(box,250);
+            },1000);
+    }
+}
+</script>
+</body>
+</html>

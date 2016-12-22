@@ -28,8 +28,8 @@
 	console.log(new Date('2011/01/01 11:00:00'));
 	console.log(new Date(2011,0,1,11,0,0));
 	console.log(new Date('sss'));
-	
-	
+
+
 var date1 = new Date(2007,0,1);
 var date2 = new Date(2007,1,1);
 console.log(date1 > date2);//false
@@ -75,6 +75,10 @@ var nD = Math.floor(nMS/(1000 * 60 * 60 * 24));
 var nH = Math.floor(nMS/(1000*60*60)) % 24;
 var nM = Math.floor(nMS/(1000*60)) % 60;
 var nS = Math.floor(nMS/1000) % 60;
-</script>	
+
+var ds = new Date();
+ds.setDate(ds.getDate() - 3);
+console.log(ds);
+</script>
 </body>
 </html>

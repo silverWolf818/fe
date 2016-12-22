@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var isType = function(type){
+        return function(obj){
+            return Object.prototype.toString.call(obj) === '[object '+type+']';
+        }
+    }
+    var isString = isType('String');
+    var isArray = isType('Array');
+    console.log(isArray(['1,2,3']));
+</script>
+</body>
+</html>

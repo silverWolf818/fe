@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>react demo</title>
+<script src="https://cdn.bootcss.com/react/15.4.1/react.min.js"></script>
+<script src="https://cdn.bootcss.com/react/15.4.1/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-core/6.1.19/browser.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+  <script type="text/babel">
+    var destination = document.querySelector("#container");
+
+    ReactDOM.render(React.createElement(
+      "h1",
+      null,
+      "Batman"
+    ), destination);
+</script>
+</body>
+</html>
