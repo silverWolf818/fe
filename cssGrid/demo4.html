@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>css grid 3</title>
+<style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.grid{
+  display: grid;
+  margin: 0 auto;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 80px 180px 80px;
+  grid-gap: 20px;
+  grid-template-areas: "header header header"
+                      "main   main   sidebar"
+                      "footer footer footer";
+}
+.grid div{
+  padding: 20px;
+  color: #fff;
+}
+.item-1 {
+  background: #b03532;
+  grid-area: header;
+}
+.item-2 {
+  background: #33a8a5;
+  grid-area: main;
+  display: grid;
+  grid-template-columns: 1fr 30%;
+  grid-template-rows: auto auto;
+  grid-gap: 20px;
+  grid-template-areas: "header header"
+                       "article sidebar";
+}
+.item-3 {
+  background: #30997a;
+  grid-area: sidebar;
+}
+.item-4 {
+  background: #6a478f;
+  grid-area: footer;
+}
+.item-5 {
+  background: #da6f2b;
+  grid-area: header;
+}
+.item-6 {
+  background: #3d8bb1;
+  grid-area: article;
+}
+.item-7 {
+  background: #e03f3f;
+  grid-area: sidebar;
+}
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="item-1">1</div>
+    <div class="item-2">
+      <div class="item-5">5</div>
+    <div class="item-6">6</div>
+    <div class="item-7">7</div>
+    </div>
+    <div class="item-3">3</div>
+    <div class="item-4">4</div>
+  </div>
+</body>
+</html>
