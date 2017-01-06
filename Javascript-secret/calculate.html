@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>calculate</title>
+</head>
+<body>
+<script type="text/javascript">
+var performanceS = function (salay) {
+	return salay * 4;
+}
+var performanceA = function (salay) {
+	return salay * 3;
+}
+var performanceB = function (salay) {
+	return salay * 2;
+}
+
+var calculateBouns = function (performanceLevel,salay) {
+	if (performanceLevel === 'S') {
+		return performanceS(salay);
+	}
+	if (performanceLevel === 'A') {
+		return performanceA(salay);
+	}
+	if (performanceLevel === 'B') {
+		return performanceB(salay);
+	}
+};
+
+var s = calculateBouns("S",50000);
+console.log(s);
+//
+var strategies = {
+	"s":function (salay) {
+		return salay * 4;
+	},
+	"a":function (salay) {
+		return salay * 3;
+	},
+	"b":function (salay) {
+		return salay * 2;
+	}
+};
+var calculating = function(level , salay){
+	return strategies[level](salay);
+}
+console.log(calculating("s",1100));
+
+</script>
+</body>
+</html>
