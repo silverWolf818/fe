@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<button type="button" id="btn">click</button>
+<script type="text/javascript">
+    var getSingle = function(fn){
+        var result;
+        return function(){
+            return result || (result = fn.apply(this, arguments));
+        }
+    };
+    var createloginLayer = function(){
+        var div = document.createElement('div');
+        div.innerHTML = '我是登陆窗口';
+        div.style.display = 'none';
+        document.body.appendChild(div);
+        return div;
+    };
+    var createloginLayer = getSingle(createloginLayer);
+    document.querySelector("#btn").onclick = function(){
+        var loginLayer = createloginLayer();
+        loginLayer.style.display = 'block';
+    }
+</script>
+</body>
+</html>
