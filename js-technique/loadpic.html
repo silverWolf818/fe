@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>loadpic</title>
+</head>
+<body>
+<script type="text/javascript">
+var myImage = (function () {
+	var imgNode = document.createElement('img');
+	document.body.appendChild(imgNode);
+	return {
+		setSrc:function(src){
+			imgNode.src = src;
+		}
+	}
+})();
+var proxyImage = (function(){
+	var img = new Image;
+	img.onload = function(){
+		myImage.setSrc(this.src);
+	}
+	return {
+		setSrc:function(src){
+			myImage.setSrc('loading.gif');
+			img.src = src;
+		}
+	}
+})();
+proxyImage.setSrc('https://img.alicdn.com/simba/img/TB1WL8oPXXXXXczaXXXSutbFXXX.jpg');
+</script>
+</body>
+</html>
