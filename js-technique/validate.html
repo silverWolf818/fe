@@ -23,7 +23,7 @@ registerForm.onsubmit = function(e){
 	}
 }
 var strategies = {
-	inNoEmpty:function(val,errorMsg){
+	isNoEmpty:function(val,errorMsg){
 		if (val === '') {
 			return errorMsg;
 		}
@@ -39,25 +39,17 @@ var strategies = {
 		}
 	}
 };
-var validataFunc = function(){
-	var validator = new Validator();
-	validator.add(registerForm.username,'inNoEmpty','用户名不能为空');
-	validator.add(registerForm.password,'minLength:6','密码长度不能少于6位');
-	validator.add(registerForm.phone,'isMobile','手机号格式不正确');
-	var errorMsg = validator.start();
-	return errorMsg;
-};
 var Validator = function(){
 	this.cache = [];
 };
 Validator.prototype.add = function(dom,rules){
 	var self = this;
 	for (var i = 0, rule; rule = rules[i++];) {
-		(function(){
+		(function(rule){
 			var strategyAry = rule.strategy.split(':');
 			var errorMsg = rule.errorMsg;
 			self.cache.push(function(){
-				var strategy = strategyAry.shiift();
+				var strategy = strategyAry.shift();
 				strategyAry.unshift(dom.value);
 				strategyAry.push(errorMsg);
 				return strategies[strategy].apply(dom,strategyAry);
@@ -73,7 +65,32 @@ Validator.prototype.start = function(){
 		}
 	}
 };
-
+var validataFunc = function(){
+	var validator = new Validator();
+	validator.add(registerForm.username,[{
+		strategy:'isNoEmpty',
+		errorMsg:'用户名不能为空'
+	},{
+		strategy:'minLength:10',
+		errorMsg:'用户名长度不能小于10'
+	}]);
+	validator.add(registerForm.password,[{
+		strategy:'isNoEmpty',
+		errorMsg:'密码不能为空'
+	},{
+		strategy:'minLength:6',
+		errorMsg:'密码长度不能小于6'
+	}]);
+	validator.add(registerForm.phone,[{
+		strategy:'isNoEmpty',
+		errorMsg:'手机号不能为空'
+	},{
+		strategy:'isMobile',
+		errorMsg:'手机号不能为空'
+	}]);
+	var errorMsg = validator.start();
+	return errorMsg;
+};
 </script>
 </body>
 </html>
