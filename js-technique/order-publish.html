@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>order-publish</title>
+</head>
+<body>
+<script type="text/javascript">
+// var salesOffices = {};
+// 	salesOffices.clientList = [];
+// 	salesOffices.listen = function(key,fn){
+// 		if (!this.clientList[key]) {
+// 			this.clientList[key] = [];
+// 		}
+// 		this.clientList[key].push(fn);
+// 	};
+// 	salesOffices.trigger = function(){
+// 		var key = Array.prototype.shift.call(arguments),
+// 			fns = this.clientList[key];
+// 		if (!fns || fns.length === 0) {
+// 			return false;
+// 		}	
+// 		for (var i = 0, fn; fn = fns[i++];) {
+// 			fn.apply(this,arguments);
+// 		}
+// 	};
+// 	salesOffices.listen('sq88',function(price){
+// 		console.log('price:' + price);
+// 	});
+// 	salesOffices.listen('sq110',function(price){
+// 		console.log('price:' + price);
+// 	});
+// 	salesOffices.trigger('sq88',2000);
+//
+
+var Event = (function(){
+	var clientList = {},
+		  listen,
+		  trigger,
+		  remove;	
+	listen = function (key,fn) {
+		if (!clientList[key]) {
+			clientList[key] = [];
+		}
+			clientList[key].push(fn);
+	};
+	trigger = function () {
+		var key = Array.prototype.shift.call(arguments),
+			fns = clientList[key];
+		if (!fns || fns.length === 0) {
+			return false;
+		}	
+		for (var i = 0, fn; fn = fns[i++];) {
+			fn.apply(this,arguments);
+		}		
+	};
+	remove = function(key,fn){
+		var fns = clientList[key];
+		if (!fns) {
+			return false;
+		}
+		if (!fn) {
+			fn && (fns.length = 0)
+		}else {
+			for(var l = fns.length - 1; l >=0; l--){
+				var _fn = fns[l];
+				if (_fn === fn) {
+					fns.splice(l,1);
+				}	
+			}
+		}	
+	};
+	return {
+		listen:listen,
+		trigger:trigger,
+		remove:remove
+	}
+})();
+Event.listen('sq66',function(price){
+	console.log('price:' + price)
+});
+Event.trigger('sq66',213123123);
+</script>
+</body>
+</html>
