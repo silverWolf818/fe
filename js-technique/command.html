@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>command</title>
+</head>
+<body>
+<button id="btn">button</button>
+<script type="text/javascript">
+	var btn = document.querySelector("#btn");
+
+	var setCommand = function(button,command){
+		button.onclick = function(){
+			command.execute();
+		}
+	};
+	var MenuBar = {
+		refresh:function(){
+			console.log('refresh');
+		}
+	};
+	var RefreshMenuBarCommand = function(receiver){
+		return {
+			execute:function(){
+				receiver.refresh();
+			}
+		}
+	};
+	var refreshMenuBarCommand = RefreshMenuBarCommand(MenuBar);
+	setCommand(btn,refreshMenuBarCommand);
+</script>
+</body>
+</html>
