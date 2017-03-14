@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/mustache.js/2.3.0/mustache.min.js"></script>
+<script type="text/javascript">
+	
+	var view = {
+  title: "Joe",
+  calc: function () {
+    return 2 + 4;
+  }
+};
+
+var output = Mustache.render("<div>{{title}} spends {{calc}}</div>", view);
+console.log(output);
+</script>
+</body>
+</html>
