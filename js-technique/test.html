@@ -11,22 +11,16 @@
 <a href="javascript:">btn4</a>
 <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
-var data = {
-	code:'200',
-	me:'2'
+var dog = function(){};
+dog.prototype.sound = function(){ 
+    console.log('111');
 }
-var ReqSuccess = function(data,callback){
-    if(data.code == '200'){
-    	console.log(data)
-        return callback(data);
-    }else{
-       
-    }
-};
-
-ReqSuccess(data,function(data){
-	console.log(data.me);
-});	
+var a = new dog();
+a.sound();
+var s = function(){};
+var b = {};
+console.log(s);
+console.log(b);
 </script>
 </body>
 </html>
