@@ -6,19 +6,30 @@
 </head>
 <body>
  <script type="text/javascript">
- function setTimesec(sec){
-     var t;
-     function outTime(){
-         sec--;
-         console.log(sec);
-         t = setTimeout(outTime,1000);
-         if(sec<0){
-             clearTimeout(t);
-         }
-     }
-     outTime();
- }
- setTimesec(60);
+//  function setTimesec(sec){
+//      var t;
+//      function outTime(){
+//          sec--;
+//          console.log(sec);
+//          t = setTimeout(outTime,1000);
+//          if(sec<0){
+//              clearTimeout(t);
+//          }
+//      }
+//      outTime();
+//  }
+//  setTimesec(60);
+var sec = 5;
+function showTime(){
+    console.log(sec);
+    sec--;
+    t = setTimeout(showTime,1000);
+    if(sec < 0 ){
+        clearTimeout(t);
+        console.log('调用结束');
+    }
+}
+showTime();
  </script>
 </body>
 </html>

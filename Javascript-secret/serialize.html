@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <form id="form-control">
+            <label for="username">username:</label><input type="text" name="username" value=""><br>
+            <label for="username">password:</label><input type="password" name="password" value=""><br>
+            <label for="username">email:</label><input type="email" name="email" value=""><br>
+            <button type="button" id="btn">submit</button>
+        </form>
+        <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js"></script>
+        <script>
+            $.serializeJSON = function(ele){
+                var serializeObj = {},
+                    array = $(ele).serializeArray();
+                $(array).each(function(){
+                    serializeObj[this.name] = this.value;    
+                });
+                return serializeObj;    
+            };
+            $(document).on('click','#btn',function(){
+                var data = $.serializeJSON('#form-control');
+                console.log(data);
+                var obj = {};
+                obj.token = 'heheda';
+                console.log(_.assign(obj,data));
+            });
+        </script>
+    </body>
+</html>

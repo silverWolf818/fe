@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="target"></div>
+<div id="fileTag"></div>  
+<script id="tpl" type="x-tmpl-mustache">
+  {{#stooges}}
+<b>{{name}}</b>
+{{/stooges}}
+</script> 
+<script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script> 
+<script src="https://cdn.bootcss.com/mustache.js/2.3.0/mustache.min.js"></script>
+<script type="text/javascript">
+  var tpl = $('#tpl').html();
+  Mustache.parse(tpl);
+  var view = {
+  "stooges": [
+    { "name": "Moe" },
+    { "name": "Larry" },
+    { "name": "Curly" }
+  ]
+};
+  var rendered = Mustache.render(tpl, view);
+  $('#target').html(rendered);
+
+
+  $.get('template.mst', function(template) {
+    var rendered = Mustache.render(template, {name: "Luke"});
+    $('#fileTag').html(rendered);
+  });
+</script>
+</body>
+</html>

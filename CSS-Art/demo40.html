@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* 按钮loading */
+a[class*=-btn].loading, 
+label[class*=-btn].loading {
+    position: relative;
+}
+a[class*=-btn].loading::first-line, 
+label[class*=-btn].loading::first-line {
+    color: transparent;
+}
+a[class*=-btn].loading::before, 
+label[class*=-btn].loading::before {
+    width: 4px; height: 4px;
+    margin: auto;
+    content: '';
+    -webkit-animation: spinZoom 1s steps(8) infinite;
+    animation: spinZoom 1s steps(8) infinite;
+    border-radius: 100%;
+    box-shadow: 0 -10px 0 1px currentColor, 10px 0 currentColor, 0 10px currentColor, -10px 0 currentColor, -7px -7px 0 .5px currentColor, 7px -7px 0 1.5px currentColor, 7px 7px currentColor, -7px 7px currentColor;
+    /* center */
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+}
+/* loading动画 */
+@-webkit-keyframes spinZoom {
+    0% {
+        -webkit-transform: scale(.75) rotate(0);
+    }
+    100% {
+        -webkit-transform: scale(.75) rotate(360deg);
+    }
+}
+@keyframes spinZoom {
+    0% {
+        transform: scale(.75) rotate(0);
+    }
+    100% {
+        transform: scale(.75) rotate(360deg);
+    }
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.op-btn{
+    display: block;
+    width: 100px;
+    text-decoration: none;
+    margin: 10px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    background: #666;
+}
+</style>
+</head>
+<body>
+ <a href="javascript:" class="op-btn loading">click</a>
+</body>
+</html>
