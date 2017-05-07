@@ -44,11 +44,11 @@
         return money;
       }
    })();
-   var cost1 = currying(cost);
+   currying(cost1);
    cost1(100);
-   cost1(100);
-   cost1(100);
-   console.log(cost());
+   cost1(200);
+   cost1(300);
+   console.log(cost1());
 </script>
 </body>
 </html>

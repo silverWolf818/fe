@@ -107,7 +107,9 @@ $(function(){
             }
         },
         errorPlacement:function(error,element){
+            //alert(error);
             error.appendTo(element.siblings('.verify'));
+            console.log(error);
         },
         success:function(element){
             // element.html("验证通过").addClass("checked");

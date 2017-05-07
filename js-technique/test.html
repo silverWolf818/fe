@@ -5,22 +5,11 @@
 <title></title>
 </head>
 <body>
-<a href="javascript:">btn1</a>
-<a href="javascript:">btn2</a>
-<a href="javascript:">btn3</a>
-<a href="javascript:">btn4</a>
+<div id="test"></div>
 <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
-var dog = function(){};
-dog.prototype.sound = function(){ 
-    console.log('111');
-}
-var a = new dog();
-a.sound();
-var s = function(){};
-var b = {};
-console.log(s);
-console.log(b);
+	$("#test").data('data-test',{ first: 16, last: "pizza!" });
+	console.log($("div").data("test"));
 </script>
 </body>
 </html>
