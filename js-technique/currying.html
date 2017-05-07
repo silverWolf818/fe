@@ -23,7 +23,10 @@
    cost(300);
    cost(400);
    console.log(cost());
+   
+   var 
    //
+<<<<<<< HEAD
    var currying = function(fn){
         var args = [];
         return function(){
@@ -49,6 +52,33 @@
    cost1(200);
    cost1(300);
    console.log(cost1());
+=======
+// var currying = function(fn){
+//      var args = [];
+//      return function(){
+//        if (arguments.length === 0) {
+//            return fn.apply(this,args);
+//        }else{
+//            [].push.apply(args,arguments);
+//            return arguments.callee;
+//        }
+//      }
+// };
+// var cost1 = (function(){
+//    var money = 0;
+//    return function(){
+//      for (var i = 0,l = arguments.length; i < l; i++) {
+//         money += arguments[i];
+//      }
+//      return money;
+//    }
+// })();
+// var cost1 = currying(cost);
+// cost1(100);
+// cost1(100);
+// cost1(100);
+// console.log(cost());
+>>>>>>> origin/master
 </script>
 </body>
 </html>

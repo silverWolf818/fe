@@ -54,6 +54,10 @@ label.checked {
 <script type="text/javascript">
 $(function(){
     $("#validate_form").validate({
+        onfocusout:false,
+        onkeyup:false,
+        onclick:false,
+        focusInvalid:false,
         rules:{
             username:{
                 required:true,
@@ -106,10 +110,19 @@ $(function(){
                 email:"请输入一个正确的邮箱"
             }
         },
+<<<<<<< HEAD
         errorPlacement:function(error,element){
             //alert(error);
             error.appendTo(element.siblings('.verify'));
             console.log(error);
+=======
+        showErrors:function(errorMap,errorList){
+            var msg = "";  
+            $.each( errorList, function(e){  
+              msg += (e.message+"\r\n");  
+            });  
+            if(msg!="") alert("校验不正确"); 
+>>>>>>> origin/master
         },
         success:function(element){
             // element.html("验证通过").addClass("checked");
@@ -119,8 +132,8 @@ $(function(){
             $(element).siblings('.verify').removeClass('verify-correct').addClass('verify-error');
         },
         submitHandler:function(form){
-            alert("111");
-            $(form).ajaxSubmit();
+            alert("wqe");
+            //$(form).ajaxSubmit();
         }
     });
 });

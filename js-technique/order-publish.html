@@ -4,6 +4,7 @@
 <title>order-publish</title>
 </head>
 <body>
+	<div id="box">box</div>
 <script type="text/javascript">
 // var salesOffices = {};
 // 	salesOffices.clientList = [];
@@ -75,10 +76,28 @@ var Event = (function(){
 		remove:remove
 	}
 })();
+<<<<<<< HEAD
 Event.trigger('sq66',213123123);
 Event.listen('sq66',function(price){
 	console.log('price:' + price)
 });
+=======
+function h(price){
+	console.log('price:' + price)
+}
+
+Event.listen('sq66',h);
+Event.listen('sq77',h);
+Event.listen('sq88',h);
+Event.listen('sq99',h);
+var box = document.querySelector("#box");
+box.onclick = function(){
+	Event.trigger('sq66',213123123);
+	Event.trigger('sq77',213123123);
+	Event.trigger('sq88',213123123);
+	
+}
+>>>>>>> origin/master
 </script>
 </body>
 </html>
