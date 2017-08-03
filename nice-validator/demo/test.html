@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<form class="form">
+    <div class="form-item">
+        <label class="label">Name</label>
+        <input type="text" name="username">
+    </div>
+    <br>
+    <div class="form-item">
+        <label class="label">password</label>
+        <input type="password" name="password">
+    </div>
+    <br>
+    <div class="form-item">
+        <label class="label">confirmPWD</label>
+        <input type="password" name="confirmPwd">
+    </div>
+    <br>
+<div class="form-item">
+    <button type="submit">Submit</button>
+</div>
+</form>
+<script src="https://cdn.jsdelivr.net/jquery/1.12.3/jquery.min.js"></script>
+<script src="../dist/jquery.validator.min.js?local=zh-CN"></script>
+<script type="text/javascript">
+$('.form').validator({
+     msgClass: "n-bottom",
+     msgIcon:'<span class="n-icon" style="display:block;position:absolute;margin-left:175px;top: -23px;"></span>',
+    rules: {
+        // 使用正则表达式定义规则
+        mobile: [/^1[3-9]\d{9}$/, "请填写有效的手机号"]
+    },
+    // display: function(elem){
+    //         return $(elem).closest('.form-item').children('label:eq(0)').text();
+    // },
+    fields: {
+        // 对字段 username 应用规则 mobile
+        username: {
+            rule: "姓名:required; mobile;",
+            msg: {
+
+            },
+            ok: "ok"
+        },
+        password: {
+            rule: "密码:required;",
+            ok: ""
+        },
+        confirmPwd:{
+            rule: "确认密码:required; match(password);",
+            ok: ""
+        }
+    },
+    valid: function(form){
+          console.log($(form));
+    }
+});
+</script>
+</body>
+</html>
