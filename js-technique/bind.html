@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function multiply (x, y, z) {
+        console.log(x,y,z);
+        return x * y * z;
+    }
+    var double = multiply.bind(null, 2);
+
+    console.log(double(3));
+//this.x = 9;
+//var module = {
+//    x:81,
+//    getX:function (s) {
+//        console.log(s);
+//        console.log(this.x);
+//    }
+//};
+//module.getX();
+//var retrieveX = module.getX.bind(module,11);
+//retrieveX();
+//
+//var func = function(){
+//    console.log(this.name);
+//}
+//func.bind(obj)();
+//
+//
+//var obj1 = {
+//    name:'sven',
+//    getName:function(x){
+//        console.log(x);
+//        return this.name;
+//    }
+//}
+//var obj2 = {
+//    name:'anne'
+//}
+//console.log(obj1.getName.call(obj2,2));
+</script>
+</body>
+</html>

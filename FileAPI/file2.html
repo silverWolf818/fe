@@ -9,6 +9,7 @@
     <p id="output"></p>
     <script type="text/javascript">
         function blobSlice(blob,start,length){
+            console.log(blob);
             if(blob.slice){
                 return blob.slice(start, length);
             }else{
@@ -22,6 +23,7 @@
                 var f = this.files;
                 var reader = new FileReader(),
                     blob = blobSlice(f[0],0,32);
+                console.log(reader);
                 if(blob){
                     reader.readAsText(blob);
                     reader.onload = function(){

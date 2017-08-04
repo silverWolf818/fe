@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>图片预加载</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body{
+        width: 100%;
+    }
+    a{
+        text-decoration: none;
+    }
+    .box{
+        text-align: center;
+    }
+    .btn{
+        display: inline-block;
+        height:30px;
+        line-height: 30px;
+        border: 1px solid #ccc;
+        background: #fff;
+        padding: 0 10px;
+        margin-right: 50px;
+        color: #333;
+    }
+    .btn:hover{
+        background: #eee;
+    }
+    img{
+        width: 100%;
+    }
+    .loading{
+        position: fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background: #eee;
+        text-align: center;
+        font-size:30px;
+    }
+    .progress{
+        margin-top: 300px;
+    }
+</style>
+</head>
+<body>
+<div class="loading">
+    <p class="progress">0%</p>
+</div>
+<div class="box">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494780829706&di=25dc24c9cc070ff68d4a9e6933a0e352&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fpic%2Fitem%2F2cb0982f0708283858442be9b899a9014e08f1d5.jpg" alt="" id="img" />
+    <p>
+        <a href="javascript:" class="btn" data-control="prev">上一页</a>
+        <a href="javascript:" class="btn" data-control="next">下一页</a>
+    </p>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="preload.js"></script>
+<script>
+var imgs = [
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495375556&di=724c84c3ee25f2874c41d7f3adb693e7&imgtype=jpg&er=1&src=http%3A%2F%2Ff9.topitme.com%2F9%2Fe5%2F8a%2F11949842915f88ae59o.jpg',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495375587&di=374cad7502230ea53756055bf3581b23&imgtype=jpg&er=1&src=http%3A%2F%2Fimg3.iqilu.com%2Fdata%2Fattachment%2Fforum%2F201308%2F21%2F175424l27wngnjf2o2onu2.jpg',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495375648&di=13285b68ef3da54c652cc7b68f115df5&imgtype=jpg&er=1&src=http%3A%2F%2Fimg3.iqilu.com%2Fdata%2Fattachment%2Fforum%2F201308%2F21%2F163535sfrn9mj4ezn4eeff.jpg',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494780968521&di=701b3fb71263201092770ccb54c414d1&imgtype=0&src=http%3A%2F%2Fimg3.iqilu.com%2Fdata%2Fattachment%2Fforum%2F201308%2F21%2F163544ba0tdzgt30l32zsc.jpg'
+];
+var index = 0,
+    len = imgs.length,
+    $progress = $('.progress');
+$.preload(imgs,{
+    each:function (count) {
+        $progress.html(Math.round(count / len * 100) + '%');
+    },
+    all:function () {
+        $('.loading').hide();
+        document.title = '1/'+len;
+    }
+});
+$(document).on('click','.btn',function () {
+    if('prev' === $(this).data('control')){
+        index = Math.max(0,--index);
+    }else{
+        index = Math.min(len - 1,++index);
+    }
+    $("#img").attr('src',imgs[index]);
+})
+//    var imgs = [
+//        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495375556&di=724c84c3ee25f2874c41d7f3adb693e7&imgtype=jpg&er=1&src=http%3A%2F%2Ff9.topitme.com%2F9%2Fe5%2F8a%2F11949842915f88ae59o.jpg',
+//        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495375587&di=374cad7502230ea53756055bf3581b23&imgtype=jpg&er=1&src=http%3A%2F%2Fimg3.iqilu.com%2Fdata%2Fattachment%2Fforum%2F201308%2F21%2F175424l27wngnjf2o2onu2.jpg',
+//        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495375648&di=13285b68ef3da54c652cc7b68f115df5&imgtype=jpg&er=1&src=http%3A%2F%2Fimg3.iqilu.com%2Fdata%2Fattachment%2Fforum%2F201308%2F21%2F163535sfrn9mj4ezn4eeff.jpg',
+//        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494780968521&di=701b3fb71263201092770ccb54c414d1&imgtype=0&src=http%3A%2F%2Fimg3.iqilu.com%2Fdata%2Fattachment%2Fforum%2F201308%2F21%2F163544ba0tdzgt30l32zsc.jpg'
+//    ];
+//    var index = 0,
+//        len = imgs.length,
+//        count = 0,
+//        $progress = $('.progress');
+//    $.each(imgs,function (i,src) {
+//        var imgObj = new Image();
+//        $(imgObj).on('load error',function () {
+//            count++;
+//            $progress.html(Math.round(count / len * 100) + '%');
+//            if(count === len){
+//                $('.loading').hide();
+//                document.title = '1/'+len;
+//            }
+//        });
+//        imgObj.src = src;
+//    })
+//    $(document).on('click','.btn',function () {
+//        if('prev' === $(this).data('control')){
+//            index = Math.max(0,--index);
+//        }else{
+//            index = Math.min(len - 1,++index);
+//        }
+//        $("#img").attr('src',imgs[index]);
+//    })
+</script>
+</body>
+</html>

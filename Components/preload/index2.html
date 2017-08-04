@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: #eee;
+        }
+        .box{
+            margin: 150px 0 0 200px;
+        }
+        #face-btn{
+            text-decoration: none;
+            display: block;
+        }
+        .panel{
+            display: none;
+            width: 364px;
+            padding:2px;
+            border: 1px solid #ccc;
+            background: #fff;
+        }
+        .loading{
+            text-align: center;
+        }
+        ul{
+            list-style: none;
+        }
+        ul li{
+            display: inline-block;
+            cursor: pointer;
+            border: 1px solid #fff;
+        }
+        img{
+            width: 50px;
+            height: 50px;
+        }
+        ul li:hover{
+            border-color: #06c;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <a href="javascript:" id="face-btn">face</a>
+        <div class="panel">
+            <p class="loading">loading ...</p>
+            <!--<ul>-->
+                <!--<li><img src="0.gif.gif"></li>-->
+                <!--<li><img src="1.gif.gif"></li>-->
+                <!--<li><img src="2.gif.gif"></li>-->
+                <!--<li><img src="3.gif.gif"></li>-->
+                <!--<li><img src="img/04.gif"></li>-->
+                <!--<li><img src="img/05.gif"></li>-->
+                <!--<li><img src="img/06.gif"></li>-->
+                <!--<li><img src="img/07.gif"></li>-->
+                <!--<li><img src="img/08.gif"></li>-->
+                <!--<li><img src="img/09.gif"></li>-->
+                <!--<li><img src="img/10.gif"></li>-->
+                <!--<li><img src="img/11.gif"></li>-->
+                <!--<li><img src="img/12.gif"></li>-->
+                <!--<li><img src="img/13.gif"></li>-->
+            <!--</ul>-->
+        </div>
+    </div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="preload.js"></script>
+<script>
+    var $btn = $('#face-btn'),
+        $panel = $('.panel');
+    var imgs = [];
+    for(var i = 0;i < 14;i++){
+        imgs[i] = 'img/'+i + '.gif';
+    }
+    var len = imgs.length;
+    $(document).on('click','#face-btn',function (e) {
+        e.stopPropagation();
+        $panel.show();
+        $.preload(imgs,{
+            all:function () {
+                var html = '';
+                html += '<ul>';
+                for(var i = 0;i < len;i++){
+                    html += '<li><img src="'+imgs[i]+'"></li>';
+                }
+                html += '</ul>';
+                $panel.html(html);
+            }
+        });
+    });
+    $(document).on('click',function () {
+        $panel.hide();
+    });
+</script>
+</body>
+</html>

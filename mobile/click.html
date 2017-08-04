@@ -1,0 +1,28 @@
+<!DOCType html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0">
+</head>
+<body>
+<div id="target" style="margin-top:20px;width:200px;height:200px;background-color:#ccc">hello, world</div>
+<script>
+(function(){
+    var target = document.getElementById("target");
+    var body = document.querySelector("body");
+    var touchstartBeginTime = 0;
+    function log(event){
+        if(event.type === "touchstart") touchstartBeginTime = Date.now();
+        console.log(event.type, Date.now() - touchstartBeginTime);
+    }
+    target.onclick = log;
+    target.ontouchstart = log;
+    target.ontouchend = log;
+    target.ontouchmove = log;
+    target.onmouseover = log;
+    target.onmousedown = log;
+    target.onmouseup = log;
+})();
+</script>
+</body>
+</html>
