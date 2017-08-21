@@ -4,14 +4,14 @@ var htmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
      entry:{
          // bundle:['./src/script/main.js','./src/script/a.js']
-        //  main:'./src/script/main.js',
+         main:'./src/script/main.js',
          a:'./src/script/a.js',
          b:'./src/script/b.js',
          c:'./src/script/c.js'
      },
      output:{
          path:path.resolve(__dirname, './dist'),
-         filename:'js/[name].js',
+         filename:'js/[name]-[chunkhash].js',
         //  publicPath:'http://cdn.com/'
          //filename:'[name]-[chunkhash].js'
      },
@@ -21,7 +21,8 @@ module.exports = {
             template:'template.html',
             inject:'body',//插入的位置
             title:'a',
-            chunks: ['a'],
+            // chunks: ['a'],
+            excludeChunks:['b','c'],
             // date:new Date(),
             minify:{
                 removeComments:true,
@@ -33,7 +34,8 @@ module.exports = {
             template:'template.html',
             inject:'body',//插入的位置
             title:'b',
-            chunks: ['b'],
+            excludeChunks:['a','c'],
+            // chunks: ['b'],
             // date:new Date(),
             minify:{
                 removeComments:true,
@@ -45,7 +47,8 @@ module.exports = {
             template:'template.html',
             inject:'body',//插入的位置
             title:'c',
-            chunks: ['c'],
+            excludeChunks:['a','b'],
+            // chunks: ['c'],
             // date:new Date(),
             minify:{
                 removeComments:true,
