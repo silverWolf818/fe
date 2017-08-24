@@ -18,6 +18,27 @@ module.exports = {
                     presets:['env'],
                     plugins: ['transform-runtime']
                 }
+            },
+            {
+              test: /\.css$/,
+              use: [
+                'style-loader',
+                    {
+                      loader: 'css-loader',
+                      options: {
+                        importLoaders: 1 // 0 => 无 loader(默认); 1 => postcss-loader; 2 => postcss-loader, sass-loader
+                      }
+                    },
+                    {
+                        loader:'postcss-loader',
+                        options:{
+                            plugins: (loader) => [
+                                 require('postcss-import')(), 
+                                 require('autoprefixer')()
+                               ]
+                        }
+                    }
+              ]
             }
         ]
     },
