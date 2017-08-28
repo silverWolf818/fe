@@ -20,9 +20,11 @@ module.exports = {
                 }
             },
             {
-              test: /\.css$/,
+              test: /\.(less|scss|css)$/,
               use: [
-                'style-loader',
+                  {
+                      loader: 'style-loader',
+                  },
                     {
                       loader: 'css-loader',
                       options: {
@@ -33,10 +35,16 @@ module.exports = {
                         loader:'postcss-loader',
                         options:{
                             plugins: (loader) => [
-                                 require('postcss-import')(), 
+                                 require('postcss-import')(),
                                  require('autoprefixer')()
                                ]
                         }
+                    },
+                    {
+                        loader:'less-loader'
+                    },
+                    {
+                      loader:'sass-loader'
                     }
               ]
             }
