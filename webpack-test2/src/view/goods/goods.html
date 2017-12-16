@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+<script src="<%= htmlWebpackPlugin.files.publicPath  %>js/<%= htmlWebpackPlugin.options.assets.vendor_dev.js %>"></script>
+<% for(var i = 0;i < htmlWebpackPlugin.files.js.length; i++ ){ %>
+<script type="text/javascript">
+    <%= compilation.assets[htmlWebpackPlugin.files.js[i].substr(htmlWebpackPlugin.files.publicPath.length)].source() %>
+</script>
+<% } %>
+</body>
+</html>
