@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/pixi.js/5.0.0-alpha/pixi.min.js"></script>
+<script type="text/javascript">
+    var type = "WebGL";
+    if(!PIXI.utils.isWebGLSupported()){
+        type = "canvas"
+    }
+
+    PIXI.utils.sayHello(type);
+    var app = new PIXI.Application({
+            width: 256,
+            height: 256,
+            antialias: true,
+            transparent: false,
+            resolution: 1
+        }
+    );
+    document.body.appendChild(app.view);
+</script>
+</body>
+</html>
