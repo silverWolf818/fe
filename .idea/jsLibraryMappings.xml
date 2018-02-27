@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{jquery-DefinitelyTyped}" />
+    <file url="file://$PROJECT_DIR$/webpack-test" libraries="{fe/webpack-test/node_modules}" />
+    <file url="file://$PROJECT_DIR$/webpack-test2" libraries="{fe/webpack-test2/node_modules}" />
+    <file url="PROJECT" libraries="{@types/babel-core, @types/node, es6-collections-DefinitelyTyped, fe/webpack-test/node_modules, fe/webpack-test2/node_modules, javascript-state-machine-DefinitelyTyped, jquery-DefinitelyTyped, node-DefinitelyTyped, vue-i18n-DefinitelyTyped, vue-resource-DefinitelyTyped}" />
   </component>
 </project>

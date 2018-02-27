@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        /*.v-enter-active, .v-leave-active {*/
+            /*transition: opacity 1s linear;*/
+        /*}*/
+        /*.v-enter, .v-leave-to {*/
+            /*opacity: 0;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div id="app">
+    <button @click="flag=!flag">切换</button>
+    <input type="text" v-model="query">
+    <transition-group enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+        <!--<div class="box" v-show="flag"></div>-->
+        <div v-for="(a,index) in newArr" :key="Math.random()">{{ a }}</div>
+    </transition-group>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
+<script>
+let vm = new Vue({
+    el:'#app',
+    computed:{
+      newArr(){
+          return this.arr.filter(item =>item == this.query);
+      }
+    },
+    data:{
+        query:'',
+        flag:true,
+        arr:[1,2,3,4,5]
+    }
+})
+</script>
+</body>
+</html>

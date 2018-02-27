@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div id="app">
+    <div class="container">
+        <div class="row">
+            <table class="table table-hover table-bordered">
+                <caption class="h3">购物车</caption>
+                <tr>
+                    <!--click点击checkbox的状态还没有改变-->
+                    <th>全选 <input type="checkbox" v-model="checkAll"></th>
+                    <th>商品</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                    <th>小计</th>
+                    <th>操作</th>
+                </tr>
+                <tr v-for="(product,index) in products">
+                    <td><input type="checkbox" v-model="product.isSelected"></td>
+                    <td>
+                        <img :src="product.productCover" :title="product.productName">
+                        {{ product.productInfo }}
+                    </td>
+                    <td>
+                        {{ product.productPrice }}
+                    </td>
+                    <td>
+                        <input type="number" v-model.lazy="product.productCount" min="1">
+                    </td>
+                    <td>
+                        {{ product.productCount*product.productPrice | toFixed(2) }}
+                    </td>
+                    <td><button class="btn btn-danger" @click="remove(product)">删除</button></td>
+                </tr>
+                <tr>
+                    <!--不会缓存上一次的结果-->
+                    <td colspan="6">总价格: {{ sum | toFixed(2) }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        filters:{
+            toFixed(data,param1){ //this指向Window
+                return '$ ' + data.toFixed(param1)
+            }
+        },
+        created(){
+            this.getData();
+        },
+        computed:{
+            checkAll:{
+                get(){
+                    return this.products.every(item => item.isSelected);
+                },
+                set(val){
+                    this.products.forEach(item => item.isSelected = val);
+                }
+            },
+            sum(){
+                return this.products.reduce((prev,next) => {
+                    if(next.isSelected){
+                        return prev + next.productPrice * next.productCount;
+                    }else{
+                        return prev;
+                    }
+                },0);
+            }
+
+        },
+        methods:{
+            getData(){
+                axios.get('./carts.json').then(res => {
+                    this.products = res.data;
+                    //this.checkOne();
+                },err => {
+                    console.log(err);
+                })
+            },
+            remove(p){
+                this.products = this.products.filter(item => item !== p);
+            },
+            // change(){
+            //     this.products.forEach(item => item.isSelected = this.checkAll);
+            // },
+            // checkOne(){
+            //     this.checkAll = this.products.every(item => item.isSelected);
+            // },
+            // sum(){
+            //     return this.products.reduce((prev,next) => {
+            //         if(next.isSelected){
+            //             return prev + next.productPrice * next.productCount;
+            //         }else{
+            //             return prev;
+            //         }
+            //     },0);
+            // }
+        },
+        data:{
+            products:[]
+        }
+    })
+</script>
+</body>
+</html>
