@@ -32,7 +32,7 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item" v-for="(todo,index) in todos" @dblclick="remember(todo)">
+                            <li class="list-group-item" v-for="(todo,index) in filterTodos" @dblclick="remember(todo)">
                                 <span :class="{ del:todo.isSelected }" v-show="cur!=todo"><input type="checkbox" v-model="todo.isSelected"> {{ todo.title }}</span>
                                 <input type="text" v-model="todo.title" v-show="cur==todo" @keyup.enter="cancel" @blur="cancel" v-focus="cur==todo">
                                 <button class="pull-right btn btn-danger btn-xs" @click="remove(todo)">&times;</button>
@@ -41,9 +41,9 @@
                     </div>
                     <div class="panel-footer">
                         <ul class="nav nav-pills">
-                            <li ><a href="#">全部</a></li>
-                            <li ><a href="#">已选</a></li>
-                            <li ><a href="#">未选</a></li>
+                            <li :class="{ active:hash==='all' }"><a href="#/all">全部</a></li>
+                            <li :class="{ active:hash==='finish' }"><a href="#/finish">已选</a></li>
+                            <li :class="{ active:hash==='unfinish' }"><a href="#/unfinish">未选</a></li>
                         </ul>
                     </div>
                 </div>
