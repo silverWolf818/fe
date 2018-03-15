@@ -20,6 +20,7 @@ const vm = new Vue({
         this.todos = JSON.parse(localStorage.getItem('data')) || this.todos;
         this.hash = window.location.hash.slice(2) || 'all';
         window.addEventListener('hashchange',()=>{
+            console.log(window.location.hash);
             this.hash = window.location.hash.slice(2);
         },false);
     },

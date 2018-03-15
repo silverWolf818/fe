@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+</div>
+<script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+<script>
+    new Vue({
+        beforeCreate(){},//1.
+        data:{
+            msg:'hello'
+        },
+        created(){},//2. ajax，初始化操作
+        beforeMount(){},
+        mounted(){
+            this.$refs
+        },// 真实dom渲染完成，可以操作dom
+        beforeUpdate(){},//一般用watch替换
+        updated(){}
+    });
+    vm.$mount('#app');//3.
+</script>
+</body>
+</html>
