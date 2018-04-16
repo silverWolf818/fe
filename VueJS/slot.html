@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <panel type="primary" @say-title="parent">
+        <div slot="title">heheda</div>
+        <div slot="content">
+            <div>qweqwe</div>
+        </div>
+    </panel>
+</div>
+<template id="panel">
+<div class="panel" :class="[color]">
+    <div class="panel-heading" ref="head">
+        <slot name="title"></slot>
+    </div>
+    <div class="panel-body">
+        <slot name="content"></slot>
+    </div>
+    <div class="panel-footer">
+        <slot>匿名</slot>
+        <button @click="say">say</button>
+    </div>
+</div>
+</template>
+<script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
+<script>
+    let panel = {
+        template:'#panel',
+        computed:{
+            color(){
+                return 'panel-' + this.type;
+            }
+        },
+        methods:{
+            say(){
+                this.$emit('say-title',this.$refs.head.innerText);
+            }
+        },
+        props:{
+            type:{
+                type:String,
+                default:'default'
+            }
+        }
+    };
+    new Vue({
+        el:'#app',
+        components:{
+            panel
+        },
+        methods:{
+            parent(t){
+                alert(t)
+            }
+        }
+    })
+</script>
+</body>
+</html>
