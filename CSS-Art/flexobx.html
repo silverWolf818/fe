@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flexbox</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 400px;
+            display: -webkit-flex;
+            display: flex;
+        }
+        .item1{
+            flex:0 1 50px;
+            background: blue;
+        }
+        .item2{
+            flex:1 1 auto;
+            background: red;
+        }
+        .item3{
+            flex:1 1 auto;
+            background: orange;
+        }
+        .center{
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item1">item1</div>
+        <div class="item2">item2</div>
+        <div class="item3">tiem3</div>
+    </div>
+    <div class="container" style="height: 400px;">
+        <div class="center"></div>
+    </div>
+</body>
+</html>

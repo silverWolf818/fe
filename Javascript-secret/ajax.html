@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    //全局ajax设置
+    $.ajaxSetup({
+        dataFilter:function (data, type){
+            var filterData = JSON.parse(data);
+            delete filterData.respDesc;
+            if(filterData.respCode !== '0000'){
+                return data;
+            }else{
+                return JSON.stringify({
+                    a:1
+                });
+            }
+        }
+    });
+    $.ajax({
+        type:'POST',
+        url:'http://39.107.101.54:8080/rest/service/routing/nouser/SelectUserInfoBusiService'
+    }).done(function(data){
+        console.log(data);
+    });
+</script>
+</body>
+</html>
