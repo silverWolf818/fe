@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/localforage/1.7.1/localforage.min.js"></script>
+<script>
+    localforage.setItem('somekey', 'some value').then(function (value) {
+        // 当值被存储后，可执行其他操作
+        console.log(value);
+    }).catch(function(err) {
+        // 当出错时，此处代码运行
+        console.log(err);
+    });
+</script>
+</body>
+</html>

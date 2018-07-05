@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function clone(obj) {
+        var target = obj.constructor === Array ? [] : {};
+        if(typeof obj !== 'object'){
+            return;
+        }
+        for (var i in obj){
+            if(obj.hasOwnProperty(i)){
+                target[i] = typeof obj[i] === 'object' ? clone(obj[i]) : obj[i];
+            }
+        }
+        return target;
+    }
+    var o = {
+        a:2,
+        b:{
+            c:3,
+            d:4
+        }
+    }
+    var x = clone(o);
+    x.b.c = 'x';
+    console.log(x);
+
+
+
+var jQuery = 'q';
+    (function ($) {
+        console.log($);
+    })(jQuery);
+</script>
+</body>
+</html>

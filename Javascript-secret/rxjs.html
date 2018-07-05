@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://unpkg.com/rxjs/bundles/rxjs.umd.min.js"></script>
+<script>
+    const { Observable } = rxjs;
+
+    let stream$ = Observable.create((observer) => {
+        observer.next('heheda');
+    });
+    stream$.subscribe((data) => {
+        console.log(data);
+    })
+</script>
+</body>
+</html>

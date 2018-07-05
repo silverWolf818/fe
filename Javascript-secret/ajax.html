@@ -7,26 +7,36 @@
 <body>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script>
-    //全局ajax设置
-    $.ajaxSetup({
-        dataFilter:function (data, type){
-            var filterData = JSON.parse(data);
-            delete filterData.respDesc;
-            if(filterData.respCode !== '0000'){
-                return data;
-            }else{
-                return JSON.stringify({
-                    a:1
-                });
-            }
-        }
-    });
-    $.ajax({
-        type:'POST',
-        url:'http://39.107.101.54:8080/rest/service/routing/nouser/SelectUserInfoBusiService'
-    }).done(function(data){
-        console.log(data);
-    });
+    var target = {a: 1, b: 1};
+    var copy1 = {a: 2, b: 2, c: {ca: { da:99 }, cb: 22, cc: 23}};
+    var copy2 = {c: {ca: { dd:12312 }, cb: 32, cd: 34}};
+    var result = $.extend(true,target, copy1, copy2);   // 进行深拷贝
+    console.log(target);
+
+    // var target = {a: 1, b: 1};
+    // var copy1 = {a: 2, b: 2, c: {ca: 21, cb: 22, cc: 23}};
+    // var copy2 = {c: {ca: 31, cb: 32, cd: 34}};
+    // var result = $.extend(target, copy1, copy2);   // 不进行深拷贝
+    // console.log(target);
+    // $.ajaxSetup({
+    //     dataFilter:function (data, type){
+    //         var filterData = JSON.parse(data);
+    //         delete filterData.respDesc;
+    //         if(filterData.respCode !== '0000'){
+    //             return data;
+    //         }else{
+    //             return JSON.stringify({
+    //                 a:1
+    //             });
+    //         }
+    //     }
+    // });
+    // $.ajax({
+    //     type:'POST',
+    //     url:'http://39.107.101.54:8080/rest/service/routing/nouser/SelectUserInfoBusiService'
+    // }).done(function(data){
+    //     console.log(data);
+    // });
 </script>
 </body>
 </html>
