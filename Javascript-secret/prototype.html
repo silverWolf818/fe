@@ -3,8 +3,6 @@
 <head>
 <title></title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 <body>
 <script>
@@ -28,6 +26,30 @@ var Calculator = function () {
 Calculator.prototype = new BaseCalculator();
 var calc = new Calculator();
 alert(calc.add(1, 1));
+
+
+function Cal(x,y){
+    this.num = 0;
+    this.x = x;
+    this.y = y;
+}
+
+Cal.prototype = {
+    add:function () {
+        this.num = this.x + this.y;
+        console.log(this.num);
+        return this;
+    },
+    minus:function() {
+        this.num = this.x - this.y;
+        console.log(this.num);
+        return this;
+    }
+}
+
+var stu = new Cal(5,4);
+  stu.add().minus()
+
 </script>
 </body>
 </html>
