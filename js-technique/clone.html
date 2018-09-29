@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/lodash.js/4.17.10/lodash.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+function clone(obj) {
+    var target = obj.constructor === Array ? [] : {};
+    if(typeof obj !== 'object'){
+        return;
+    }
+    for (var i in obj){
+        if(obj.hasOwnProperty(i)){
+            target[i] = typeof obj[i] === 'object' ? clone(obj[i]) : obj[i];
+        }
+    }
+    return target;
+}
+var obj1 = {
+    x: 'x1',
+    y: 'y1',
+    z: {
+        a:'a1',
+        b:'a2',
+        c:{
+            r:'r1',
+            f:'f1'
+        }
+    }
+};
+var obj2 = {
+    x: 'x2',
+    y: 'y2',
+    z: {
+        a: 'a2',
+        h: 'h2'
+    }
+};
+
+var arr1 = [{
+    a:'a1',
+    b:'b1'
+},{
+    a:'a2',
+    b:'b2'
+}];
+var arr2 = [{
+    a:'a3',
+    d:'b4'
+},{
+    a:'a3',
+    c:'c4'
+}];
+// console.log(Object.assign(obj1, obj2));
+// console.log({ ...obj1,...obj2});
+// console.log(_.merge(obj1,obj2));
+    console.log($.extend(true,arr1, arr2));
+// console.log(_.merge(arr1, arr2));
+// var obj3 = clone(obj2);
+// obj3.x = 'xxxxx';
+
+
+
+
+
+var getProto = Object.getPrototypeOf;
+
+var class2type = {};
+
+var toString = class2type.toString;
+
+var hasOwn = class2type.hasOwnProperty;
+
+var fnToString = hasOwn.toString;
+
+var ObjectFunctionString = fnToString.call( Object );
+
+
+
+
+
+</script>
+</body>
+</html>

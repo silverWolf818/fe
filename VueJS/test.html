@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <form>
+        <label>name:<input type="text" v-model="name"></label><br>
+        <label>pwd:<input type="password" v-model="pwd"></label><br>
+        <input type="reset" text="reset">
+    </form>
+</div>
+<script type="text/javascript" src="../VueJS/bulid/vue.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            name:null,
+            pwd:null
+        }
+    })
+</script>
+</body>
+</html>
