@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var time1 = parseInt(Math.random()*1000);
+    var time2 = parseInt(Math.random()*1000);
+
+    /**
+     * @return {number}
+     */
+    function A(){
+        return 'A';
+    }
+
+    /**
+     * @return {number}
+     */
+    function B(A){
+        return 'B' + A;
+    }
+    async function task (){
+        const a = await A();
+        const c = await B(a);
+        return c;
+    }
+    task().then((r)=> {
+        console.log(r);
+    })
+
+
+    class Point {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        toString() {
+            return '(' + this.x + ', ' + this.y + ')';
+        }
+    }
+
+    console.log(typeof Point); // "function"
+    console.log(Point === Point.prototype.constructor); // true
+    var point = new Point(2, 3);
+
+    class Polygon {
+        constructor(height, width) {
+            this.name = 'Polygon';
+            this.height = height;
+            this.width = width;
+        }
+        sayName() {
+            console.log('Hi, I am a ', this.name + '.');
+        }
+    }
+
+    class Square extends Polygon {
+        constructor(length) {
+            /*
+               这里，它调用父类的构造函数的 length,
+               作为Polygon 的 width和 height.
+            */
+            super(length, length);
+
+            /*
+                注意: 在派生的类中, 在你可以使用'this'之前, 必须先调用super()。
+                忽略这, 这将导致引用错误。
+            */
+            this.name = 'Square';
+        }
+
+        get area() {
+            return this.height * this.width;
+        }
+
+        set area(value) {
+            this.area = value;
+        }
+    }
+    const s = new Square(10);
+    console.log(s.area);
+</script>
+</body>
+</html>

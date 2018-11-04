@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let value = parseInt(Math.random()*10);
+    const promise = new Promise(function(resolve,reject){
+        if(value > 5){
+            resolve(value);
+        }else{
+            reject(value);
+        }
+    });
+    promise.then(function(data){
+        console.log(data);
+    }).catch(err => {
+        console.log('err: ' + err);
+    });
+</script>
+</body>
+</html>

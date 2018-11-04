@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>generator</title>
+</head>
+<body>
+<script>
+    function* gen(x) {
+        var y = yield x + 2;
+        console.log(y);
+        return y;
+    }
+    var g = gen(1);
+    console.log(g.next());
+    console.log(g.next());
+// function* helloWorldGenerator() {
+//     yield 'hello';
+//     yield 'world';
+//     return 'ending';
+// }
+//
+// var hw = helloWorldGenerator();
+// console.log(hw);
+// console.log(hw.next());
+// // { value: 'hello', done: false }
+//
+// console.log(hw.next());
+// // { value: 'world', done: false }
+//
+// console.log(hw.next());
+// // { value: 'ending', done: true }
+//
+// console.log(hw.next());
+// // { value: undefined, done: true }
+//
+// function* gen() {
+//     yield  123 + 456;
+// }
+//
+// console.log(gen().next());
+//
+// function* f() {
+//     console.log('执行了！')
+// }
+//
+// var generator = f();
+//
+// setTimeout(function () {
+//     generator.next()
+// }, 2000);
+//
+//
+// var arr = [1, [[2, 3], 4], [5, 6]];
+//
+// var flat = function* (a) {
+//     var length = a.length;
+//     for (var i = 0; i < length; i++) {
+//         var item = a[i];
+//         if (typeof item !== 'number') {
+//             yield* flat(item);
+//         } else {
+//             yield item;
+//         }
+//     }
+// };
+//
+// for (var f of flat(arr)) {
+//     console.log(f);
+// }
+//
+// var myIterable = {};
+// myIterable[Symbol.iterator] = function* () {
+//     yield 1;
+//     yield 2;
+//     yield 3;
+// };
+//
+// console.log([...myIterable]); // [1, 2, 3]
+//
+//
+// function* ff() {
+//     for(var i = 0; true; i++) {
+//         var reset = yield i;
+//         console.log(reset);
+//         if(reset) { i = -1; }
+//     }
+// }
+//
+// var g = ff();
+//
+// console.log(g.next()); // { value: 0, done: false }
+// console.log(g.next()); // { value: 1, done: false }
+// console.log(g.next(true)); // { value: 0, done: false }
+//
+// console.log('-------------------');
+//
+// function* foo(x) {
+//     var y = 2 * (yield (x + 1));
+//     var z = yield (y / 3);
+//     return (x + y + z);
+// }
+// var a = foo(5);
+// console.log(a.next());
+// console.log(a.next(12));
+// console.log(a.next(13));
+//
+// function* dataConsumer() {
+//     console.log('Started');
+//     console.log(`1. ${yield}`);
+//     console.log(`2. ${yield}`);
+//     return 'result';
+// }
+//
+// let genObj = dataConsumer();
+// genObj.next();
+// // Started
+// genObj.next('a')
+// // 1. a
+// genObj.next('b')
+// // 2. b
+// function* foo1() {
+//     yield 1;
+//     yield 2;
+//     yield 3;
+//     yield 4;
+//     yield 5;
+//     return 6;
+// }
+//
+// for (let v of foo1()) {
+//     console.log(v);
+// }
+//
+// function* fibonacci() {
+//     let [prev, curr] = [0, 1];
+//     for (;;) {
+//         yield curr;
+//         [prev, curr] = [curr, prev + curr];
+//     }
+// }
+//
+// for (let n of fibonacci()) {
+//     if (n > 1000) break;
+//     console.log(n);
+// }
+//
+// var gg = function* () {
+//     try {
+//         yield;
+//     } catch (e) {
+//         console.log(e);
+//     }
+// };
+//
+// var i = gg();
+// i.next();
+// i.throw(new Error('出错了！'));
+//
+// function* numbers () {
+//     yield 1;
+//     try {
+//         yield 2;
+//         yield 3;
+//     } finally {
+//         yield 4;
+//         yield 5;
+//     }
+//     yield 6;
+// }
+// var g = numbers();
+// console.log(g.next()); // { value: 1, done: false }
+// console.log(g.next()); // { value: 2, done: false }
+// console.log(g.return(7)); // { value: 4, done: false }
+// console.log(g.next());
+// console.log(g.next());
+
+
+
+
+</script>
+</body>
+</html>
